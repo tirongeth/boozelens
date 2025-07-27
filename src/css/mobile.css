@@ -69,7 +69,7 @@
     }
     
     .container {
-        padding: 60px 15px 85px 15px; /* Top padding for logo, bottom for nav */
+        padding: 20px 15px 65px 15px; /* Reduced padding - no logo, compact nav */
         margin: 0;
         width: 100%;
         max-width: 100%;
@@ -103,7 +103,7 @@
         letter-spacing: 0.2em;
     }
     
-    /* Navigation - Mobile Bottom Bar - FIXED PROPERLY */
+    /* Navigation - Mobile Bottom Bar - COMPACT & PROFESSIONAL */
     nav {
         position: fixed;
         bottom: 0;
@@ -112,23 +112,23 @@
         top: auto !important;
         width: 100%;
         height: auto;
-        z-index: 9999; /* Very high to ensure it's always on top */
-        background: rgba(10, 10, 10, 0.98);
+        z-index: 9999;
+        background: rgba(10, 10, 10, 0.95);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 0; /* Remove radius to prevent visual glitches */
-        box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
+        border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+        box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
         padding: 0;
         margin: 0;
-        transform: translateZ(0); /* Force GPU acceleration */
+        transform: translateZ(0);
     }
     
     .nav-container {
-        padding: 10px 8px env(safe-area-inset-bottom, 10px) 8px;
+        padding: 6px 4px env(safe-area-inset-bottom, 6px) 4px;
         position: relative;
         display: flex;
-        flex-direction: row; /* Changed from column */
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         max-width: 100%;
@@ -168,23 +168,24 @@
         min-width: 0;
     }
     
-    /* Mobile nav items - FIXED FOR PROPER DISPLAY */
+    /* Mobile nav items - COMPACT & MODERN */
     .nav-item {
         flex-direction: column;
-        padding: 8px 6px;
-        font-size: 0.7em;
-        gap: 3px;
+        padding: 5px 4px;
+        font-size: 0.65em;
+        gap: 2px;
         min-width: 100%;
         width: 100%;
-        height: 60px;
+        height: 48px;
         justify-content: center;
         align-items: center;
         background: transparent;
-        border: 1px solid transparent;
+        border: none;
         border-radius: 8px;
         position: relative;
         overflow: hidden;
         color: rgba(255, 255, 255, 0.7);
+        transition: all 0.2s ease;
     }
     
     /* Hide secondary nav items on mobile by default */
@@ -204,7 +205,7 @@
     }
     
     .nav-item i {
-        font-size: 1.5em;
+        font-size: 1.2em;
         margin: 0 !important;
         display: block;
     }
@@ -214,19 +215,25 @@
         opacity: 1 !important;
         transform: none !important;
         padding: 0 !important;
-        font-size: 0.9em;
+        font-size: 0.75em;
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
         font-weight: 500;
+        margin-top: 1px;
     }
     
     .nav-item:hover {
-        padding: 8px 6px; /* Keep same padding on hover */
-        background: rgba(255, 255, 255, 0.05);
-        transform: none; /* Disable hover transform on mobile */
+        background: none; /* Disable hover on mobile */
+    }
+    
+    .nav-item:active {
+        padding: 5px 4px; /* Keep same padding */
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0.95); /* Touch feedback */
+        transition: transform 0.1s ease;
     }
     
     .nav-item.active {
@@ -265,18 +272,24 @@
     
     /* CRITICAL SECTION FIX - Prevent black screen */
     .section {
-        padding: 10px 0 90px 0 !important; /* Bottom padding for nav */
+        padding: 10px 0 70px 0 !important; /* Bottom padding for compact nav */
         position: relative;
         z-index: 1;
         background: transparent;
-        min-height: calc(100vh - 150px);
+        min-height: calc(100vh - 130px);
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        display: none;
     }
     
     .section.active {
         display: block !important;
+        opacity: 1;
+        transform: translateX(0);
     }
     
-    /* Action buttons */
+    /* Action buttons - NATIVE APP FEEL */
     .action-buttons {
         flex-direction: column;
         gap: 10px;
@@ -286,7 +299,23 @@
     .action-buttons .btn {
         width: 100%;
         padding: 15px;
-        font-size: 0.9em;
+        font-size: 0.95em;
+        min-height: 50px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    /* All buttons on mobile */
+    .btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+        opacity: 0.9;
     }
     
     /* Stats grid */
@@ -329,14 +358,49 @@
         font-size: 2em;
     }
     
-    /* Forms */
+    /* Forms - INDUSTRIAL GRADE MOBILE INPUTS */
     .form-group {
         margin-bottom: 15px;
     }
     
     input, select, textarea {
-        font-size: 16px; /* Prevents zoom on iOS */
-        padding: 12px;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px !important;
+        line-height: 1.5 !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure all text inputs in games and modals are readable */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="number"] {
+        font-size: 16px !important;
+        min-height: 44px !important; /* Apple's recommended touch target */
+    }
+    
+    /* Fix placeholder text visibility */
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+        font-size: 16px !important;
+    }
+    
+    /* Fix select dropdowns */
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8L0 0h12z'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        padding-right: 30px !important;
     }
     
     /* Modal adjustments */
@@ -642,7 +706,7 @@
     }
     
     .section {
-        padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+        padding-bottom: calc(70px + env(safe-area-inset-bottom)) !important;
     }
     
     /* Fix input zoom on iOS */
@@ -651,29 +715,108 @@
         -webkit-appearance: none;
     }
     
-    /* Fix iOS scrolling issues */
+    /* Fix iOS scrolling issues - PROPER IMPLEMENTATION */
     body {
-        position: fixed;
-        width: 100%;
-        height: 100%;
+        position: relative; /* Don't fix position in general mobile */
+        height: 100vh;
     }
     
     .container {
-        height: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* PWA standalone mode - NATIVE APP EXPERIENCE */
+@media all and (display-mode: standalone) {
+    /* Handle iOS status bar properly */
+    body {
+        padding-top: 0;
+        background: #0a0a0a;
+    }
+    
+    /* Add status bar background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: env(safe-area-inset-top);
+        background: #0a0a0a;
+        z-index: 10001;
+    }
+    
+    /* Adjust container for PWA */
+    .container {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    
+    /* More compact navigation in PWA */
+    nav {
+        height: calc(50px + env(safe-area-inset-bottom));
+    }
+    
+    .nav-container {
+        padding: 4px 4px env(safe-area-inset-bottom, 4px) 4px;
+    }
+    
+    /* Even more compact nav items in PWA */
+    .nav-item {
+        height: 44px;
+        padding: 4px 3px;
+    }
+    
+    .nav-item i {
+        font-size: 1.1em;
+    }
+    
+    .nav-item span {
+        font-size: 0.7em;
+    }
+    
+    /* Hide auth container status bar padding */
+    .auth-container {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Better modal positioning in PWA */
+    .modal-content {
+        margin-top: calc(20px + env(safe-area-inset-top));
+        max-height: calc(90vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
+    
+    /* Adjust mobile more menu for PWA */
+    .mobile-more-menu {
+        max-height: 50vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
 }
 
-/* PWA standalone mode adjustments */
-@media all and (display-mode: standalone) {
-    /* Add padding for status bar on iOS */
-    body {
-        padding-top: env(safe-area-inset-top);
-    }
-    
-    /* Adjust navigation for standalone mode */
-    nav {
-        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+/* iOS-specific PWA enhancements */
+@supports (-webkit-touch-callout: none) {
+    @media all and (display-mode: standalone) {
+        /* Prevent bounce scrolling */
+        body {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        
+        /* Smooth transitions */
+        .section {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
     }
 }
