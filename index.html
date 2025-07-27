@@ -46,6 +46,14 @@
   <!-- Party events will be handled by the main module system -->
 </head>
 <body>
+    <!-- Mobile App Loading Screen -->
+    <div class="mobile-loading-screen" id="mobileLoadingScreen">
+        <img src="./logo/boozelens_app_cover (2).svg" alt="BoozeLens" class="loading-logo">
+        <div class="loading-spinner-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
     <div class="background"></div>
     <div class="particles" id="particles"></div>
     
@@ -125,6 +133,9 @@
                 </button></li>
                 <li><button class="nav-item" onclick="switchSection('settings')" type="button" title="Settings">
                     <i class="fas fa-cog"></i><span>Settings</span>
+                </button></li>
+                <li class="mobile-only-nav"><button class="nav-item" onclick="toggleMobileMore()" type="button" title="More">
+                    <i class="fas fa-ellipsis-h"></i><span>More</span>
                 </button></li>
             </ul>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" type="button">
@@ -816,6 +827,31 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <!-- Mobile More Menu -->
+    <div class="mobile-more-backdrop" id="mobileMoreBackdrop" onclick="toggleMobileMore()"></div>
+    <div class="mobile-more-menu" id="mobileMoreMenu">
+        <div class="mobile-more-header">
+            <h3>More Options</h3>
+            <button class="mobile-more-close" onclick="toggleMobileMore()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-more-items">
+            <div class="mobile-more-item" onclick="switchSection('photos'); toggleMobileMore();">
+                <i class="fas fa-camera-retro"></i>
+                <span>Photos</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('achievements'); toggleMobileMore();">
+                <i class="fas fa-trophy"></i>
+                <span>Achievements</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('drinks'); toggleMobileMore();">
+                <i class="fas fa-beer"></i>
+                <span>Drinks</span>
+            </div>
         </div>
     </div>
     

@@ -47,6 +47,7 @@ function exposeGlobalFunctions() {
     window.updateUI = updateUI;
     window.switchSection = switchSection;
     window.toggleMobileMenu = toggleMobileMenu;
+    window.toggleMobileMore = toggleMobileMore;
     window.showNotification = showNotification;
     window.showModal = showModal;
     window.closeModal = closeModal;
@@ -585,6 +586,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('🚀 Starting BoozeLens app initialization...');
     
     try {
+        // Hide mobile loading screen after a short delay
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('mobileLoadingScreen');
+            if (loadingScreen) {
+                loadingScreen.classList.add('hide');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        }, 1500);
         // Step 1: Initialize Firebase FIRST
         const firebaseReady = initializeFirebase();
         if (!firebaseReady) {
@@ -1076,6 +1087,25 @@ function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');
     if (navMenu) {
         navMenu.classList.toggle('show');
+    }
+}
+
+function toggleMobileMore() {
+    const moreMenu = document.getElementById('mobileMoreMenu');
+    const backdrop = document.getElementById('mobileMoreBackdrop');
+    
+    if (moreMenu && backdrop) {
+        const isActive = moreMenu.classList.contains('active');
+        
+        if (isActive) {
+            moreMenu.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        } else {
+            moreMenu.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     }
 }
 
