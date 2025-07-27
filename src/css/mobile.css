@@ -291,49 +291,43 @@
         transform: translateX(0);
     }
     
-    /* Action buttons - NATIVE APP FEEL */
+    /* Action buttons - 2x2 GRID */
     .action-buttons {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
         margin: 20px 0;
     }
     
     .action-buttons .btn {
         width: 100%;
-        padding: 15px;
-        font-size: 0.95em;
+        padding: 12px 8px;
+        font-size: 0.85em;
         min-height: 50px;
         border-radius: 12px;
         font-weight: 600;
         transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
     }
     
-    /* All buttons on mobile - INDUSTRIAL STANDARD */
+    .action-buttons .btn i {
+        font-size: 1.3em;
+    }
+    
+    /* All buttons on mobile */
     .btn {
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
         user-select: none;
-        min-height: 44px !important;
-        font-size: 15px !important;
-        font-weight: 600 !important;
-        padding: 12px 20px !important;
-        border-radius: 12px !important;
     }
     
     .btn:active {
         transform: scale(0.98);
         opacity: 0.9;
-    }
-    
-    /* Small icon-only buttons */
-    .btn:has(i:only-child),
-    button:has(i:only-child) {
-        min-height: 44px !important;
-        width: 44px !important;
-        padding: 0 !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
     }
     
     /* Stats grid */
@@ -435,40 +429,18 @@
         height: 44px !important;
     }
     
-    /* Override ALL inline styles for inputs - NUCLEAR OPTION */
-    #partyName,
-    #partyAddress,
-    #joinPartyCode,
-    #partyChatInput,
-    #drinkType,
-    #drinkAmount,
-    #alcoholPercent,
+    /* Override inline styles for inputs - TARGETED APPROACH */
+    #modalDeviceId,
+    #newDeviceName,
+    #checkinLocation,
     #username,
     #homeAddress,
     #emergencyContact,
     #medicalInfo,
-    #safetyNotes,
-    #modalDeviceId,
-    #newDeviceName,
-    #checkinLocation,
-    #emailDisplay,
-    #shareLocation,
-    #notifications,
-    #publicProfile,
-    input[style],
-    select[style],
-    textarea[style] {
+    #safetyNotes {
         font-size: 16px !important;
         padding: 14px 16px !important;
         min-height: 48px !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        color: white !important;
-        border-radius: 12px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        -webkit-appearance: none !important;
-        line-height: 1.4 !important;
     }
     
     /* Modal specific fixes */
@@ -483,21 +455,31 @@
         padding: 14px 16px !important;
     }
     
+    /* Fix party join layout */
+    #parties div[style*="display: flex"] {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
     /* Fix party join code specifically */
     #joinPartyCode {
-        flex: 1 1 auto !important;
+        flex: 1 1 70% !important;
         width: auto !important;
-        font-size: 18px !important;
-        letter-spacing: 0.15em !important;
-        font-weight: 600 !important;
+        min-width: 0 !important;
+        font-size: 20px !important;
+        letter-spacing: 0.2em !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        padding: 16px !important;
     }
     
     /* Fix join button */
     #joinPartyBtn {
-        flex: 0 0 auto !important;
-        min-width: 90px !important;
-        max-width: 100px !important;
-        padding: 14px 20px !important;
+        flex: 0 1 30% !important;
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 14px 16px !important;
     }
     
     /* Ensure all text inputs in games and modals are readable */
@@ -554,15 +536,28 @@
     }
     
     .game-card {
-        padding: 20px 10px;
+        padding: 20px 15px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
     }
     
     .game-icon {
-        font-size: 2em;
+        font-size: 2.5em;
     }
     
     .game-title {
-        font-size: 0.9em;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .game-players {
+        font-size: 0.75em;
+        opacity: 0.8;
     }
     
     /* Emergency grid */
@@ -713,7 +708,8 @@
         }
     }
     
-    /* Mobile More Menu Overlay */
+    
+    /* Mobile More Menu Overlay - MOVED INSIDE MEDIA QUERY */
     .mobile-more-menu {
         position: fixed;
         bottom: 0;
