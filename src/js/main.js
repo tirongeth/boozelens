@@ -1084,15 +1084,9 @@ function switchSection(sectionId) {
 }
 
 function toggleMobileMenu() {
-    // On mobile, toggle the More menu instead of nav menu
-    if (window.innerWidth <= 768) {
-        toggleMobileMore();
-    } else {
-        // Desktop behavior (if any)
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu) {
-            navMenu.classList.toggle('show');
-        }
+    const navMenu = document.getElementById('navMenu');
+    if (navMenu) {
+        navMenu.classList.toggle('show');
     }
 }
 
