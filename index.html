@@ -134,15 +134,17 @@
                 <li><button class="nav-item" onclick="switchSection('settings')" type="button" title="Settings">
                     <i class="fas fa-cog"></i><span>Settings</span>
                 </button></li>
-                <li class="mobile-only-nav"><button class="nav-item" onclick="toggleMobileMore()" type="button" title="More">
-                    <i class="fas fa-ellipsis-h"></i><span>More</span>
-                </button></li>
             </ul>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" type="button">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
+    
+    <!-- Mobile Floating More Button -->
+    <button class="mobile-more-button" id="mobileMoreButton" onclick="toggleMobileMore()" type="button">
+        <i class="fas fa-bars"></i>
+    </button>
     
     <!-- User Profile Widget -->
     <div class="user-profile" id="userProfile" style="display: none;">

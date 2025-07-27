@@ -264,11 +264,8 @@
         }
         
         /* Hide mobile-only elements on desktop */
-        .mobile-only-nav {
-            display: none !important;
-        }
-        
-        /* Also hide mobile menu elements on desktop */
+        .mobile-only-nav,
+        .mobile-more-button,
         .mobile-more-menu,
         .mobile-more-backdrop {
             display: none !important;

@@ -188,18 +188,38 @@
         transition: all 0.2s ease;
     }
     
-    /* Hide secondary nav items on mobile - only show 4 main items */
+    /* Hide secondary nav items on mobile - show 5 main items */
     .nav-menu li:nth-child(3), /* Photos */
     .nav-menu li:nth-child(6), /* Achievements */
-    .nav-menu li:nth-child(7), /* Drinks */
-    .nav-menu li:nth-child(8), /* Emergency */
-    .nav-menu li:nth-child(9) { /* Settings */
+    .nav-menu li:nth-child(7) { /* Drinks */
         display: none !important;
     }
     
-    /* Show More button only on mobile */
-    .mobile-only-nav {
-        display: flex !important;
+    /* Floating More button */
+    .mobile-more-button {
+        display: block !important;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background: #00ff88;
+        border: none;
+        border-radius: 50%;
+        color: #0a0a0a;
+        font-size: 1.5em;
+        box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+        z-index: 9996;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-more-button:active {
+        transform: scale(0.95);
+    }
+    
+    .mobile-more-button i {
+        display: block;
     }
     
     .nav-item::before {
@@ -270,6 +290,23 @@
     .card {
         padding: 20px;
         margin-bottom: 15px;
+    }
+    
+    /* Fix Friends list */
+    #friendsList,
+    #friendRequests,
+    #searchResults {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #friendsList .btn,
+    #friendRequests .btn,
+    #searchResults .btn {
+        padding: 10px !important;
+        font-size: 0.85em !important;
+        min-height: 40px !important;
     }
     
     /* CRITICAL SECTION FIX - Prevent black screen */
@@ -429,6 +466,27 @@
         height: 44px !important;
     }
     
+    /* Fix Friends search */
+    .friends-search {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
+    #friendSearchInput {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        font-size: 16px !important;
+        padding: 14px !important;
+    }
+    
+    .friends-search button {
+        flex: 0 0 auto !important;
+        min-width: 100px !important;
+        max-width: 120px !important;
+    }
+    
     /* Override inline styles for inputs - TARGETED APPROACH */
     #modalDeviceId,
     #newDeviceName,
@@ -464,22 +522,25 @@
     
     /* Fix party join code specifically */
     #joinPartyCode {
-        flex: 1 1 70% !important;
+        flex: 1 1 65% !important;
         width: auto !important;
         min-width: 0 !important;
-        font-size: 20px !important;
-        letter-spacing: 0.2em !important;
+        font-size: 18px !important;
+        letter-spacing: 0.15em !important;
         font-weight: 700 !important;
         text-align: center !important;
-        padding: 16px !important;
+        padding: 14px 12px !important;
+        height: 50px !important;
     }
     
     /* Fix join button */
     #joinPartyBtn {
-        flex: 0 1 30% !important;
-        min-width: 80px !important;
-        max-width: 120px !important;
-        padding: 14px 16px !important;
+        flex: 0 1 35% !important;
+        min-width: 90px !important;
+        max-width: 110px !important;
+        padding: 14px 12px !important;
+        height: 50px !important;
+        font-size: 0.95em !important;
     }
     
     /* Ensure all text inputs in games and modals are readable */
