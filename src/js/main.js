@@ -22,7 +22,7 @@ import { safeUpdatePartyDisplay } from './main-party-display.js';
 // Import all functions from feature modules
 import * as AllFunctions from './features/all-functions.js';
 import * as Drinks from './features/drinks.js';
-import * as Games from './features/games.js';
+import * as Games from './features/games/index.js';
 import * as Achievements from './features/achievements.js';
 import * as Devices from './features/devices.js';
 import * as PartiesModule from './features/parties.js';
