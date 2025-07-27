@@ -20,7 +20,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 40px;
+        padding: 20px;
         opacity: 1;
         transition: opacity 0.5s ease;
     }
@@ -31,9 +31,11 @@
     }
     
     .loading-logo {
-        width: 80%;
-        max-width: 300px;
+        width: 100%;
+        max-width: 375px;
         height: auto;
+        max-height: 60vh;
+        object-fit: contain;
         animation: pulse 2s ease-in-out infinite;
     }
     
@@ -43,8 +45,7 @@
     }
     
     .loading-spinner-container {
-        width: 50px;
-        height: 50px;
+        display: none; /* Hide spinner - logo animation is enough */
     }
 }
 
@@ -374,8 +375,32 @@
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
         background: rgba(255, 255, 255, 0.1) !important;
         color: white !important;
-        width: 100% !important;
         box-sizing: border-box !important;
+    }
+    
+    /* Fix for flex layouts - don't force width on flex children */
+    .chat-input input,
+    .form-group input,
+    .modal-body input {
+        width: 100% !important;
+    }
+    
+    /* Fix chat and game inputs specifically */
+    .chat-input {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
+    .chat-input input {
+        flex: 1 1 auto !important;
+        min-width: 0 !important; /* Allow shrinking */
+    }
+    
+    .chat-input button {
+        flex: 0 0 auto !important;
+        min-width: 50px !important;
+        padding: 12px 16px !important;
     }
     
     /* Ensure all text inputs in games and modals are readable */
@@ -393,6 +418,19 @@
     textarea::placeholder {
         color: rgba(255, 255, 255, 0.5) !important;
         font-size: 16px !important;
+    }
+    
+    /* Fix game inputs with buttons */
+    div[style*="display: flex"] input[type="text"] {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+    }
+    
+    /* Fix party chat input */
+    #partyChatInput {
+        flex: 1 1 auto !important;
+        width: auto !important;
     }
     
     /* Fix select dropdowns */
