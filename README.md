@@ -2,7 +2,7 @@
 
 A professional-grade real-time BAC (Blood Alcohol Content) monitoring system with interactive party games and safety features.
 
-🌐 **Live Demo**: [https://tirongeth.github.io/boozelens/](https://tirongeth.github.io/boozelens/)
+🌐 **Live Demo**: [https://boozelens.com](https://boozelens.com)
 
 ## 🚀 Quick Start
 
@@ -24,17 +24,23 @@ A professional-grade real-time BAC (Blood Alcohol Content) monitoring system wit
    npm install
    ```
 
-3. **Start the development server**
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Firebase configuration
+   ```
+
+4. **Start the development server**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser** - Vite will automatically open it at:
+5. **Open your browser** - Vite will automatically open it at:
    ```
    http://localhost:8000
    ```
 
-5. **Create an account or login** to start using BoozeLens!
+6. **Create an account or login** to start using BoozeLens!
 
 ## 📁 Project Structure
 
