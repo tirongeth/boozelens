@@ -194,9 +194,12 @@ const ALERT_COOLDOWN = 5 * 60 * 1000; // 5 minutes between alerts
 
 function checkForAlerts() {
     const partyData = getStateValue('partyData') || {};
-    // Only check recent data (within 24 hours)
+    // Only check recent data (within 24 hours) AND only friends (not own devices)
     const criticalFriends = Object.values(partyData).filter(f => 
-        Date.now() - f.lastUpdate < 24 * 60 * 60 * 1000 && f.bac >= 0.08
+        Date.now() - f.lastUpdate < 24 * 60 * 60 * 1000 && 
+        f.bac >= 0.08 && 
+        f.isFriend === true && 
+        !f.isOwn
     );
     
     if (criticalFriends.length > 0) {
@@ -206,7 +209,7 @@ function checkForAlerts() {
         if (now - lastAlertTime > ALERT_COOLDOWN) {
             const names = criticalFriends.map(f => f.name).join(', ');
             showNotification(
-                `⚠️ ${names} need${criticalFriends.length > 1 ? '' : 's'} attention! BAC too high!`, 
+                `⚠️ ${criticalFriends.length} friend${criticalFriends.length > 1 ? 's have' : ' has'} high BAC: ${names}`, 
                 'warning'
             );
             lastAlertTime = now;

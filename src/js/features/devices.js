@@ -143,8 +143,9 @@ function processDeviceReading(deviceId, reading) {
         window.updateUI();
     }
     
-    // Check for alerts
-    if (reading.bac >= 0.08) {
+    // Check for alerts only if reading is actually new (less than 5 minutes old)
+    const isNewReading = Date.now() - reading.timestamp < 5 * 60 * 1000;
+    if (isNewReading && reading.bac >= 0.08) {
         showNotification(`⚠️ Your BAC is too high: ${reading.bac.toFixed(3)}‰`, 'error');
     }
 }

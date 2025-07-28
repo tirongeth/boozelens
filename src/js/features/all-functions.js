@@ -814,3 +814,119 @@ export function resolvePermission(permission) {
     // This will be set dynamically when modal is shown
     console.log('Permission resolved:', permission);
 }
+
+// ========================================
+// DEVELOPER TEST DATA FUNCTIONS
+// ========================================
+export async function addTestBACToFirebase() {
+    const database = getFirebaseDatabase();
+    const { DEVELOPER_UIDS } = await import('../config/constants.js');
+    
+    try {
+        let addedCount = 0;
+        
+        // Add a test device for each developer
+        for (let i = 0; i < DEVELOPER_UIDS.length; i++) {
+            const devUid = DEVELOPER_UIDS[i];
+            const deviceId = `TEST-DEV-${devUid.substring(0, 6)}`;
+            
+            // Add test BAC reading
+            await set(ref(database, `readings/${deviceId}`), {
+                bac: 0.045 + (Math.random() * 0.04), // Random BAC between 0.045 and 0.085
+                timestamp: Date.now() - (i * 60000), // Stagger timestamps by 1 minute
+                trend: ['rising', 'steady', 'falling'][Math.floor(Math.random() * 3)]
+            });
+            
+            // Add device to developer's device list
+            await set(ref(database, `users/${devUid}/devices/${deviceId}`), {
+                name: `Test Device ${i + 1}`,
+                addedAt: Date.now()
+            });
+            
+            addedCount++;
+        }
+        
+        showNotification(`🧪 Test BAC added to ${addedCount} developer account${addedCount > 1 ? 's' : ''}!`, 'success');
+        console.log(`Test devices added for ${addedCount} developers`);
+        
+        // Force refresh after a short delay
+        setTimeout(() => {
+            if (window.location.reload) {
+                window.location.reload();
+            }
+        }, 1000);
+        
+        return addedCount;
+    } catch (error) {
+        console.error('Error adding test data:', error);
+        showNotification('❌ Failed to add test data', 'error');
+    }
+}
+
+export async function removeTestBACFromFirebase() {
+    const database = getFirebaseDatabase();
+    const { DEVELOPER_UIDS } = await import('../config/constants.js');
+    const currentUser = getCurrentUser();
+    
+    try {
+        let removedCount = 0;
+        
+        // List of ALL possible test device IDs (old and new patterns)
+        const testDevicePatterns = [
+            'TEST-DEV-001',
+            'TEST-DEV-002',
+            'TEST-DEVICE-001',
+            'TEST-DEVICE-002'
+        ];
+        
+        // Also add the new pattern for each developer
+        for (const devUid of DEVELOPER_UIDS) {
+            testDevicePatterns.push(`TEST-DEV-${devUid.substring(0, 6)}`);
+        }
+        
+        // Remove ALL test devices from readings
+        for (const deviceId of testDevicePatterns) {
+            try {
+                await remove(ref(database, `readings/${deviceId}`));
+                console.log(`Removed readings for ${deviceId}`);
+                removedCount++;
+            } catch (e) {
+                // Device might not exist, that's ok
+            }
+        }
+        
+        // Remove test devices from ALL users (not just developers)
+        const usersSnapshot = await get(ref(database, 'users'));
+        if (usersSnapshot.exists()) {
+            const users = usersSnapshot.val();
+            
+            for (const [uid, userData] of Object.entries(users)) {
+                if (userData.devices) {
+                    for (const deviceId of Object.keys(userData.devices)) {
+                        // Remove any device that starts with TEST- (safety check for test devices only)
+                        if (deviceId.startsWith('TEST-') && deviceId.includes('DEV')) {
+                            await remove(ref(database, `users/${uid}/devices/${deviceId}`));
+                            console.log(`Removed ${deviceId} from user ${uid}`);
+                            removedCount++;
+                        }
+                    }
+                }
+            }
+        }
+        
+        showNotification(`🧹 Cleaned up ${removedCount} test entries from Firebase!`, 'success');
+        console.log(`Total test entries removed: ${removedCount}`);
+        
+        // Force refresh after a short delay
+        setTimeout(() => {
+            if (window.location.reload) {
+                window.location.reload();
+            }
+        }, 1000);
+        
+        return removedCount;
+    } catch (error) {
+        console.error('Error removing test data:', error);
+        showNotification('❌ Failed to remove test data', 'error');
+    }
+}

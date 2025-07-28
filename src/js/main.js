@@ -809,6 +809,11 @@ async function onUserAuthenticated(user) {
             showNotification('🛠️ Developer mode active', 'info');
             // Enable chat input
             updateChatUIForDeveloper(true);
+            
+            // Expose developer test functions
+            window.addTestBACToFirebase = AllFunctions.addTestBACToFirebase;
+            window.removeTestBACFromFirebase = AllFunctions.removeTestBACFromFirebase;
+            console.log('🔧 Developer test functions enabled: addTestBACToFirebase(), removeTestBACFromFirebase()');
         } else {
             console.log('💡 To get developer rights, add this UID to DEVELOPER_UIDS in constants.js');
             // Disable chat input
@@ -1024,9 +1029,9 @@ function processDeviceReading(deviceId, reading) {
     setStateValue('partyData', partyData);
     updateUI();
     
-    // Check for alerts only if reading is less than 24 hours old
-    const isRecent = Date.now() - partyData[deviceId].lastUpdate < 24 * 60 * 60 * 1000;
-    if (isRecent && reading.bac >= 0.08) {
+    // Check for alerts only if reading is actually new (less than 5 minutes old)
+    const isNewReading = Date.now() - reading.timestamp < 5 * 60 * 1000;
+    if (isNewReading && reading.bac >= 0.08) {
         showNotification(`⚠️ Your BAC is too high: ${reading.bac.toFixed(3)}‰`, 'error');
     }
 }
