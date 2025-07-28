@@ -89,7 +89,8 @@ export const DEVELOPER_UIDS = [
     // Add your Firebase UID here after checking it in the console
     // You can find it in Firebase Console > Authentication > Users
     // Example: 'abc123def456'
-    'k1OvkYapqbZUAf9RbvfmnhgWcY23'  // rongtimon@gmail.com
+    'k1OvkYapqbZUAf9RbvfmnhgWcY23', // rongtimon@gmail.com
+    'kHNxyiqgsSfUHZArxbApGzxTlhO2'  // yannick.russmann@icloud.com
 ];
 
 // Developer permissions
