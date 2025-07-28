@@ -556,5 +556,267 @@ export const gameData = {
             options: ["Law", "Business Administration", "Computer Science", "International Affairs"],
             correct: 1
         }
-    ]
+    ],
+    triviaCategories: {
+        sports: [
+            {
+                question: "Which country has won the most FIFA World Cups?",
+                options: ["Germany", "Brazil", "Argentina", "Italy"],
+                correct: 1
+            },
+            {
+                question: "How many players are on a basketball court at one time?",
+                options: ["8", "10", "12", "14"],
+                correct: 1
+            },
+            {
+                question: "In which year were the first modern Olympics held?",
+                options: ["1896", "1900", "1904", "1912"],
+                correct: 0
+            },
+            {
+                question: "What is the maximum score in 10-pin bowling?",
+                options: ["200", "250", "300", "350"],
+                correct: 2
+            },
+            {
+                question: "Which tennis player has won the most Grand Slam titles?",
+                options: ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
+                correct: 2
+            },
+            {
+                question: "How long is a marathon?",
+                options: ["40.2 km", "41.2 km", "42.2 km", "43.2 km"],
+                correct: 2
+            },
+            {
+                question: "Which sport is known as 'The Beautiful Game'?",
+                options: ["Basketball", "Football/Soccer", "Tennis", "Golf"],
+                correct: 1
+            },
+            {
+                question: "How many rings are on the Olympic flag?",
+                options: ["4", "5", "6", "7"],
+                correct: 1
+            },
+            {
+                question: "In golf, what is an eagle?",
+                options: ["1 under par", "2 under par", "3 under par", "Par"],
+                correct: 1
+            },
+            {
+                question: "Which country invented ice hockey?",
+                options: ["USA", "Russia", "Canada", "Sweden"],
+                correct: 2
+            }
+        ],
+        history: [
+            {
+                question: "In which year did World War II end?",
+                options: ["1943", "1944", "1945", "1946"],
+                correct: 2
+            },
+            {
+                question: "Who was the first President of the United States?",
+                options: ["Thomas Jefferson", "George Washington", "John Adams", "Benjamin Franklin"],
+                correct: 1
+            },
+            {
+                question: "The ancient city of Rome was built on how many hills?",
+                options: ["5", "6", "7", "8"],
+                correct: 2
+            },
+            {
+                question: "In which year did the Berlin Wall fall?",
+                options: ["1987", "1988", "1989", "1990"],
+                correct: 2
+            },
+            {
+                question: "Who painted the Mona Lisa?",
+                options: ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"],
+                correct: 1
+            },
+            {
+                question: "Which empire built Machu Picchu?",
+                options: ["Aztec", "Maya", "Inca", "Olmec"],
+                correct: 2
+            },
+            {
+                question: "In which year did Christopher Columbus reach the Americas?",
+                options: ["1490", "1491", "1492", "1493"],
+                correct: 2
+            },
+            {
+                question: "Who was known as the 'Iron Lady'?",
+                options: ["Queen Elizabeth II", "Margaret Thatcher", "Angela Merkel", "Golda Meir"],
+                correct: 1
+            },
+            {
+                question: "The French Revolution began in which year?",
+                options: ["1787", "1788", "1789", "1790"],
+                correct: 2
+            },
+            {
+                question: "Which ancient wonder of the world still stands today?",
+                options: ["Colossus of Rhodes", "Great Pyramid of Giza", "Hanging Gardens", "Lighthouse of Alexandria"],
+                correct: 1
+            }
+        ],
+        science: [
+            {
+                question: "What is the chemical symbol for gold?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: 2
+            },
+            {
+                question: "How many bones are in an adult human body?",
+                options: ["196", "206", "216", "226"],
+                correct: 1
+            },
+            {
+                question: "What is the speed of light in vacuum?",
+                options: ["299,792 km/s", "199,792 km/s", "399,792 km/s", "499,792 km/s"],
+                correct: 0
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Saturn", "Jupiter", "Uranus", "Neptune"],
+                correct: 1
+            },
+            {
+                question: "What is the powerhouse of the cell?",
+                options: ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"],
+                correct: 2
+            },
+            {
+                question: "What is the most abundant gas in Earth's atmosphere?",
+                options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+                correct: 2
+            },
+            {
+                question: "How many chambers does a human heart have?",
+                options: ["2", "3", "4", "5"],
+                correct: 2
+            },
+            {
+                question: "What is the study of earthquakes called?",
+                options: ["Geology", "Seismology", "Volcanology", "Meteorology"],
+                correct: 1
+            },
+            {
+                question: "What is the smallest unit of matter?",
+                options: ["Molecule", "Atom", "Electron", "Quark"],
+                correct: 3
+            },
+            {
+                question: "At what temperature does water boil at sea level?",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                correct: 1
+            }
+        ],
+        flags: [
+            {
+                question: "Which country's flag is just red and white with a maple leaf?",
+                options: ["USA", "Canada", "Norway", "Denmark"],
+                correct: 1
+            },
+            {
+                question: "Which country has a flag with only one color and no design?",
+                options: ["Libya (1977-2011)", "Japan", "Bangladesh", "Poland"],
+                correct: 0
+            },
+            {
+                question: "The Union Jack is the flag of which country?",
+                options: ["Australia", "New Zealand", "United Kingdom", "Canada"],
+                correct: 2
+            },
+            {
+                question: "Which country's flag has a blue wheel in the center?",
+                options: ["Pakistan", "India", "Bangladesh", "Sri Lanka"],
+                correct: 1
+            },
+            {
+                question: "How many stars are on the flag of the United States?",
+                options: ["48", "49", "50", "51"],
+                correct: 2
+            },
+            {
+                question: "Which country's flag is red with a yellow star?",
+                options: ["China", "Vietnam", "North Korea", "Cuba"],
+                correct: 1
+            },
+            {
+                question: "The flag of Japan features what symbol?",
+                options: ["Yellow star", "Red circle", "Blue cross", "White moon"],
+                correct: 1
+            },
+            {
+                question: "Which European country has a square flag?",
+                options: ["Vatican City", "Switzerland", "Monaco", "Liechtenstein"],
+                correct: 1
+            },
+            {
+                question: "Brazil's flag features which phrase?",
+                options: ["Liberty or Death", "Order and Progress", "Unity and Faith", "Peace and Justice"],
+                correct: 1
+            },
+            {
+                question: "Which country's flag has an AK-47 on it?",
+                options: ["Somalia", "Mozambique", "Angola", "Zimbabwe"],
+                correct: 1
+            }
+        ],
+        economy: [
+            {
+                question: "What does GDP stand for?",
+                options: ["General Domestic Product", "Gross Domestic Product", "Grand Domestic Price", "Gross Domestic Price"],
+                correct: 1
+            },
+            {
+                question: "What is inflation?",
+                options: ["Decrease in prices", "Increase in supply", "General increase in prices", "Increase in demand only"],
+                correct: 2
+            },
+            {
+                question: "Who wrote 'The Wealth of Nations'?",
+                options: ["Karl Marx", "John Keynes", "Adam Smith", "Milton Friedman"],
+                correct: 2
+            },
+            {
+                question: "What is the study of economics on a large scale called?",
+                options: ["Microeconomics", "Macroeconomics", "Econometrics", "Finance"],
+                correct: 1
+            },
+            {
+                question: "In economics, what does the term 'opportunity cost' mean?",
+                options: ["The cost of an opportunity", "The next best alternative foregone", "The total cost of production", "The profit margin"],
+                correct: 1
+            },
+            {
+                question: "What is a bull market?",
+                options: ["Falling prices", "Rising prices", "Stable prices", "Volatile prices"],
+                correct: 1
+            },
+            {
+                question: "Which organization sets monetary policy in the US?",
+                options: ["Treasury", "Congress", "Federal Reserve", "World Bank"],
+                correct: 2
+            },
+            {
+                question: "What does IPO stand for?",
+                options: ["International Purchase Order", "Initial Public Offering", "Internal Price Order", "Investment Portfolio Option"],
+                correct: 1
+            },
+            {
+                question: "What is the invisible hand theory associated with?",
+                options: ["Communism", "Free market", "Socialism", "Mercantilism"],
+                correct: 1
+            },
+            {
+                question: "What is a recession typically defined as?",
+                options: ["1 quarter negative growth", "2 quarters negative growth", "3 quarters negative growth", "4 quarters negative growth"],
+                correct: 1
+            }
+        ]
+    }
 };

@@ -43,7 +43,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "Bash(start http://localhost:8000)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(robocopy:*)",
+      "Bash(powershell:*)"
     ],
     "deny": []
   }
