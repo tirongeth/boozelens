@@ -29,16 +29,17 @@ import {
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
 
-// Firebase configuration - using environment variables for security
+// Firebase configuration - these are public keys, safe to expose
+// Firebase uses security rules on the backend for actual protection
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCuOjiHa8C0jgAte40E774CRJROTWTUdmg",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "hsg-party-tracker.firebaseapp.com",
-    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || "https://hsg-party-tracker-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "hsg-party-tracker",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "hsg-party-tracker.firebasestorage.app",
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1047483086606",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1047483086606:web:a02d77baacd21166fb095f",
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-VFS4W30Z7P"
+    apiKey: "AIzaSyCuOjiHa8C0jgAte40E774CRJROTWTUdmg",
+    authDomain: "hsg-party-tracker.firebaseapp.com",
+    databaseURL: "https://hsg-party-tracker-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "hsg-party-tracker",
+    storageBucket: "hsg-party-tracker.firebasestorage.app",
+    messagingSenderId: "1047483086606",
+    appId: "1:1047483086606:web:a02d77baacd21166fb095f",
+    measurementId: "G-VFS4W30Z7P"
 };
 
 // Initialize Firebase app
