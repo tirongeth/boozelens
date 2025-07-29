@@ -250,8 +250,8 @@ export async function updateFriendPermission(friendId, newPermission) {
     try {
         const database = getFirebaseDatabase();
         const currentUser = getCurrentUser();
+        // Only update the current user's friend role - each user manages their own friend roles
         await set(ref(database, 'users/' + currentUser.uid + '/friends/' + friendId + '/permission'), newPermission);
-        await set(ref(database, 'users/' + friendId + '/friends/' + currentUser.uid + '/permission'), newPermission);
         showNotification('✅ Permission updated', 'success');
     } catch (error) {
         console.error('Update permission error:', error);
