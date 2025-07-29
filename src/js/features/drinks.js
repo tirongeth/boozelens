@@ -75,6 +75,32 @@ export async function logDrink() {
             onDrinkLogged(type, drinkHistory);
         }
         
+        // Update last drink time for hydration timer
+        window.lastDrinkTime = Date.now();
+        
+        // Restart hydration timer if it was stopped
+        if (!window.hydrationInterval) {
+            // Reset reminder tracking when logging a new drink
+            window.lastHydrationReminder = Date.now();
+            
+            window.hydrationInterval = setInterval(() => {
+                // Only remind if user drank within last 3 hours
+                if (Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                    // Check if it's been 30 minutes since last reminder
+                    if (Date.now() - window.lastHydrationReminder >= 30 * 60 * 1000) {
+                        if (typeof window.AllFunctions !== 'undefined' && window.AllFunctions.showHydrationReminder) {
+                            window.AllFunctions.showHydrationReminder();
+                        }
+                        window.lastHydrationReminder = Date.now();
+                    }
+                } else {
+                    // Stop hydration reminders after 3 hours of no drinks
+                    clearInterval(window.hydrationInterval);
+                    window.hydrationInterval = null;
+                }
+            }, 60000);
+        }
+        
         // Confetti for water!
         if (type === 'water') {
             // Use global confetti if available (from CDN)

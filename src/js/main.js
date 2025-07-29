@@ -35,6 +35,14 @@ import * as Photos from './features/photos.js';
 let Parties = null;
 
 // ========================================
+// TIMER MANAGEMENT VARIABLES
+// ========================================
+let animationInterval = null;
+let hydrationInterval = null;
+let cleanupInterval = null;
+let lastDrinkTime = Date.now();
+
+// ========================================
 // EXPOSE ALL FUNCTIONS GLOBALLY
 // ========================================
 // This is necessary for HTML onclick handlers to work
@@ -193,6 +201,12 @@ function exposeGlobalFunctions() {
     window.showComments = Photos.showComments;
     window.sharePhoto = Photos.sharePhoto;
     window.handleBoozeLensUpload = Photos.handlePhotoUpload;
+    
+    // Initialize timer variables globally (they'll be set when timers start)
+    window.animationInterval = null;
+    window.hydrationInterval = null;
+    window.cleanupInterval = null;
+    window.lastDrinkTime = null;  // Only set when actually logging drinks
     
     console.log('✅ All functions exposed globally including party functions');
 }
@@ -668,12 +682,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     createParticles();
     
     // Start visualizer
-    setInterval(() => {
+    window.animationInterval = setInterval(() => {
         updateVisualizer();
     }, 500);
     
     // Load drink history from localStorage
     Drinks.loadDrinkHistory();
+    
+    // Set last drink time from history if available
+    const drinkHistory = getAppState().drinkHistory || [];
+    if (drinkHistory.length > 0) {
+        window.lastDrinkTime = new Date(drinkHistory[0].time).getTime();
+    } else {
+        window.lastDrinkTime = null;
+    }
     
     // Setup drink type selection
     const drinkTypeSelect = document.getElementById('drinkType');
@@ -697,13 +719,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     
-    // Hydration reminders
-    setInterval(() => {
-        const minutes = new Date().getMinutes();
-        if (minutes % 15 === 0) {
-            AllFunctions.showHydrationReminder();
+    // Hydration reminders - only start if user has drunk recently (within 3 hours)
+    if (window.lastDrinkTime && Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+        // Store when we last showed a reminder
+        window.lastHydrationReminder = window.lastDrinkTime;
+        
+        window.hydrationInterval = setInterval(() => {
+            // Only remind if user drank within last 3 hours
+            if (Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                // Check if it's been 30 minutes since last reminder
+                if (Date.now() - window.lastHydrationReminder >= 30 * 60 * 1000) {
+                    AllFunctions.showHydrationReminder();
+                    window.lastHydrationReminder = Date.now();
+                }
+            } else {
+                // Stop hydration reminders after 3 hours of no drinks
+                clearInterval(window.hydrationInterval);
+                window.hydrationInterval = null;
+            }
+        }, 60000);
+    }
+    
+    // Stop animation timer when user leaves, restart when returns
+    window.addEventListener('beforeunload', () => {
+        if (window.animationInterval) {
+            clearInterval(window.animationInterval);
+            window.animationInterval = null;
         }
-    }, 60000);
+    });
+    
+    // Handle page visibility changes for animation timer
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !window.animationInterval) {
+            // Restart animation when page becomes visible
+            window.animationInterval = setInterval(() => {
+                updateVisualizer();
+            }, 500);
+        } else if (document.hidden && window.animationInterval) {
+            // Stop animation when page is hidden
+            clearInterval(window.animationInterval);
+            window.animationInterval = null;
+        }
+    });
     
     // Window click handlers
     window.onclick = (event) => {
@@ -796,7 +853,7 @@ async function onUserAuthenticated(user) {
         updatePartyDisplay();
         
         // Set up periodic cleanup (every hour)
-        setInterval(cleanupOldBACData, 60 * 60 * 1000);
+        window.cleanupInterval = setInterval(cleanupOldBACData, 60 * 60 * 1000);
         
         const userData = getAppState().userData;
         const displayName = userData.username || user.email.split('@')[0];

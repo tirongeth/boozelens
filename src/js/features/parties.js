@@ -72,6 +72,26 @@ export async function createParty(name, options = {}) {
         // Start listening to party updates
         startPartyListeners(party.id);
         
+        
+        // Restart hydration timer if it was stopped AND user has drunk recently
+        if (!window.hydrationInterval && window.lastDrinkTime && Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+            window.hydrationInterval = setInterval(() => {
+                // Only remind if user drank within last 3 hours
+                if (Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                    const minutes = new Date().getMinutes();
+                    if (minutes === 0 || minutes === 30) {
+                        if (typeof window.AllFunctions !== 'undefined' && window.AllFunctions.showHydrationReminder) {
+                            window.AllFunctions.showHydrationReminder();
+                        }
+                    }
+                } else {
+                    // Stop hydration reminders after 3 hours of no drinks
+                    clearInterval(window.hydrationInterval);
+                    window.hydrationInterval = null;
+                }
+            }, 60000);
+        }
+        
         return { success: true, code: code, party: party };
     } catch (error) {
         console.error('Create party error:', error);
@@ -163,6 +183,30 @@ export async function joinParty(code, autoJoin = false) {
             // Start listening to party updates
             startPartyListeners(foundParty.id);
             
+            
+            // Restart hydration timer if it was stopped AND user has drunk recently
+            if (!window.hydrationInterval && window.lastDrinkTime && Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                // Store when we last showed a reminder
+                window.lastHydrationReminder = window.lastDrinkTime;
+                
+                window.hydrationInterval = setInterval(() => {
+                    // Only remind if user drank within last 3 hours
+                    if (Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                        // Check if it's been 30 minutes since last reminder
+                        if (Date.now() - window.lastHydrationReminder >= 30 * 60 * 1000) {
+                            if (typeof window.AllFunctions !== 'undefined' && window.AllFunctions.showHydrationReminder) {
+                                window.AllFunctions.showHydrationReminder();
+                            }
+                            window.lastHydrationReminder = Date.now();
+                        }
+                    } else {
+                        // Stop hydration reminders after 3 hours of no drinks
+                        clearInterval(window.hydrationInterval);
+                        window.hydrationInterval = null;
+                    }
+                }, 60000);
+            }
+            
             return { success: true };
             
         } else if (foundParty.privacy === 'friends-only') {
@@ -183,6 +227,30 @@ export async function joinParty(code, autoJoin = false) {
             currentParty = foundParty;
             saveUserParties();
             startPartyListeners(foundParty.id);
+            
+            
+            // Restart hydration timer if it was stopped AND user has drunk recently
+            if (!window.hydrationInterval && window.lastDrinkTime && Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                // Store when we last showed a reminder
+                window.lastHydrationReminder = window.lastDrinkTime;
+                
+                window.hydrationInterval = setInterval(() => {
+                    // Only remind if user drank within last 3 hours
+                    if (Date.now() - window.lastDrinkTime < 3 * 60 * 60 * 1000) {
+                        // Check if it's been 30 minutes since last reminder
+                        if (Date.now() - window.lastHydrationReminder >= 30 * 60 * 1000) {
+                            if (typeof window.AllFunctions !== 'undefined' && window.AllFunctions.showHydrationReminder) {
+                                window.AllFunctions.showHydrationReminder();
+                            }
+                            window.lastHydrationReminder = Date.now();
+                        }
+                    } else {
+                        // Stop hydration reminders after 3 hours of no drinks
+                        clearInterval(window.hydrationInterval);
+                        window.hydrationInterval = null;
+                    }
+                }, 60000);
+            }
             
             return { success: true };
             
