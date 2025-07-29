@@ -1,0 +1,153 @@
+{
+  "rules": {
+    // Developers node - for checking who has developer rights
+    "developers": {
+      ".read": true,
+      ".write": false,
+      "k1OvkYapqbZUAf9RbvfmnhgWcY23": {
+        ".validate": "newData.isBoolean()"
+      },
+      "kHNxyiqgsSfUHZArxbApGzxTlhO2": {
+        ".validate": "newData.isBoolean()"
+      }
+    },
+    
+    // Users data - friends can read basic info, owner can write
+    "users": {
+      "$uid": {
+        // User can read their own data, friends can read basic info
+        ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('friends').child($uid).exists()",
+        ".write": "$uid === auth.uid",
+        
+        // Friends list - user manages their own, friends can check if they're in list
+        "friends": {
+          ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('friends').child($uid).exists()",
+          ".write": "$uid === auth.uid"
+        },
+        
+        // Devices - user manages their own, friends can read
+        "devices": {
+          ".read": "$uid === auth.uid || root.child('users').child(auth.uid).child('friends').child($uid).exists()",
+          ".write": "$uid === auth.uid"
+        },
+        
+        // Drinks - only owner can read/write
+        "drinks": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        },
+        
+        // Achievements - only owner can read/write  
+        "achievements": {
+          ".read": "$uid === auth.uid",
+          ".write": "$uid === auth.uid"
+        }
+      }
+    },
+    
+    // Username registry - anyone can read (for checking availability), only owner can write
+    "usernames": {
+      ".read": true,
+      "$username": {
+        ".write": "!data.exists() || data.val() === auth.uid"
+      }
+    },
+    
+    // Readings from devices - authenticated users can write, friends can read
+    "readings": {
+      "$deviceId": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        
+        // Validate BAC data structure
+        "bac": {
+          ".validate": "newData.hasChildren(['value', 'timestamp'])"
+        }
+      }
+    },
+    
+    // Friend requests - users can read their own, anyone authenticated can write
+    "friendRequests": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        "$requesterId": {
+          ".write": "auth.uid === $requesterId",
+          ".validate": "newData.hasChildren(['displayName', 'timestamp'])"
+        }
+      }
+    },
+    
+    // Chat messages - FIXED: only developers can write/delete, everyone can read
+    "chat": {
+      ".read": "auth != null",
+      "$messageId": {
+        // Only developers can write new messages or delete existing ones
+        ".write": "auth != null && root.child('developers').child(auth.uid).exists()",
+        ".validate": "newData.hasChildren(['text', 'author', 'authorId', 'timestamp']) && newData.child('authorId').val() === auth.uid"
+      }
+    },
+    
+    // Party joins - authenticated users only
+    "partyJoins": {
+      ".read": "auth != null",
+      "$joinId": {
+        ".write": "auth != null && newData.child('userId').val() === auth.uid",
+        ".validate": "newData.hasChildren(['userId', 'displayName', 'timestamp'])"
+      }
+    },
+    
+    // Achievements - users can only read/write their own
+    "achievements": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    
+    // Photos - authenticated users can read, only owner can write
+    "photos": {
+      ".read": "auth != null",
+      "$photoId": {
+        ".write": "auth != null && (!data.exists() || data.child('userId').val() === auth.uid)",
+        ".validate": "newData.hasChildren(['url', 'userId', 'timestamp'])"
+      }
+    },
+    
+    // Trivia high scores - authenticated users only
+    "triviaHighScores": {
+      ".read": "auth != null",
+      "$category": {
+        "$uid": {
+          ".write": "$uid === auth.uid",
+          ".validate": "newData.hasChildren(['score', 'displayName', 'timestamp'])"
+        }
+      }
+    },
+    
+    // Parties - authenticated users can read/write
+    "parties": {
+      ".read": "auth != null",
+      "$partyId": {
+        ".write": "auth != null",
+        "chat": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+        }
+      }
+    },
+    
+    // Device registrations - authenticated users only
+    "devices": {
+      "$deviceId": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    },
+    
+    // Default deny all other paths
+    "$other": {
+      ".read": false,
+      ".write": false
+    }
+  }
+}

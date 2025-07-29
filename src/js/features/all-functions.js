@@ -276,7 +276,9 @@ export async function sendMessage() {
     const input = document.getElementById('chatInput');
     const message = input.value.trim();
     
-    if (message) {
+    if (!message) return;
+    
+    try {
         const currentUser = getCurrentUser();
         const userData = getAppState().userData;
         
@@ -288,28 +290,20 @@ export async function sendMessage() {
             return;
         }
         
-        const chatMessages = document.getElementById('chatMessages');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'chat-message own';
-        messageDiv.innerHTML = `
-            <div class="chat-author">${userData.username || 'You'} <span style="color: #00ff88;">🛠️</span></div>
-            <div>${escapeHtml(message)}</div>
-        `;
-        chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        input.value = '';
-        
         // Save to Firebase
         const database = getFirebaseDatabase();
-        if (database && currentUser) {
-            push(ref(database, 'chat'), {
-                uid: currentUser.uid,
-                username: userData.username,
-                message: message,
-                timestamp: serverTimestamp(),
-                isDeveloper: true
-            });
-        }
+        await push(ref(database, 'chat'), {
+            text: message,
+            author: userData.username || currentUser.email,
+            authorId: currentUser.uid,
+            timestamp: serverTimestamp()
+        });
+        
+        input.value = '';
+        
+    } catch (error) {
+        console.error('Send message error:', error);
+        showNotification('❌ Failed to send message', 'error');
     }
 }
 
@@ -317,6 +311,68 @@ export function handleChatEnter(event) {
     if (event.key === 'Enter') {
         sendMessage();
     }
+}
+
+export async function deleteMessage(messageId) {
+    try {
+        const database = getFirebaseDatabase();
+        const currentUser = getCurrentUser();
+        
+        const { isDeveloper } = await import('../config/constants.js');
+        if (!isDeveloper(currentUser.uid)) {
+            showNotification('❌ Only developers can delete messages', 'error');
+            return;
+        }
+        
+        await remove(ref(database, `chat/${messageId}`));
+    } catch (error) {
+        console.error('Delete message error:', error);
+        showNotification('❌ Failed to delete message', 'error');
+    }
+}
+
+export function loadChatMessages() {
+    const database = getFirebaseDatabase();
+    const chatRef = ref(database, 'chat');
+    
+    onValue(chatRef, async (snapshot) => {
+        const messages = snapshot.val() || {};
+        const chatContainer = document.getElementById('chatMessages');
+        if (!chatContainer) return;
+        
+        const currentUser = getCurrentUser();
+        const { isDeveloper } = await import('../config/constants.js');
+        const hasDevRights = currentUser ? isDeveloper(currentUser.uid) : false;
+        
+        const messageArray = Object.entries(messages)
+            .map(([id, msg]) => ({ id, ...msg }))
+            .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0));
+        
+        chatContainer.innerHTML = messageArray.length === 0 ? 
+            `<div class="chat-message">
+                <div class="chat-author">System</div>
+                <div>Welcome to BoozeLens Chat! 🎉</div>
+            </div>` : '';
+        
+        messageArray.forEach(msg => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            messageDiv.innerHTML = `
+                <div class="chat-author">${escapeHtml(msg.author || 'Unknown')}</div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1;">${escapeHtml(msg.text || '')}</div>
+                    ${hasDevRights ? 
+                        `<button class="btn btn-danger btn-sm" onclick="deleteMessage('${msg.id}')" style="margin-left: 10px; padding: 2px 8px; font-size: 0.8em;">
+                            <i class="fas fa-trash"></i>
+                        </button>` : ''
+                    }
+                </div>
+            `;
+            chatContainer.appendChild(messageDiv);
+        });
+        
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
 }
 
 // ========================================
@@ -815,9 +871,36 @@ export function resolvePermission(permission) {
     console.log('Permission resolved:', permission);
 }
 
+
 // ========================================
 // DEVELOPER TEST DATA FUNCTIONS
 // ========================================
+export async function setupDevelopersInFirebase() {
+    const database = getFirebaseDatabase();
+    const { DEVELOPER_UIDS } = await import('../config/constants.js');
+    
+    try {
+        // Set up developers node in Firebase
+        const updates = {};
+        for (const uid of DEVELOPER_UIDS) {
+            updates[`developers/${uid}`] = true;
+        }
+        
+        await set(ref(database, 'developers'), {});
+        for (const uid of DEVELOPER_UIDS) {
+            await set(ref(database, `developers/${uid}`), true);
+        }
+        
+        showNotification('✅ Developers node created in Firebase!', 'success');
+        console.log('Developers node set up with UIDs:', DEVELOPER_UIDS);
+        return true;
+    } catch (error) {
+        console.error('Error setting up developers:', error);
+        showNotification('❌ Failed to set up developers node', 'error');
+        return false;
+    }
+}
+
 export async function addTestBACToFirebase() {
     const database = getFirebaseDatabase();
     const { DEVELOPER_UIDS } = await import('../config/constants.js');

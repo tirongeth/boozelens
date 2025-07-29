@@ -85,6 +85,8 @@ function exposeGlobalFunctions() {
     window.shareEmergencyReport = Drinks.shareEmergencyReport;
     window.clearDrinkHistory = Drinks.clearDrinkHistory;
     window.deleteAccount = AllFunctions.deleteAccount;
+    window.deleteMessage = AllFunctions.deleteMessage;
+    window.loadChatMessages = AllFunctions.loadChatMessages;
     
     // Party functions - ONLY expose if Parties module is loaded
     if (Parties) {
@@ -795,6 +797,9 @@ async function onUserAuthenticated(user) {
         await Parties.loadUserParties();
         updatePartyDisplay();
         
+        // Initialize chat
+        AllFunctions.loadChatMessages();
+        
         // Set up periodic cleanup (every hour)
         setInterval(cleanupOldBACData, 60 * 60 * 1000);
         
@@ -813,7 +818,8 @@ async function onUserAuthenticated(user) {
             // Expose developer test functions
             window.addTestBACToFirebase = AllFunctions.addTestBACToFirebase;
             window.removeTestBACFromFirebase = AllFunctions.removeTestBACFromFirebase;
-            console.log('🔧 Developer test functions enabled: addTestBACToFirebase(), removeTestBACFromFirebase()');
+            window.setupDevelopersInFirebase = AllFunctions.setupDevelopersInFirebase;
+            console.log('🔧 Developer test functions enabled: addTestBACToFirebase(), removeTestBACFromFirebase(), setupDevelopersInFirebase()');
         } else {
             console.log('💡 To get developer rights, add this UID to DEVELOPER_UIDS in constants.js');
             // Disable chat input
