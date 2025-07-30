@@ -16,7 +16,8 @@ import {
     resetToPlayerSetup,
     selectGameCategory,
     changeCategoryMidGame,
-    updateCategoryBadge
+    updateCategoryBadge,
+    shufflePlayers
 } from './game-utils.js';
 
 // Create Never Have I Ever game HTML
@@ -107,6 +108,9 @@ export function startNeverHaveIEver() {
         showNotification('Add at least 2 players', 'error');
         return;
     }
+    
+    // Shuffle players for random order
+    shufflePlayers();
     
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';

@@ -55,6 +55,15 @@ export function setCurrentPlayerIndex(index) {
     currentPlayerIndex = index;
 }
 
+// Shuffle players array for random order
+export function shufflePlayers() {
+    for (let i = gamePlayers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [gamePlayers[i], gamePlayers[j]] = [gamePlayers[j], gamePlayers[i]];
+    }
+    updatePlayersList();
+}
+
 export function addToGameHistory(item) {
     gameHistory.push(item);
 }

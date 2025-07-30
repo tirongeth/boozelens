@@ -16,7 +16,8 @@ import {
     resetToPlayerSetup,
     updateCurrentPlayer,
     selectGameCategory,
-    updateCategoryBadge
+    updateCategoryBadge,
+    shufflePlayers
 } from './game-utils.js';
 
 // Create Truth or Dare game HTML
@@ -99,6 +100,9 @@ export function startTruthOrDare() {
         showNotification('Add at least 2 players', 'error');
         return;
     }
+    
+    // Shuffle players for random order
+    shufflePlayers();
     
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';

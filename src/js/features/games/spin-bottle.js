@@ -16,7 +16,8 @@ import {
     resetToPlayerSetup,
     selectGameCategory,
     changeCategoryMidGame,
-    updateCategoryBadge
+    updateCategoryBadge,
+    shufflePlayers
 } from './game-utils.js';
 
 // Create Spin the Bottle game HTML
@@ -109,6 +110,9 @@ export function startSpinBottle() {
         showNotification('Add at least 3 players', 'error');
         return;
     }
+    
+    // Shuffle players for random order
+    shufflePlayers();
     
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';

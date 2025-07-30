@@ -10,7 +10,8 @@ import {
     addPlayer,
     removePlayer,
     updatePlayersList,
-    resetToPlayerSetup
+    resetToPlayerSetup,
+    shufflePlayers
 } from './game-utils.js';
 
 // Create King's Cup game HTML
@@ -60,6 +61,9 @@ export function startKingsCup() {
         showNotification('Add at least 2 players', 'error');
         return;
     }
+    
+    // Shuffle players for random order
+    shufflePlayers();
     
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
