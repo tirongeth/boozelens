@@ -172,9 +172,6 @@ export function answerTrivia(selected, correct) {
     
     // Increment index for next question
     gameState.currentTriviaIndex++;
-    
-    // Auto next question after 2 seconds
-    setTimeout(nextTrivia, 2000);
 }
 
 // Initialize the game
