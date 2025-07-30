@@ -493,11 +493,16 @@
             </div>
             
             <div class="card chart-container">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                     <h3>📊 Drink Distribution</h3>
-                    <button class="chart-toggle" onclick="toggleChart()">
-                        <span id="chartToggleText">Hide Chart</span>
-                    </button>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="chart-toggle" onclick="toggleTimeRange()">
+                            <span id="timeRangeText">30d History</span>
+                        </button>
+                        <button class="chart-toggle" onclick="toggleChart()">
+                            <span id="chartToggleText">Hide Chart</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="chart-wrapper" id="chartWrapper">
                     <canvas id="drinkChart" width="400" height="250"></canvas>

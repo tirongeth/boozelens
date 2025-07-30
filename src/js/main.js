@@ -78,6 +78,7 @@ function exposeGlobalFunctions() {
     // Drink functions
     window.logDrink = Drinks.logDrink;
     window.toggleChart = Drinks.toggleChart;
+    window.toggleTimeRange = Drinks.toggleTimeRange;
     window.removeDrink = Drinks.removeDrink;
     window.showEmergencyReport = Drinks.showEmergencyReport;
     window.copyEmergencyReport = Drinks.copyEmergencyReport;

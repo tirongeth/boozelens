@@ -16,6 +16,9 @@ const confetti = window.confetti;
 // Chart instance
 let drinkChart = null;
 
+// Track current time range (default 24h)
+let currentTimeRange = '24h';
+
 // ========================================
 // LOG DRINK
 // ========================================
@@ -140,14 +143,24 @@ export function updateDrinkHistory() {
         const historyContainer = document.getElementById('drinkHistory');
         if (!historyContainer) return;
         
-        const drinkHistory = getAppState().drinkHistory || [];
+        let drinkHistory = getAppState().drinkHistory || [];
+        
+        // Filter drinks based on time range
+        const now = Date.now();
+        const cutoffTime = currentTimeRange === '24h' 
+            ? now - (24 * 60 * 60 * 1000)  // 24 hours
+            : now - (30 * 24 * 60 * 60 * 1000);  // 30 days
+        
+        drinkHistory = drinkHistory.filter(drink => 
+            new Date(drink.time).getTime() > cutoffTime
+        );
         
         if (drinkHistory.length === 0) {
-            historyContainer.innerHTML = '<p style="text-align: center; opacity: 0.7;">No drinks logged yet</p>';
+            historyContainer.innerHTML = `<p style="text-align: center; opacity: 0.7;">No drinks logged in the last ${currentTimeRange === '24h' ? '24 hours' : '30 days'}</p>`;
             return;
         }
         
-        historyContainer.innerHTML = drinkHistory.slice(0, 20).map(drink => `
+        historyContainer.innerHTML = drinkHistory.map(drink => `
             <div class="buddy-card" style="margin: 10px 0;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div style="display: flex; align-items: center; gap: 15px;">
@@ -182,7 +195,17 @@ export function updateDrinkChart() {
         const chartVisible = getAppState().chartVisible;
         if (!ctx || !chartVisible) return;
         
-        const drinkHistory = getAppState().drinkHistory || [];
+        let drinkHistory = getAppState().drinkHistory || [];
+        
+        // Filter drinks based on time range
+        const now = Date.now();
+        const cutoffTime = currentTimeRange === '24h' 
+            ? now - (24 * 60 * 60 * 1000)  // 24 hours
+            : now - (30 * 24 * 60 * 60 * 1000);  // 30 days
+        
+        drinkHistory = drinkHistory.filter(drink => 
+            new Date(drink.time).getTime() > cutoffTime
+        );
         
         // Count drinks by type
         const drinkCounts = {};
@@ -330,6 +353,26 @@ export function toggleChart() {
         wrapper.classList.add('collapsed');
         toggleText.textContent = 'Show Chart';
     }
+}
+
+// ========================================
+// TOGGLE TIME RANGE
+// ========================================
+export function toggleTimeRange() {
+    const toggleText = document.getElementById('timeRangeText');
+    
+    if (currentTimeRange === '24h') {
+        currentTimeRange = '30d';
+        toggleText.textContent = '24h View';
+    } else {
+        currentTimeRange = '24h';
+        toggleText.textContent = '30d History';
+    }
+    
+    // Update chart and history with new time range
+    updateDrinkChart();
+    updateDrinkHistory();
+    showNotification(`📊 Showing ${currentTimeRange === '24h' ? 'last 24 hours' : 'last 30 days'}`);
 }
 
 // ========================================
