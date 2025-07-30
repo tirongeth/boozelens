@@ -150,7 +150,6 @@ export function nextTrivia() {
     ).join('');
     
     document.getElementById('triviaOptions').innerHTML = optionsHtml;
-    gameState.currentTriviaIndex++;
 }
 
 // Answer trivia question
@@ -170,6 +169,9 @@ export function answerTrivia(selected, correct) {
     
     // Disable all buttons
     buttons.forEach(btn => btn.disabled = true);
+    
+    // Increment index for next question
+    gameState.currentTriviaIndex++;
     
     // Auto next question after 2 seconds
     setTimeout(nextTrivia, 2000);
