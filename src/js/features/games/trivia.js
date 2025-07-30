@@ -44,10 +44,10 @@ export function createTriviaGame() {
             </div>
             <div id="triviaOptions" style="margin: 20px 0;"></div>
             <div style="text-align: center; margin: 30px 0;">
-                <button class="btn btn-primary" onclick="nextTrivia()">
+                <button class="btn btn-primary" onclick="nextTrivia()" style="display: block; width: 100%; margin-bottom: 10px;">
                     <i class="fas fa-arrow-right"></i> Next Question
                 </button>
-                <button class="btn btn-secondary" onclick="backToCategories()" style="margin-left: 10px;">
+                <button class="btn btn-secondary" onclick="backToCategories()" style="display: block; width: 100%;">
                     <i class="fas fa-arrow-left"></i> Change Category
                 </button>
             </div>
@@ -65,6 +65,17 @@ export function createTriviaGame() {
 export function selectCategory(category) {
     gameState.currentCategory = category;
     gameState.currentTriviaIndex = 0;
+    
+    // Shuffle questions if it's the flags category
+    if (category === 'flags') {
+        const flags = [...gameData.triviaCategories.flags];
+        // Fisher-Yates shuffle algorithm
+        for (let i = flags.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [flags[i], flags[j]] = [flags[j], flags[i]];
+        }
+        gameState.shuffledFlags = flags;
+    }
     
     // Hide category selection, show game
     document.getElementById('categorySelection').style.display = 'none';
@@ -93,15 +104,46 @@ export function backToCategories() {
 // Get next trivia question
 export function nextTrivia() {
     const category = gameState.currentCategory || 'sports';
-    const trivia = gameData.triviaCategories[category] || gameData.trivia;
+    let trivia;
+    
+    // Use shuffled flags if available
+    if (category === 'flags' && gameState.shuffledFlags) {
+        trivia = gameState.shuffledFlags;
+    } else {
+        trivia = gameData.triviaCategories[category] || gameData.trivia;
+    }
     
     if (gameState.currentTriviaIndex >= trivia.length) {
         gameState.currentTriviaIndex = 0;
+        // Reshuffle flags when starting over
+        if (category === 'flags') {
+            const flags = [...gameData.triviaCategories.flags];
+            for (let i = flags.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flags[i], flags[j]] = [flags[j], flags[i]];
+            }
+            gameState.shuffledFlags = flags;
+            trivia = gameState.shuffledFlags;
+        }
     }
     
     const current = trivia[gameState.currentTriviaIndex];
     
-    document.getElementById('gameQuestion').textContent = current.question;
+    const questionElement = document.getElementById('gameQuestion');
+    
+    // Special handling for flag questions - display flag images
+    if (category === 'flags' && current.flagCode) {
+        questionElement.innerHTML = `
+            <div style="text-align: center;">
+                <img src="https://flagpedia.net/data/flags/w580/${current.flagCode}.png" 
+                     alt="Flag" 
+                     style="width: 320px; height: auto; display: block; margin: 0 auto 20px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);">
+                <div style="font-size: 1.5em; font-weight: bold; color: #00d4ff;">Which country is this?</div>
+            </div>
+        `;
+    } else {
+        questionElement.textContent = current.question;
+    }
     
     const optionsHtml = current.options.map((option, index) => 
         `<button class="btn" style="width: 100%; margin: 10px 0;" onclick="answerTrivia(${index}, ${current.correct})">${option}</button>`

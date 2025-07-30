@@ -80,11 +80,7 @@
     // Chat messages - FIXED: only developers can write/delete, everyone can read
     "chat": {
       ".read": "auth != null",
-      "$messageId": {
-        // Only developers can write new messages or delete existing ones
-        ".write": "auth != null && root.child('developers').child(auth.uid).exists()",
-        ".validate": "newData.hasChildren(['text', 'author', 'authorId', 'timestamp']) && newData.child('authorId').val() === auth.uid"
-      }
+      ".write": "auth != null && root.child('developers').child(auth.uid).exists()"
     },
     
     // Party joins - authenticated users only

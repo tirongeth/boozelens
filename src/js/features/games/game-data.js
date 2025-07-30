@@ -716,54 +716,244 @@ export const gameData = {
         ],
         flags: [
             {
-                question: "Which country's flag is just red and white with a maple leaf?",
+                question: "ca",
+                flagCode: "ca",
                 options: ["USA", "Canada", "Norway", "Denmark"],
                 correct: 1
             },
             {
-                question: "Which country has a flag with only one color and no design?",
-                options: ["Libya (1977-2011)", "Japan", "Bangladesh", "Poland"],
-                correct: 0
-            },
-            {
-                question: "The Union Jack is the flag of which country?",
-                options: ["Australia", "New Zealand", "United Kingdom", "Canada"],
+                question: "gb",
+                flagCode: "gb",
+                options: ["Australia", "New Zealand", "United Kingdom", "Ireland"],
                 correct: 2
             },
             {
-                question: "Which country's flag has a blue wheel in the center?",
+                question: "in",
+                flagCode: "in",
                 options: ["Pakistan", "India", "Bangladesh", "Sri Lanka"],
                 correct: 1
             },
             {
-                question: "How many stars are on the flag of the United States?",
-                options: ["48", "49", "50", "51"],
+                question: "us",
+                flagCode: "us",
+                options: ["Malaysia", "Liberia", "United States", "Puerto Rico"],
                 correct: 2
             },
             {
-                question: "Which country's flag is red with a yellow star?",
-                options: ["China", "Vietnam", "North Korea", "Cuba"],
+                question: "vn",
+                flagCode: "vn",
+                options: ["China", "Vietnam", "Morocco", "Turkey"],
                 correct: 1
             },
             {
-                question: "The flag of Japan features what symbol?",
-                options: ["Yellow star", "Red circle", "Blue cross", "White moon"],
+                question: "jp",
+                flagCode: "jp",
+                options: ["South Korea", "Japan", "Bangladesh", "Palau"],
                 correct: 1
             },
             {
-                question: "Which European country has a square flag?",
-                options: ["Vatican City", "Switzerland", "Monaco", "Liechtenstein"],
+                question: "ch",
+                flagCode: "ch",
+                options: ["Denmark", "Switzerland", "Austria", "Poland"],
                 correct: 1
             },
             {
-                question: "Brazil's flag features which phrase?",
-                options: ["Liberty or Death", "Order and Progress", "Unity and Faith", "Peace and Justice"],
+                question: "br",
+                flagCode: "br",
+                options: ["Argentina", "Brazil", "Colombia", "Venezuela"],
                 correct: 1
             },
             {
-                question: "Which country's flag has an AK-47 on it?",
-                options: ["Somalia", "Mozambique", "Angola", "Zimbabwe"],
+                question: "de",
+                flagCode: "de",
+                options: ["Belgium", "Germany", "Netherlands", "Luxembourg"],
                 correct: 1
+            },
+            {
+                question: "fr",
+                flagCode: "fr",
+                options: ["Italy", "France", "Netherlands", "Russia"],
+                correct: 1
+            },
+            {
+                question: "it",
+                flagCode: "it",
+                options: ["Mexico", "Hungary", "Italy", "Iran"],
+                correct: 2
+            },
+            {
+                question: "es",
+                flagCode: "es",
+                options: ["Portugal", "Spain", "Colombia", "Venezuela"],
+                correct: 1
+            },
+            {
+                question: "mx",
+                flagCode: "mx",
+                options: ["Italy", "Mexico", "Hungary", "Iran"],
+                correct: 1
+            },
+            {
+                question: "au",
+                flagCode: "au",
+                options: ["New Zealand", "United Kingdom", "Australia", "Fiji"],
+                correct: 2
+            },
+            {
+                question: "kr",
+                flagCode: "kr",
+                options: ["North Korea", "South Korea", "Japan", "China"],
+                correct: 1
+            },
+            {
+                question: "se",
+                flagCode: "se",
+                options: ["Norway", "Finland", "Sweden", "Denmark"],
+                correct: 2
+            },
+            {
+                question: "no",
+                flagCode: "no",
+                options: ["Sweden", "Norway", "Denmark", "Iceland"],
+                correct: 1
+            },
+            {
+                question: "dk",
+                flagCode: "dk",
+                options: ["Norway", "Sweden", "Denmark", "Finland"],
+                correct: 2
+            },
+            {
+                question: "fi",
+                flagCode: "fi",
+                options: ["Sweden", "Norway", "Denmark", "Finland"],
+                correct: 3
+            },
+            {
+                question: "nl",
+                flagCode: "nl",
+                options: ["Luxembourg", "Netherlands", "France", "Belgium"],
+                correct: 1
+            },
+            {
+                question: "be",
+                flagCode: "be",
+                options: ["Germany", "Netherlands", "Belgium", "Luxembourg"],
+                correct: 2
+            },
+            {
+                question: "pt",
+                flagCode: "pt",
+                options: ["Spain", "Portugal", "Italy", "Brazil"],
+                correct: 1
+            },
+            {
+                question: "gr",
+                flagCode: "gr",
+                options: ["Uruguay", "Greece", "Israel", "Finland"],
+                correct: 1
+            },
+            {
+                question: "pl",
+                flagCode: "pl",
+                options: ["Monaco", "Indonesia", "Poland", "Singapore"],
+                correct: 2
+            },
+            {
+                question: "at",
+                flagCode: "at",
+                options: ["Latvia", "Austria", "Poland", "Indonesia"],
+                correct: 1
+            },
+            {
+                question: "ie",
+                flagCode: "ie",
+                options: ["Italy", "Ireland", "Ivory Coast", "India"],
+                correct: 1
+            },
+            {
+                question: "cz",
+                flagCode: "cz",
+                options: ["Slovakia", "Slovenia", "Czech Republic", "Croatia"],
+                correct: 2
+            },
+            {
+                question: "ar",
+                flagCode: "ar",
+                options: ["Uruguay", "Argentina", "Honduras", "Guatemala"],
+                correct: 1
+            },
+            {
+                question: "cl",
+                flagCode: "cl",
+                options: ["Texas", "Chile", "Cuba", "Puerto Rico"],
+                correct: 1
+            },
+            {
+                question: "co",
+                flagCode: "co",
+                options: ["Venezuela", "Ecuador", "Colombia", "Bolivia"],
+                correct: 2
+            },
+            {
+                question: "pe",
+                flagCode: "pe",
+                options: ["Canada", "Austria", "Peru", "Lebanon"],
+                correct: 2
+            },
+            {
+                question: "za",
+                flagCode: "za",
+                options: ["South Africa", "Central African Republic", "Sudan", "Namibia"],
+                correct: 0
+            },
+            {
+                question: "eg",
+                flagCode: "eg",
+                options: ["Syria", "Yemen", "Egypt", "Iraq"],
+                correct: 2
+            },
+            {
+                question: "ma",
+                flagCode: "ma",
+                options: ["Turkey", "Tunisia", "Morocco", "Vietnam"],
+                correct: 2
+            },
+            {
+                question: "ng",
+                flagCode: "ng",
+                options: ["Nigeria", "Niger", "Cameroon", "Chad"],
+                correct: 0
+            },
+            {
+                question: "ke",
+                flagCode: "ke",
+                options: ["Uganda", "Kenya", "Tanzania", "Ethiopia"],
+                correct: 1
+            },
+            {
+                question: "nz",
+                flagCode: "nz",
+                options: ["Australia", "New Zealand", "Fiji", "United Kingdom"],
+                correct: 1
+            },
+            {
+                question: "th",
+                flagCode: "th",
+                options: ["Costa Rica", "Thailand", "Netherlands", "Paraguay"],
+                correct: 1
+            },
+            {
+                question: "sg",
+                flagCode: "sg",
+                options: ["Indonesia", "Poland", "Singapore", "Monaco"],
+                correct: 2
+            },
+            {
+                question: "my",
+                flagCode: "my",
+                options: ["Malaysia", "United States", "Liberia", "Uruguay"],
+                correct: 0
             }
         ],
         economy: [
