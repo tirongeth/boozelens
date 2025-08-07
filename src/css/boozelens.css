@@ -1,19 +1,4 @@
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-        
         /* Animated background */
         .background {
             position: fixed;
@@ -344,14 +329,6 @@
         
         .alert-banner.show {
             transform: translateY(0);
-        }
-        
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 120px 20px 20px;
-            min-height: 100vh;
         }
         
         /* Header */
@@ -1119,34 +1096,6 @@
             background-clip: text;
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            opacity: 0.8;
-        }
-        
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px 20px;
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1em;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #00ff88;
-            box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
-        }
-        
         .auth-error {
             background: rgba(255, 68, 68, 0.2);
             border: 1px solid rgba(255, 68, 68, 0.5);
@@ -1797,32 +1746,6 @@
             }
         }
         
-        /* Prevent horizontal scroll on mobile */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
-        
-        /* Fix iOS button styles */
-        input, select, button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-        
-        /* Better mobile form inputs */
-        input[type="number"],
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="password"],
-        select {
-            font-size: 16px;
-            padding: 12px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
         /* Loading state */
         .skeleton {
             background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
@@ -1858,24 +1781,6 @@
         
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
         }
         
         /* Game Overlay */
