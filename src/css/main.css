@@ -5,7 +5,7 @@
 @import './core/reset.css';
 @import './core/variables.css';
 @import './core/base.css';
-/* @import './core/typography.css'; */
+@import './core/typography.css';
 
 /* Effects - Visual layer */
 /* @import './effects/animations.css'; */
