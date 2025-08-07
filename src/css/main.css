@@ -1,0 +1,48 @@
+/* BoozeLens Main CSS Entry Point */
+/* Imports will be uncommented as modules are populated */
+
+/* Core - Foundation (always loaded first) */
+/* @import './core/reset.css'; */
+@import './core/variables.css';
+/* @import './core/base.css'; */
+/* @import './core/typography.css'; */
+
+/* Effects - Visual layer */
+/* @import './effects/animations.css'; */
+/* @import './effects/background.css'; */
+/* @import './effects/particles.css'; */
+/* @import './effects/transitions.css'; */
+
+/* Layouts - Structure */
+/* @import './layouts/container.css'; */
+/* @import './layouts/grid.css'; */
+/* @import './layouts/sections.css'; */
+
+/* Components - Reusable UI */
+/* @import './components/buttons.css'; */
+/* @import './components/cards.css'; */
+/* @import './components/modals.css'; */
+/* @import './components/forms.css'; */
+/* @import './components/badges.css'; */
+/* @import './components/notifications.css'; */
+/* @import './components/loaders.css'; */
+
+/* Features - App-specific */
+/* @import './features/navigation.css'; */
+/* @import './features/dashboard.css'; */
+/* @import './features/friends.css'; */
+/* @import './features/party.css'; */
+/* @import './features/games.css'; */
+/* @import './features/achievements.css'; */
+/* @import './features/emergency.css'; */
+/* @import './features/chat.css'; */
+/* @import './features/auth.css'; */
+/* @import './features/profile.css'; */
+/* @import './features/leaderboard.css'; */
+/* @import './features/tracking.css'; */
+
+/* Utilities - Helpers (loaded last for precedence) */
+/* @import './utilities/spacing.css'; */
+/* @import './utilities/visibility.css'; */
+/* @import './utilities/colors.css'; */
+/* @import './utilities/responsive.css'; */
