@@ -3,7 +3,7 @@
 ## CRITICAL: THIS GUIDE MUST BE FOLLOWED EXACTLY - NO EXCEPTIONS
 
 ### Project Goal
-Transform the monolithic `boozelens.css` (2319+ lines) into a professional, market-ready modular CSS architecture WITHOUT changing ANY functionality or fixing ANY bugs.
+Transform the monolithic `boozelens.css` (2298+ lines) into a professional, market-ready modular CSS architecture WITHOUT changing ANY functionality or fixing ANY bugs.
 
 ### Folder Structure (ALREADY CREATED - DO NOT MODIFY)
 ```
@@ -73,7 +73,7 @@ Transform the monolithic `boozelens.css` (2319+ lines) into a professional, mark
 
 #### Step 1: Read Complete File
 ```
-ALWAYS read the ENTIRE boozelens.css file (all 2319+ lines)
+ALWAYS read the ENTIRE boozelens.css file (all 2298+ lines)
 NO EXCEPTIONS - even if you think you know what's in it
 ```
 
@@ -99,7 +99,7 @@ NO EXCEPTIONS - even if you think you know what's in it
 - Keep boozelens.css functional at all times
 
 #### Step 5: Update Imports
-- Add import to main.css in the CORRECT order:
+- Add import to main.css in the CORRECT order: 
   1. Core files first
   2. Effects second
   3. Layouts third
@@ -162,7 +162,7 @@ RECOMMENDED order (can be adjusted):
 3. `core/base.css` - Base element styles ✓
 4. `core/typography.css` - Text styles ✓
 5. `effects/animations.css` - All @keyframes ✓
-6. `effects/background.css` - Background effects
+6. `effects/background.css` - Background effects ✓
 7. `effects/particles.css` - Particle system
 8. `effects/transitions.css` - Transitions
 9. Continue with components, then features...
