@@ -11,7 +11,7 @@
 @import './effects/animations.css';
 @import './effects/background.css';
 @import './effects/particles.css';
-/* @import './effects/transitions.css'; */
+@import './effects/transitions.css';
 
 /* Layouts - Structure */
 /* @import './layouts/container.css'; */
