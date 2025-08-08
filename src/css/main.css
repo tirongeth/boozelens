@@ -10,7 +10,7 @@
 /* Effects - Visual layer */
 @import './effects/animations.css';
 @import './effects/background.css';
-/* @import './effects/particles.css'; */
+@import './effects/particles.css';
 /* @import './effects/transitions.css'; */
 
 /* Layouts - Structure */

@@ -163,7 +163,7 @@ RECOMMENDED order (can be adjusted):
 4. `core/typography.css` - Text styles ✓
 5. `effects/animations.css` - All @keyframes ✓
 6. `effects/background.css` - Background effects ✓
-7. `effects/particles.css` - Particle system
+7. `effects/particles.css` - Particle system ✓
 8. `effects/transitions.css` - Transitions
 9. Continue with components, then features...
 
