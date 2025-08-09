@@ -1,0 +1,28 @@
+/* Loading spinner - appears during loading states */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00ff88;
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* Skeleton loading state */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+/* Auth loading state */
+.auth-loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-loading.show {
+    display: block;
+}

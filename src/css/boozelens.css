@@ -803,27 +803,6 @@
             text-decoration: underline;
         }
         
-        /* Loading state */
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #00ff88;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        
-        .auth-loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .auth-loading.show {
-            display: block;
-        }
         
         /* Device Management */
         .device-list {
@@ -1211,15 +1190,7 @@
         }
         
         
-        /* Loading state */
-        .skeleton {
-            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        
-        
-        /* Error state */
+/* Error state */
         .error {
             background: rgba(255, 68, 68, 0.1);
             border: 1px solid rgba(255, 68, 68, 0.3);
@@ -1228,18 +1199,6 @@
             border-radius: 10px;
             margin: 20px 0;
         }
-        
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #00ff88;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
         
         /* Game Overlay */
         .game-overlay {
