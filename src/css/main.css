@@ -28,7 +28,7 @@
 @import './components/loaders.css';
 
 /* Features - App-specific */
-/* @import './features/navigation.css'; */
+@import './features/navigation.css';
 @import './features/dashboard.css';
 @import './features/friends.css';
 @import './features/party.css';
