@@ -32,7 +32,7 @@
 @import './features/dashboard.css';
 @import './features/friends.css';
 /* @import './features/party.css'; */
-/* @import './features/games.css'; */
+@import './features/games.css';
 /* @import './features/achievements.css'; */
 /* @import './features/emergency.css'; */
 /* @import './features/chat.css'; */
