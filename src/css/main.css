@@ -26,6 +26,7 @@
 @import './components/badges.css';
 @import './components/notifications.css';
 @import './components/loaders.css';
+@import './components/chat.css';
 
 /* Features - App-specific */
 @import './features/navigation.css';
