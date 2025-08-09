@@ -1,0 +1,6 @@
+.status-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.1);
+}

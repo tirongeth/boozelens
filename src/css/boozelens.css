@@ -389,13 +389,7 @@
             margin-top: 15px;
         }
         
-        .status-badge {
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
+                
         .location-tag {
             font-size: 0.9em;
             opacity: 0.7;
