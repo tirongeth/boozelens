@@ -165,7 +165,7 @@ RECOMMENDED order (can be adjusted):
 6. `effects/background.css` - Background effects ✓
 7. `effects/particles.css` - Particle system ✓
 8. `effects/transitions.css` - Transitions ✓
-9. Continue with components, then features...
+9. Continue with layout, then features, starting with container.css ✓
 
 ### COMPLETION CRITERIA
 
