@@ -552,47 +552,7 @@
             margin-bottom: 15px;
         }
         
-        /* Leaderboard */
-        .leaderboard {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .leaderboard h2 {
-            margin-bottom: 20px;
-            text-align: center;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .leaderboard-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            margin: 10px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            cursor: pointer;
-        }
-        
-        .leaderboard-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px);
-        }
-        
-        .rank {
-            width: 50px;
-        }
-        
-        .rank-1 { color: #ffd700; }
-        .rank-2 { color: #c0c0c0; }
-        .rank-3 { color: #cd7f32; }
-        
+                
                 
         
         
