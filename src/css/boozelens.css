@@ -308,41 +308,6 @@
             margin-bottom: 40px;
         }
         
-        /* Cards */
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 136, 0.5);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--accent-gradient);
-            border-radius: 20px;
-            opacity: 0;
-            z-index: -1;
-        }
-        
-        .card:hover::before {
-            opacity: 0.3;
-        }
-        
         /* Friend Cards with Animation */
         .friend-card {
             cursor: pointer;
@@ -1323,23 +1288,9 @@
             }
             
             
-            /* Fix drink section on mobile */
-            #drinks .card {
-                padding: 15px;
-            }
-            
-            
-            
             /* Fix overlapping elements */
             .connection-status {
                 bottom: 80px;
-            }
-            
-            /* Better touch targets */
-            .card {
-                min-height: 44px;
-                display: flex;
-                align-items: center;
             }
             
             .profile-header {
