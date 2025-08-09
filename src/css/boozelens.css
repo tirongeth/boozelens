@@ -1133,242 +1133,45 @@
             display: flex;
         }
         
-        .party-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
+                
         
-        .party-header h3 {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         
-        .party-code-display {
-            background: rgba(0, 255, 136, 0.1);
-            border: 2px solid rgba(0, 255, 136, 0.3);
-            border-radius: 15px;
-            padding: 10px 20px;
-            color: #00ff88;
-        }
         
-        .party-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
         
-        .party-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 136, 0.5);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
-        }
         
-        .party-card.active {
-            border: 2px solid #00ff88;
-            background: rgba(0, 255, 136, 0.05);
-        }
         
-        .party-privacy-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-        
-        .privacy-private {
-            background: rgba(255, 68, 68, 0.2);
-            color: #ff4444;
-        }
         
                 
-        .privacy-public {
-            background: rgba(0, 255, 136, 0.2);
-            color: #00ff88;
-        }
-        
-        .party-members {
-            display: flex;
-            gap: -10px;
-            margin: 15px 0;
-        }
-        
-        .member-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9em;
-            border: 2px solid #0a0a0a;
-            position: relative;
-        }
-        
-        .member-avatar:not(:first-child) {
-            margin-left: -10px;
-        }
-        
-        .party-member-count {
-            margin-left: 15px;
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-        
-        .party-code-input {
-            flex: 1;
-            padding: 15px;
-            border: 2px solid var(--glass-border);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1.2em;
-            font-family: monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-align: center;
-        }
-        
-        .party-code-input:focus {
-            outline: none;
-            border-color: #00ff88;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        }
-        
-        .party-code-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-            text-transform: none;
-            letter-spacing: normal;
-        }
-        
-        .party-leaderboard {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .party-leaderboard h4 {
-            margin-bottom: 15px;
-            color: #00ff88;
-        }
-        
-        .party-leaderboard-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        
-        .party-leaderboard-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
-        }
-        
-        
-        
-        .party-requests {
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        .party-request-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
         
         
         
         
         
-        /* Party Chat Styles */
-        .party-chat {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            padding: 20px;
-        }
-        
-        .party-chat-messages {
-            height: 300px;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-        }
-        
-        .chat-message-own {
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(0, 255, 136, 0.2);
-            border-radius: 10px;
-            margin-left: 20%;
-            position: relative;
-        }
-        
-        .chat-reactions {
-            display: flex;
-            gap: 5px;
-            margin: 10px 0;
-            flex-wrap: wrap;
-        }
         
         
         
-        .chat-reaction {
-            text-align: center;
-            margin: 15px 0;
-            opacity: 0.8;
-        }
         
-        .reaction-emoji {
-            font-size: 2em;
-            display: block;
-            margin: 5px 0;
-        }
         
-        .reaction-author {
-            font-size: 0.8em;
-            opacity: 0.7;
-        }
         
-        .chat-safety-alert {
-            margin: 15px 0;
-            padding: 15px;
-            background: rgba(255, 68, 68, 0.2);
-            border: 1px solid rgba(255, 68, 68, 0.5);
-            border-radius: 10px;
-            text-align: center;
-        }
         
-        .safety-alert-content {
-            font-weight: bold;
-            color: #ff4444;
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     
