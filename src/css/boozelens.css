@@ -192,31 +192,6 @@ h1 {
     border-radius: 5px 5px 0 0;
 }
 
-/* Emergency Section */
-.emergency-grid {
-    margin: 40px 0;
-}
-
-.emergency-card {
-    background: rgba(255, 68, 68, 0.1);
-    border: 1px solid rgba(255, 68, 68, 0.3);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    cursor: pointer;
-}
-
-.emergency-card:hover {
-    transform: scale(1.05);
-    background: rgba(255, 68, 68, 0.2);
-    box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3);
-}
-
-.emergency-icon {
-    font-size: 3em;
-    margin-bottom: 15px;
-}
-
 /* Device Management */
 .device-list {
     margin: 20px 0;
@@ -342,37 +317,6 @@ h1 {
     background: var(--accent-gradient);
     border-radius: 50%;
     animation: pulse 2s infinite;
-}
-
-/* First Aid Card */
-.first-aid-card {
-    background: rgba(255, 68, 68, 0.1);
-    border: 1px solid rgba(255, 68, 68, 0.3);
-    border-radius: 20px;
-    padding: 30px;
-    margin: 20px 0;
-}
-
-.first-aid-step {
-    margin: 15px 0;
-    padding-left: 30px;
-    position: relative;
-}
-
-.first-aid-step::before {
-    content: attr(data-step);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 25px;
-    height: 25px;
-    background: var(--accent-gradient);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #000;
 }
 
 /* Buddy System */

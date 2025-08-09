@@ -35,7 +35,7 @@
 @import './features/party.css';
 @import './features/games.css';
 @import './features/achievements.css';
-/* @import './features/emergency.css'; */
+@import './features/emergency.css';
 /* @import './features/chat.css'; */
 @import './features/auth.css';
 @import './features/profile.css';
@@ -43,7 +43,7 @@
 /* @import './features/tracking.css'; */
 
 /* Utilities - Helpers (loaded last for precedence) */
-/* @import './utilities/spacing.css'; */
+@import './utilities/spacing.css';
 /* @import './utilities/visibility.css'; */
 /* @import './utilities/colors.css'; */
 /* @import './utilities/responsive.css'; */
