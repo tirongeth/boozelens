@@ -24,7 +24,7 @@
 @import './components/modals.css';
 @import './components/forms.css';
 @import './components/badges.css';
-/* @import './components/notifications.css'; */
+@import './components/notifications.css';
 /* @import './components/loaders.css'; */
 
 /* Features - App-specific */
