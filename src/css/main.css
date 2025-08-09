@@ -16,7 +16,7 @@
 /* Layouts - Structure */
 @import './layouts/container.css';
 @import './layouts/grid.css';
-/* @import './layouts/sections.css'; */
+@import './layouts/sections.css';
 
 /* Components - Reusable UI */
 /* @import './components/buttons.css'; */

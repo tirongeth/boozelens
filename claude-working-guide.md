@@ -3,7 +3,7 @@
 ## CRITICAL: THIS GUIDE MUST BE FOLLOWED EXACTLY - NO EXCEPTIONS
 
 ### Project Goal
-Transform the monolithic `boozelens.css` (2130+ lines) into a professional, market-ready modular CSS architecture WITHOUT changing ANY functionality or fixing ANY bugs.
+Transform the monolithic `boozelens.css` (2088+ lines) into a professional, market-ready modular CSS architecture WITHOUT changing ANY functionality or fixing ANY bugs.
 
 ### Folder Structure (ALREADY CREATED - DO NOT MODIFY)
 ```
@@ -73,7 +73,7 @@ Transform the monolithic `boozelens.css` (2130+ lines) into a professional, mark
 
 #### Step 1: Read Complete File
 ```
-ALWAYS read the ENTIRE boozelens.css file (all 2130+ lines)
+ALWAYS read the ENTIRE boozelens.css file (all 2088+ lines)
 NO EXCEPTIONS - even if you think you know what's in it
 ```
 

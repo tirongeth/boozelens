@@ -1,0 +1,40 @@
+/* Sections */
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+.settings-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.settings-section h3 {
+    margin-bottom: 20px;
+    color: #00ff88;
+    font-size: 1.5em;
+}
+
+/* Party System Styles */
+.party-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.party-join-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 20px 0;
+}

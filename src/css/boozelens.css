@@ -334,17 +334,6 @@
             background: linear-gradient(45deg, #ff4444, #ff0088);
         }
         
-        /* Sections */
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .section.active {
-            display: block;
-        }
-        
-        
         /* Dashboard Grid */
         .dashboard {
             margin-bottom: 40px;
@@ -1205,19 +1194,6 @@
             margin-bottom: 40px;
         }
         
-        .settings-section {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-        }
-        
-        .settings-section h3 {
-            margin-bottom: 20px;
-            color: #00ff88;
-            font-size: 1.5em;
-        }
-        
         .form-group label {
             margin-bottom: 8px;
             display: block;
@@ -1804,17 +1780,6 @@
             display: flex;
         }
         
-        /* Party System Styles */
-        .party-section {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
         .party-header {
             display: flex;
             justify-content: space-between;
@@ -1912,13 +1877,6 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             font-size: 0.9em;
-        }
-        
-        .party-join-section {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin: 20px 0;
         }
         
         .party-code-input {
