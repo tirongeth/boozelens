@@ -39,3 +39,26 @@
     padding: 15px;
 }
 
+/* Friend Card Base Styles */
+.friend-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.friend-card.pulse {
+    animation: cardPulse 0.5s ease;
+}
+
+.friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+

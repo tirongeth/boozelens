@@ -304,95 +304,11 @@
         
         
                 
-        /* Friend Cards with Animation */
-        .friend-card {
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .friend-card.pulse {
-            animation: cardPulse 0.5s ease;
-        }
         
         
-        /* Subtle BAC warning indicator */
-        .friend-card.bac-warning {
-            border: 3px solid rgba(255, 68, 68, 0.6);
-            box-shadow: 0 0 30px rgba(255, 68, 68, 0.3);
-        }
-        
-        .friend-card.bac-warning::after {
-            content: '⚠️';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.2em;
-            opacity: 0.8;
-            animation: warningPulse 2s ease-in-out infinite;
-            z-index: 10;
-        }
         
         
-        .friend-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
         
-        .friend-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .bac-value {
-            font-size: 3em;
-            font-weight: bold;
-            margin: 20px 0;
-            font-variant-numeric: tabular-nums;
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-        }
-        
-        .bac-trend {
-            font-size: 0.5em;
-        }
-        
-        .trend-up { color: #ff4444; }
-        .trend-down { color: #00ff88; }
-        
-        .bac-safe { color: #00ff88; }
-        .bac-caution { color: #ffcc00; }
-        .bac-danger { color: #ff4444; }
-        .bac-critical { 
-            color: #ff0088;
-            animation: blink 1s infinite;
-        }
-        
-        
-        .friend-status {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-        
-                
-        .location-tag {
-            font-size: 0.9em;
-            opacity: 0.7;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
         
         /* Party Stats */
         .party-stats {
@@ -839,105 +755,6 @@
             margin: 20px 0;
         }
         
-        /* Friends System */
-        .friends-search {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .search-input {
-            flex: 1;
-            padding: 15px 25px;
-            border: 2px solid var(--glass-border);
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 1.1em;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: #00ff88;
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        }
-        
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .friend-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .friend-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(5px);
-        }
-        
-        .friend-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .friend-avatar-small {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-        }
-        
-        .friend-details h4 {
-            margin-bottom: 5px;
-        }
-        
-        .friend-details p {
-            opacity: 0.7;
-            font-size: 0.9em;
-        }
-        
-        .friend-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        
-        .friend-permission {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            margin-left: 10px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .permission-observer { color: #ffcc00; }
-        .permission-buddy { color: #00d4ff; }
-        .permission-guardian { color: #00ff88; }
-        
-        /* Friend Request */
-        .friend-request {
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            padding: 15px;
-            border-radius: 15px;
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
         
         /* Collapsible Chart Container */
                 
@@ -1155,10 +972,6 @@
             }
             
             
-            .friend-card {
-                padding: 20px;
-            }
-            
             
             
             
@@ -1343,37 +1156,6 @@
             margin: 20px 0;
         }
         
-        .buddy-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-        }
-        
-        .buddy-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 136, 0.5);
-        }
-        
-        .buddy-status {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-left: 5px;
-        }
-        
-        .buddy-status.online {
-            background: #00ff88;
-            animation: pulse 2s infinite;
-        }
-        
-        .buddy-status.offline {
-            background: #666;
-            background: #666;
-        }
         
         /* Settings Saved Animation */
         
@@ -1537,11 +1319,7 @@
             color: #ff4444;
         }
         
-        .privacy-friends {
-            background: rgba(255, 204, 0, 0.2);
-            color: #ffcc00;
-        }
-        
+                
         .privacy-public {
             background: rgba(0, 255, 136, 0.2);
             color: #00ff88;
