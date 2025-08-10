@@ -73,7 +73,7 @@ Transform the monolithic `boozelens.css` (1004+ lines) into a professional, mark
 
 #### Step 1: Read Complete File
 ```
-ALWAYS read the ENTIRE boozelens.css file (all 1004+ lines)
+ALWAYS read the ENTIRE boozelens.css file (all 377+ lines)
 NO EXCEPTIONS - even if you think you know what's in it
 ```
 

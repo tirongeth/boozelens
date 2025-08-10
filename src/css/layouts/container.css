@@ -41,6 +41,15 @@
     min-height: 100vh;
 }
 
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
 @media screen and (max-width: 768px) {
     .container {
         padding: 20px 15px 80px 15px; /* Bottom padding for larger nav */
@@ -56,6 +65,11 @@
 @media (max-width: 768px) {
     .game-container {
         padding: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
     }
 }
 
