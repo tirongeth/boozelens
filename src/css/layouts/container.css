@@ -34,6 +34,15 @@
     margin-top: 20px;
 }
 
+.chart-wrapper {
+    height: 250px;
+    overflow: hidden;
+}
+
+.chart-wrapper.collapsed {
+    height: 0;
+}
+
 .container {
     max-width: 1400px;
     margin: 0 auto;
