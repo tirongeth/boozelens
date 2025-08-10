@@ -2,43 +2,11 @@
 
 
 /* Device Management */
-.device-list {
-    margin: 20px 0;
-}
 
-.device-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.device-info h4 {
-    margin-bottom: 5px;
-    color: #00ff88;
-}
 
-.device-info p {
-    opacity: 0.7;
-    font-size: 0.9em;
-}
 
-.pairing-code-display {
-    background: rgba(0, 255, 136, 0.1);
-    border: 2px dashed rgba(0, 255, 136, 0.5);
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    margin: 20px 0;
-}
 
-.pairing-code {
-    color: #00ff88;
-    margin: 20px 0;
-}
 
 /* Collapsible Chart Container */
 .chart-wrapper {
