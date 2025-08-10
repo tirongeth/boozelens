@@ -11,43 +11,8 @@
 
 
 
-/* Location Map */
-.location-map {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px 0;
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-}
 
-.location-dot {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: var(--accent-gradient);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
 
-/* Buddy System */
-.buddy-list {
-    margin: 20px 0;
-}
-
-/* Advanced Stats */
-.advanced-stats {
-    margin: 40px 0;
-}
-
-.stat-chart {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 20px;
-    height: 250px;
-}
 
 /* Prediction Engine */
 .prediction-card {
