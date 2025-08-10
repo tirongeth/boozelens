@@ -80,6 +80,11 @@
         flex-direction: column;
         width: 100%;
     }
+
+    .user-profile {
+        position: static;
+        margin: 20px auto;
+    }
 }
 
 .game-container {

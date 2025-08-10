@@ -10,19 +10,6 @@
 
 
 
-@media (max-width: 768px) {
-    .user-profile {
-        position: static;
-        margin: 20px auto;
-        max-width: 300px;
-    }
-
-    .question-card {
-        padding: 20px;
-    }
-
-}
-
 /* Error state */
 .error {
     background: rgba(255, 68, 68, 0.1);

@@ -122,3 +122,9 @@
     line-height: 1.6;
     animation: questionIn 0.5s ease;
 }
+
+@media (max-width: 768px) {
+    .question-card {
+        padding: 20px;
+    }
+}
