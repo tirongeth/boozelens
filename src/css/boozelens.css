@@ -1,20 +1,3 @@
-/* Alert Banner */
-.alert-banner {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background: rgba(255, 68, 68, 0.9);
-    color: white;
-    padding: 15px;
-    text-align: center;
-    z-index: 999;
-    transform: translateY(-100%);
-}
-
-.alert-banner.show {
-    transform: translateY(0);
-}
 
 /* Header */
 header {
