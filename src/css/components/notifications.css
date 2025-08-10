@@ -22,3 +22,29 @@
     background: var(--success-bg);
     color: #000;
 }
+
+/* Connection Status */
+.connection-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 10px 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    z-index: 100;
+    pointer-events: none;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .connection-status {
+        bottom: 80px;
+    }
+}

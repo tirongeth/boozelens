@@ -1,0 +1,5 @@
+.connection-status.connected {
+    opacity: 0;
+    transform: translateX(100px);
+    visibility: hidden;
+}

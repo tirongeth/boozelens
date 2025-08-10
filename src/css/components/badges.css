@@ -4,3 +4,10 @@
     font-size: 0.9em;
     background: rgba(255, 255, 255, 0.1);
 }
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ff88;
+}

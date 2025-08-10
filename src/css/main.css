@@ -27,6 +27,7 @@
 @import './components/notifications.css';
 @import './components/loaders.css';
 @import './components/chat.css';
+@import './components/logo.css';
 
 /* Features - App-specific */
 @import './features/navigation.css';
@@ -40,7 +41,7 @@
 @import './features/auth.css';
 @import './features/profile.css';
 @import './features/leaderboard.css';
-/* @import './features/tracking.css'; */
+@import './features/tracking.css';
 
 /* Utilities - Helpers (loaded last for precedence) */
 @import './utilities/spacing.css';
