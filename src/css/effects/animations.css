@@ -29,6 +29,20 @@
     50% { background-position: 100% 50%; }
 }
 
+/* Header text gradient effects */
+h1 {
+    background: linear-gradient(135deg, #00ff88, #00d4ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+}
+
+.subtitle::after {
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+}
+
 /* Logo breathing animation */
 @keyframes breathe {
     0%, 100% { transform: scale(1); opacity: 0.9; }

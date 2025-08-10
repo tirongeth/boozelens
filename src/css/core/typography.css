@@ -16,6 +16,8 @@ h1 {
     font-size: 4.5em;
     font-weight: 800;
     letter-spacing: -0.04em;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .subtitle {
@@ -23,6 +25,20 @@ h1 {
     font-weight: 300;
     letter-spacing: 0.3em;
     text-transform: uppercase;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+}
+
+.subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    opacity: 0.8;
 }
 
 /* Button Text */
