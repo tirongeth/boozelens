@@ -11,17 +11,3 @@
     background-size: 400% 400%;
 }
 
-/* Global overlays */
-.modal {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.auth-container {
-    background: rgba(0, 0, 0, 0.95);
-}
-
-.game-overlay {
-    background: rgba(0, 0, 0, 0.95);
-}

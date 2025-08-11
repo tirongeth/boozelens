@@ -1,8 +1,13 @@
 /* Form Groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
 .form-group label {
     margin-bottom: 8px;
     display: block;
     opacity: 0.9;
+    font-weight: 600;
 }
 
 .form-group input,
@@ -14,6 +19,7 @@
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
     color: white;
+    font-size: 1em;
 }
 
 .form-group input:focus,
@@ -22,6 +28,7 @@
     outline: none;
     border-color: #00ff88;
     background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
 }
 
 .form-group textarea {

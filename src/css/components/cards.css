@@ -157,3 +157,13 @@
     text-align: center;
 }
 
+.prediction-value {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 20px 0;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+

@@ -1,16 +1,3 @@
-/* Logo & Branding Typography */
-.logo {
-    font-size: 1.75em;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-}
-
-/* Navigation Typography */
-.nav-item {
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
 /* Headings & Main Text */
 h1 {
     font-size: 4.5em;
@@ -41,11 +28,6 @@ h1 {
     opacity: 0.8;
 }
 
-/* Button Text */
-.btn {
-    font-size: 1em;
-}
-
 /* Stats & Game Text */
 .stat-icon {
     font-size: 2em;
@@ -57,17 +39,6 @@ h1 {
 .stat-label {
     font-size: 0.9em;
 }
-.game-icon {
-    font-size: 3em;
-}
-.game-title {
-    font-size: 1.3em;
-    font-weight: bold;
-}
-.game-players {
-    font-size: 0.9em;
-}
-
 /* Achievement Typography */
 .achievement-icon {
     font-size: 2.5em;
@@ -101,12 +72,6 @@ h1 {
     font-size: 0.85em;
 }
 
-/* Chat Typography */
-.chat-author {
-    font-weight: bold;
-    font-size: 0.9em;
-}
-
 /* Leaderboard Typography */
 .leaderboard h2 {
     font-size: 2em;
@@ -114,16 +79,6 @@ h1 {
 .rank {
     font-size: 1.5em;
     font-weight: bold;
-}
-
-/* Form Typography */
-.form-group label {
-    font-weight: 600;
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-    font-size: 1em;
 }
 
 /* Verification Code Typography */

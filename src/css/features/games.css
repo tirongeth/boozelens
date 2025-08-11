@@ -46,6 +46,7 @@
     display: none;
     align-items: center;
     justify-content: center;
+    background: rgba(0, 0, 0, 0.95);
 }
 
 .game-overlay.show {

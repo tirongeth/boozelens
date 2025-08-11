@@ -168,13 +168,3 @@ h1 {
     100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
 }
 
-/* Prediction Value Gradient */
-.prediction-value {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 20px 0;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
