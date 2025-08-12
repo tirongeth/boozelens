@@ -1,0 +1,31 @@
+<div class="mobile-more-backdrop" id="mobileMoreBackdrop" onclick="toggleMobileMore()"></div>
+<div class="mobile-more-menu" id="mobileMoreMenu">
+    <div class="mobile-more-header">
+        <h3>More Options</h3>
+        <button class="mobile-more-close" onclick="toggleMobileMore()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="mobile-more-items">
+        <div class="mobile-more-item" onclick="switchSection('photos'); toggleMobileMore();">
+            <i class="fas fa-camera-retro"></i>
+            <span>Photos</span>
+        </div>
+        <div class="mobile-more-item" onclick="switchSection('achievements'); toggleMobileMore();">
+            <i class="fas fa-trophy"></i>
+            <span>Achievements</span>
+        </div>
+        <div class="mobile-more-item" onclick="switchSection('drinks'); toggleMobileMore();">
+            <i class="fas fa-beer"></i>
+            <span>Drinks</span>
+        </div>
+        <div class="mobile-more-item" onclick="switchSection('emergency'); toggleMobileMore();">
+            <i class="fas fa-ambulance"></i>
+            <span>Emergency</span>
+        </div>
+        <div class="mobile-more-item" onclick="switchSection('settings'); toggleMobileMore();">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </div>
+    </div>
+</div>
