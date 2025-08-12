@@ -1,0 +1,123 @@
+<section id="settings" class="section">
+    <div class="profile-header">
+        <div class="profile-avatar" onclick="showNotification('Profile picture upload coming soon!')">
+            <span id="profileInitial">?</span>
+        </div>
+        <div class="profile-info">
+            <h2 id="settingsUsername">Loading...</h2>
+            <p id="settingsEmail">...</p>
+            <p id="settingsPhone" style="display: none;">...</p>
+        </div>
+    </div>
+    
+    <div class="settings-grid">
+        <div class="settings-section">
+            <h3>=d Profile Information</h3>
+            <div class="settings-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="emailDisplay" disabled style="opacity: 0.7;">
+                </div>
+                <button class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>= Account Security</h3>
+            <div class="linked-accounts">
+                <div class="account-item">
+                    <div class="account-info">
+                        <div class="account-icon email-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <p id="linkedEmail" style="margin: 0; opacity: 0.7;">...</p>
+                        </div>
+                    </div>
+                    <span style="color: #00ff88;"> Linked</span>
+                </div>
+            </div>
+            <button class="btn" onclick="changePassword()" style="margin-top: 20px; width: 100%;">
+                <i class="fas fa-key"></i> Change Password
+            </button>
+        </div>
+        
+        <div class="settings-section">
+            <h3>=¨ Emergency Information</h3>
+            <div class="settings-form">
+                <div class="form-group">
+                    <label>Home Address</label>
+                    <textarea id="homeAddress" placeholder="Enter your home address for quick Uber rides"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Emergency Contact</label>
+                    <input type="tel" id="emergencyContact" placeholder="+41 XX XXX XX XX">
+                </div>
+                <div class="form-group">
+                    <label>Medical Information</label>
+                    <textarea id="medicalInfo" placeholder="Allergies, conditions, medications..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Safety Notes</label>
+                    <textarea id="safetyNotes" placeholder="Any other important information"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveEmergencyInfo()">Save Emergency Info</button>
+            </div>
+        </div>
+        
+        <div class="settings-section">
+            <h3>= Privacy & Notifications</h3>
+            <div class="toggle-group">
+                <div class="toggle-label">
+                    <span>Share Location with Friends</span>
+                    <small>Allow friends to see your party location</small>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="shareLocation">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="toggle-group">
+                <div class="toggle-label">
+                    <span>Enable Notifications</span>
+                    <small>Get alerts for friend requests and safety reminders</small>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="notifications" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="toggle-group">
+                <div class="toggle-label">
+                    <span>Public Profile</span>
+                    <small>Allow others to find you by username</small>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="publicProfile" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <button class="btn btn-primary" onclick="savePrivacySettings()" style="margin-top: 20px; width: 100%;">Save Privacy Settings</button>
+        </div>
+        
+        <div class="settings-section">
+            <h3>=¾ Data Management</h3>
+            <div style="display: grid; gap: 10px;">
+                <button class="btn" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export All Data
+                </button>
+                <button class="btn" onclick="clearDrinkHistory()">
+                    <i class="fas fa-trash"></i> Clear Drink History
+                </button>
+                <button class="btn btn-danger" onclick="deleteAccount()">
+                    <i class="fas fa-user-times"></i> Delete Account
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+<section id="dashboard" class="section active">
+    <!-- Party Info (shown when in a party) -->
+    <div id="dashboardPartyInfo" style="display: none; margin-bottom: 30px; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: #00ff88; margin: 0;"><† Party: <span id="dashboardPartyName"></span></h3>
+            <div style="font-size: 1.5em; font-weight: bold; color: #00ff88;" id="dashboardPartyCode"></div>
+        </div>
+        <button class="btn" onclick="switchSection('parties')" style="margin-top: 15px;">
+            <i class="fas fa-users"></i> View Party
+        </button>
+    </div>
+    
+    <div class="party-stats">
+        <div class="stat-card" onclick="showNotification('Party statistics!')">
+            <div class="stat-icon"><Š</div>
+            <div class="stat-value" id="partyAverage">0.000</div>
+            <div class="stat-label">Party Average</div>
+        </div>
+        <div class="stat-card" onclick="showModal('safe-friends')">
+            <div class="stat-icon"></div>
+            <div class="stat-value" id="safeFriends">0</div>
+            <div class="stat-label">Safe to Drive</div>
+        </div>
+        <div class="stat-card" onclick="showModal('locations')">
+            <div class="stat-icon">=Í</div>
+            <div class="stat-value" id="activeLocations">3</div>
+            <div class="stat-label">Party Spots</div>
+        </div>
+        <div class="stat-card" onclick="showHydrationReminder()">
+            <div class="stat-icon">=§</div>
+            <div class="stat-value" id="hydrationTime">15m</div>
+            <div class="stat-label">Until Water Break</div>
+        </div>
+    </div>
+    
+    <div class="visualizer" id="visualizer">
+        <!-- Music visualizer bars will be generated here -->
+    </div>
+    
+    <div class="dashboard" id="friendsGrid">
+        <!-- Friend cards will be dynamically inserted here -->
+    </div>
+    
+    <div class="leaderboard">
+        <h2><Æ Tonight's Champions <Æ</h2>
+        <div id="leaderboardList">
+            <!-- Leaderboard items will be inserted here -->
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h3>= How to Connect Your Breathalyzer</h3>
+        <p><strong>For Arduino/ESP32 Devices:</strong></p>
+        <ol style="margin-left: 20px;">
+            <li>Power on your device and connect to its WiFi hotspot</li>
+            <li>Complete the setup and note your unique Device ID</li>
+            <li>Click "Pair Device" and enter your Device ID</li>
+            <li>Your BAC readings will update in real-time</li>
+        </ol>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message">
+                <div class="chat-author">System</div>
+                <div>Welcome to BoozeLens Chat! Stay safe and have fun! <‰</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+            <button class="btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</section>
