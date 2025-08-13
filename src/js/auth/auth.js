@@ -204,8 +204,8 @@ export async function loadUserData(user) {
         document.getElementById('profileEmail').textContent = user.email;
         
         // Update settings page
-        document.getElementById('settingsUsername').textContent = displayName;
-        document.getElementById('settingsEmail').textContent = user.email;
+        document.querySelectorAll('.settings-username-display').forEach(el => el.textContent = displayName);
+        document.querySelectorAll('.settings-email-display').forEach(el => el.textContent = user.email);
         document.getElementById('username').value = userData.username || '';
         document.getElementById('emailDisplay').value = user.email;
         document.getElementById('linkedEmail').textContent = user.email;

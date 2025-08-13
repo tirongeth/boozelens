@@ -26,8 +26,47 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- BoozeLens Styles -->
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="./src/css/core/reset.css">
+    <link rel="stylesheet" href="./src/css/core/variables.css">
+    <link rel="stylesheet" href="./src/css/core/base.css">
+    <link rel="stylesheet" href="./src/css/core/typography.css">
 
+    <!-- Effects CSS -->
+    <link rel="stylesheet" href="./src/css/effects/animations.css">
+    <link rel="stylesheet" href="./src/css/effects/background.css">
+    <link rel="stylesheet" href="./src/css/effects/particles.css">
+    <link rel="stylesheet" href="./src/css/effects/transitions.css">
+
+    <!-- Layouts CSS -->
+    <link rel="stylesheet" href="./src/css/layouts/container.css">
+    <link rel="stylesheet" href="./src/css/layouts/grid.css">
+    <link rel="stylesheet" href="./src/css/layouts/sections.css">
+
+    <!-- Components CSS -->
+    <link rel="stylesheet" href="./src/css/components/buttons.css">
+    <link rel="stylesheet" href="./src/css/components/cards.css">
+    <link rel="stylesheet" href="./src/css/components/forms.css">
+    <link rel="stylesheet" href="./src/css/components/modals.css">
+    <link rel="stylesheet" href="./src/css/components/notifications.css">
+    <link rel="stylesheet" href="./src/css/components/loaders.css">
+    <link rel="stylesheet" href="./src/css/components/logo.css">
+    <link rel="stylesheet" href="./src/css/components/chat.css">
+    <link rel="stylesheet" href="./src/css/components/badges.css">
+
+    <!-- Features CSS -->
+    <link rel="stylesheet" href="./src/css/features/dashboard.css">
+    <link rel="stylesheet" href="./src/css/features/auth.css">
+    <link rel="stylesheet" href="./src/css/features/leaderboard.css">
+    <link rel="stylesheet" href="./src/css/features/navigation.css">
+    <link rel="stylesheet" href="./src/css/features/profile.css">
+    <link rel="stylesheet" href="./src/css/features/tracking.css">
+
+    <!-- Utilities CSS -->
+    <link rel="stylesheet" href="./src/css/utilities/spacing.css">
+    <link rel="stylesheet" href="./src/css/utilities/colors.css">
+    <link rel="stylesheet" href="./src/css/utilities/responsive.css">
+    <link rel="stylesheet" href="./src/css/utilities/visibility.css">
 
     
     <!-- Chart.js -->
@@ -40,8 +79,6 @@
 
 
   <script type="module" crossorigin src="./src/js/main.js"></script>
-  <link rel="stylesheet" href="./src/css/main.css">
-  <link rel="stylesheet" href="./src/css/boozelens.css">
   <link rel="stylesheet" href="./src/css/mobile.css">
   
   <!-- Party events will be handled by the main module system -->
@@ -156,6 +193,18 @@
         <button class="btn" onclick="signOut()">
             <i class="fas fa-sign-out-alt"></i> Sign Out
         </button>
+
+        <!-- Hidden elements needed for initial load -->
+        <div style="display: none">
+            <span id="profileInitial">?</span>
+            <input type="text" id="username" value="">
+            <input type="email" id="emailDisplay" value="">
+            <p id="linkedEmail"></p>
+            <input type="checkbox" id="shareLocation">
+            <input type="checkbox" id="notifications">
+            <input type="checkbox" id="publicProfile">
+            <div id="friendRequests"></div>
+        </div>
     </div>
     
     <!-- Connection Status -->

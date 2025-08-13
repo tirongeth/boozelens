@@ -794,6 +794,9 @@ async function onUserAuthenticated(user) {
         // Initialize UI
         updateUI();
         
+        // Load dashboard by default
+        await switchSection('dashboard');
+        
         // Load and display parties
         await Parties.loadUserParties();
         updatePartyDisplay();
@@ -1044,19 +1047,35 @@ function processDeviceReading(deviceId, reading) {
 }
 
 // ========================================
+// DYNAMIC LOADING FUNCTIONS
+// ========================================
+
+// Load HTML content dynamically  
+async function loadSectionContent(sectionName) {
+    const response = await fetch(`./src/html/sections/${sectionName}.html`);
+    return await response.text();
+}
+
+// ========================================
 // UI FUNCTIONS
 // ========================================
-function switchSection(sectionId) {
+async function switchSection(sectionId) {
     try {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        // Load section content
+        const content = await loadSectionContent(sectionId);
         
-        const section = document.getElementById(sectionId);
+        // Update section container
+        const container = document.getElementById('section-container');
+        container.innerHTML = content;
+        
+        // Add active class to the section
+        const section = container.querySelector('.section');
         if (section) {
             section.classList.add('active');
         }
         
-        // Find and activate the correct nav item
+        // Update active navigation item
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
             if (item.onclick && item.onclick.toString().includes(sectionId)) {
@@ -1085,10 +1104,12 @@ function switchSection(sectionId) {
             Photos.refreshPhotoFeed();
         } else if (sectionId === 'settings') {
             AllFunctions.updateToggleSwitches();
-        } else if (sectionId === 'parties') {
+        } else if (sectionId === 'parties' || sectionId === 'dashboard') {
             updatePartyDisplay();
             // Refresh public parties
-            document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
+            if (sectionId === 'parties') {
+                document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
+            }
         }
     } catch (error) {
         console.error('Section switch failed:', error);

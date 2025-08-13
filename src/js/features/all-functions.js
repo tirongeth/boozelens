@@ -633,7 +633,7 @@ export async function updateProfile() {
         
         userData.username = username;
         document.getElementById('profileName').textContent = username;
-        document.getElementById('settingsUsername').textContent = username;
+        document.querySelectorAll('.settings-username-display').forEach(el => el.textContent = username);
         document.getElementById('profileInitial').textContent = username.charAt(0).toUpperCase();
         
     } catch (error) {
