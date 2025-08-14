@@ -1060,61 +1060,71 @@ async function loadSectionContent(sectionName) {
 // UI FUNCTIONS
 // ========================================
 async function switchSection(sectionId) {
-    try {
-        // Load section content
-        const content = await loadSectionContent(sectionId);
-        
-        // Update section container
-        const container = document.getElementById('section-container');
-        container.innerHTML = content;
-        
-        // Add active class to the section
-        const section = container.querySelector('.section');
-        if (section) {
-            section.classList.add('active');
-        }
-        
-        // Update active navigation item
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            if (item.onclick && item.onclick.toString().includes(sectionId)) {
-                item.classList.add('active');
-            }
-        });
-        
-        // Close mobile menu
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu) {
-            navMenu.classList.remove('show');
-        }
-        
-        // Section-specific initializations
-        if (sectionId === 'achievements') {
-            Achievements.updateAchievements();
-        } else if (sectionId === 'drinks') {
-            Drinks.updateDrinkStats();
-            Drinks.updateDrinkChart();
-            Drinks.updateDrinkHistory();
-            Drinks.updateEmergencySummary();
-        } else if (sectionId === 'friends') {
-            AllFunctions.updateFriendsList();
-        } else if (sectionId === 'photos') {
-            // Photos feed updates automatically via listener
-            Photos.refreshPhotoFeed();
-        } else if (sectionId === 'settings') {
-            AllFunctions.updateToggleSwitches();
-        } else if (sectionId === 'parties' || sectionId === 'dashboard') {
-            updatePartyDisplay();
-            // Refresh public parties
-            if (sectionId === 'parties') {
-                document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
-            }
-        }
-    } catch (error) {
-        console.error('Section switch failed:', error);
-    }
-}
+      try {
+          const container = document.getElementById('section-container');
+
+          // Check if section already exists (dashboard/settings)
+          const existingSection = document.getElementById(sectionId);
+
+          if (existingSection) {
+              // Handle static sections (dashboard/settings)
+              document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+              existingSection.classList.add('active');
+          } else {
+              // Handle dynamic sections (friends, photos, parties, etc.)
+              // First hide all static sections (dashboard/settings)
+              document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+              
+              const content = await loadSectionContent(sectionId);
+              container.innerHTML = content;
+
+              // Add active class to the section
+              const section = container.querySelector('.section');
+              if (section) {
+                  section.classList.add('active');
+              }
+          }
+
+          // Update active navigation item
+          document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+          const navItems = document.querySelectorAll('.nav-item');
+          navItems.forEach(item => {
+              if (item.onclick && item.onclick.toString().includes(sectionId)) {
+                  item.classList.add('active');
+              }
+          });
+
+          // Close mobile menu
+          const navMenu = document.getElementById('navMenu');
+          if (navMenu) {
+              navMenu.classList.remove('show');
+          }
+
+          // Section-specific initializations
+          if (sectionId === 'achievements') {
+              Achievements.updateAchievements();
+          } else if (sectionId === 'drinks') {
+              Drinks.updateDrinkStats();
+              Drinks.updateDrinkChart();
+              Drinks.updateDrinkHistory();
+              Drinks.updateEmergencySummary();
+          } else if (sectionId === 'friends') {
+              AllFunctions.updateFriendsList();
+          } else if (sectionId === 'photos') {
+              Photos.refreshPhotoFeed();
+          } else if (sectionId === 'settings') {
+              AllFunctions.updateToggleSwitches();
+          } else if (sectionId === 'parties' || sectionId === 'dashboard') {
+              updatePartyDisplay();
+              if (sectionId === 'parties') {
+                  document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
+              }
+          }
+      } catch (error) {
+          console.error('Section switch failed:', error);
+      }
+  }
+
 
 function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');

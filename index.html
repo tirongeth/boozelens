@@ -194,17 +194,7 @@
             <i class="fas fa-sign-out-alt"></i> Sign Out
         </button>
 
-        <!-- Hidden elements needed for initial load -->
-        <div style="display: none">
-            <span id="profileInitial">?</span>
-            <input type="text" id="username" value="">
-            <input type="email" id="emailDisplay" value="">
-            <p id="linkedEmail"></p>
-            <input type="checkbox" id="shareLocation">
-            <input type="checkbox" id="notifications">
-            <input type="checkbox" id="publicProfile">
-            <div id="friendRequests"></div>
-        </div>
+        
     </div>
     
     <!-- Connection Status -->
@@ -237,7 +227,215 @@
         </header>
         
         <div id="section-container"></div>
-        
+            <!-- Dashboard section embedded directly -->
+      <section id="dashboard" class="section active">
+          <!-- Party Info (shown when in a party) -->
+    <div id="dashboardPartyInfo" style="display: none; margin-bottom: 30px; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88; padding: 20px; border-radius: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: #00ff88; margin: 0;">🎉 Party: <span id="dashboardPartyName"></span></h3>
+            <div style="font-size: 1.5em; font-weight: bold; color: #00ff88;" id="dashboardPartyCode"></div>
+        </div>
+        <button class="btn" onclick="switchSection('parties')" style="margin-top: 15px;">
+            <i class="fas fa-users"></i> View Party
+        </button>
+    </div>
+    
+    <div class="party-stats">
+        <div class="stat-card" onclick="showNotification('Party statistics!')">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="partyAverage">0.000</div>
+            <div class="stat-label">Party Average</div>
+        </div>
+        <div class="stat-card" onclick="showModal('safe-friends')">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value" id="safeFriends">0</div>
+            <div class="stat-label">Safe to Drive</div>
+        </div>
+        <div class="stat-card" onclick="showModal('locations')">
+            <div class="stat-icon">📍</div>
+            <div class="stat-value" id="activeLocations">3</div>
+            <div class="stat-label">Party Spots</div>
+        </div>
+        <div class="stat-card" onclick="showHydrationReminder()">
+            <div class="stat-icon">💧</div>
+            <div class="stat-value" id="hydrationTime">15m</div>
+            <div class="stat-label">Until Water Break</div>
+        </div>
+    </div>
+    
+    <div class="visualizer" id="visualizer">
+        <!-- Music visualizer bars will be generated here -->
+    </div>
+    
+    <div class="dashboard" id="friendsGrid">
+        <!-- Friend cards will be dynamically inserted here -->
+    </div>
+    
+    <div class="leaderboard">
+        <h2>🏆 Tonight's Champions 🎉</h2>
+        <div id="leaderboardList">
+            <!-- Leaderboard items will be inserted here -->
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h3>=🔌 How to Connect Your Breathalyzer</h3>
+        <p><strong>For Arduino/ESP32 Devices:</strong></p>
+        <ol style="margin-left: 20px;">
+            <li>Power on your device and connect to its WiFi hotspot</li>
+            <li>Complete the setup and note your unique Device ID</li>
+            <li>Click "Pair Device" and enter your Device ID</li>
+            <li>Your BAC readings will update in real-time</li>
+        </ol>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message">
+                <div class="chat-author">System</div>
+                <div>Welcome to BoozeLens Chat! Stay safe and have fun! 🎉</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+            <button class="btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+      </section>
+
+      <!-- Settings section embedded directly -->
+      <section id="settings" class="section">
+          <div class="profile-header">
+                <div class="profile-avatar" onclick="showNotification('Profile picture upload coming soon!')">
+                    <span id="profileInitial">?</span>
+                </div>
+                <div class="profile-info">
+                    <h2 id="settingsUsername" class="settings-username-display">Loading...</h2>
+                    <p id="settingsEmail" class="settings-email-display">...</p>
+                    <p id="settingsPhone" style="display: none;">...</p>
+                </div>
+            </div>
+            
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>👤 Profile Information</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="username" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="emailDisplay" disabled style="opacity: 0.7;">
+                        </div>
+                        <button class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🔒 Account Security</h3>
+                    <div class="linked-accounts">
+                        <div class="account-item">
+                            <div class="account-info">
+                                <div class="account-icon email-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p id="linkedEmail" style="margin: 0; opacity: 0.7;">...</p>
+                                </div>
+                            </div>
+                            <span style="color: #00ff88;">✓ Linked</span>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="changePassword()" style="margin-top: 20px; width: 100%;">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🚨 Emergency Information</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Home Address</label>
+                            <textarea id="homeAddress" placeholder="Enter your home address for quick Uber rides"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Emergency Contact</label>
+                            <input type="tel" id="emergencyContact" placeholder="+41 XX XXX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label>Medical Information</label>
+                            <textarea id="medicalInfo" placeholder="Allergies, conditions, medications..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Safety Notes</label>
+                            <textarea id="safetyNotes" placeholder="Any other important information"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveEmergencyInfo()">Save Emergency Info</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🔔 Privacy & Notifications</h3>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Share Location with Friends</span>
+                            <small>Allow friends to see your party location</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="shareLocation">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Enable Notifications</span>
+                            <small>Get alerts for friend requests and safety reminders</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notifications" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Public Profile</span>
+                            <small>Allow others to find you by username</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="publicProfile" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" onclick="savePrivacySettings()" style="margin-top: 20px; width: 100%;">Save Privacy Settings</button>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>💾 Data Management</h3>
+                    <div style="display: grid; gap: 10px;">
+                        <button class="btn" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                        <button class="btn" onclick="clearDrinkHistory()">
+                            <i class="fas fa-trash"></i> Clear Drink History
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteAccount()">
+                            <i class="fas fa-user-times"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hidden elements needed for JavaScript functionality -->
+            <div style="display: none;">
+                <div id="friendRequests"></div>
+            </div>
+      </section>
+  </div>
+
         
         
         
