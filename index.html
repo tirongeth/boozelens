@@ -414,6 +414,32 @@
                 </div>
                 
                 <div class="settings-section">
+                    <h3>📱 BoozeLens Devices</h3>
+                    <div id="boozeLensDeviceStats"></div>
+                    
+                    <div class="device-pairing-section">
+                        <h4>Pair New BoozeLens Device</h4>
+                        <form id="boozeLensDevicePairForm" class="settings-form">
+                            <div class="form-group">
+                                <label>Device ID</label>
+                                <input type="text" id="boozeLensDeviceIdInput" 
+                                       placeholder="Enter Device ID (e.g., BOOZE12AB34)" 
+                                       style="text-transform: uppercase;">
+                                <small>Find your Device ID on the BoozeLens setup screen</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="pairBoozeLensDeviceBtn">
+                                <i class="fas fa-link"></i> Pair Device
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="device-list-section">
+                        <h4>Your BoozeLens Devices</h4>
+                        <div id="boozeLensDeviceList"></div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
                     <h3>💾 Data Management</h3>
                     <div style="display: grid; gap: 10px;">
                         <button class="btn" onclick="exportData()">
@@ -421,6 +447,9 @@
                         </button>
                         <button class="btn" onclick="clearDrinkHistory()">
                             <i class="fas fa-trash"></i> Clear Drink History
+                        </button>
+                        <button class="btn" onclick="refreshBoozeLensDevices()">
+                            <i class="fas fa-sync"></i> Refresh Devices
                         </button>
                         <button class="btn btn-danger" onclick="deleteAccount()">
                             <i class="fas fa-user-times"></i> Delete Account

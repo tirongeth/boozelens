@@ -181,10 +181,16 @@ function exposeGlobalFunctions() {
     window.updateAchievementProgress = Achievements.updateAchievementProgress;
     window.checkAchievements = Achievements.checkAchievements;
     
-    // Device functions
+    // Device functions (Legacy breathalyzer)
     window.pairDeviceById = Devices.pairDeviceById;
     window.unpairDevice = Devices.unpairDevice;
     window.renameDevice = Devices.renameDevice;
+    
+    // BoozeLens Device functions
+    window.pairBoozeLensDevice = Devices.pairBoozeLensDevice;
+    window.unpairBoozeLensDevice = Devices.unpairBoozeLensDevice;
+    window.renameBoozeLensDevice = Devices.renameBoozeLensDevice;
+    window.refreshBoozeLensDevices = Devices.refreshBoozeLensDevices;
     
     // Photo functions
     window.refreshPhotoFeed = Photos.refreshPhotoFeed;
@@ -192,6 +198,8 @@ function exposeGlobalFunctions() {
     window.toggleLike = Photos.toggleLike;
     window.addComment = Photos.addComment;
     window.deletePhoto = Photos.deletePhoto;
+    window.updateBoozeLensStatus = Photos.updateBoozeLensStatus;
+    window.showBoozeLensUploadNotification = Photos.showBoozeLensUploadNotification;
     window.viewPhoto = Photos.viewPhoto;
     window.showComments = Photos.showComments;
     window.sharePhoto = Photos.sharePhoto;
@@ -772,6 +780,9 @@ async function onUserAuthenticated(user) {
         
         // Initialize features
         initializeDevices();
+        
+        // Initialize BoozeLens devices
+        await Devices.initializeBoozeLensDevices();
         
         // Initialize photos module
         Photos.initializePhotos();

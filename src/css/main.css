@@ -41,6 +41,7 @@
 @import './features/profile.css';
 @import './features/leaderboard.css';
 @import './features/tracking.css';
+@import './features/boozelens-devices.css';
 
 /* Utilities - Helpers (loaded last for precedence) */
 @import './utilities/spacing.css';
