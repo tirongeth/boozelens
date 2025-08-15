@@ -44,27 +44,46 @@ export async function searchFriends() {
             resultsDiv.innerHTML = '<p style="text-align: center; opacity: 0.7;">No users found</p>';
         } else {
             const friendsData = getAppState().friendsData || {};
-            resultsDiv.innerHTML = '<h4>Search Results:</h4>' + results.map(user => `
+            
+            // Create template for friend search results
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item">
                     <div class="friend-info">
-                        <div class="friend-avatar-small">
-                            ${(user.username || user.email).charAt(0).toUpperCase()}
-                        </div>
+                        <div class="friend-avatar-small" data-avatar></div>
                         <div class="friend-details">
-                            <h4>${user.username || 'User'}</h4>
-                            <p>${user.email || 'Phone user'}</p>
+                            <h4 data-username></h4>
+                            <p data-email></p>
                         </div>
                     </div>
-                    <div class="friend-actions">
-                        ${friendsData[user.uid] ? 
-                            '<span style="color: #00ff88;">✓ Friends</span>' : 
-                            `<button class="btn btn-primary" onclick="sendFriendRequest('${user.uid}')">
-                                <i class="fas fa-user-plus"></i> Add Friend
-                            </button>`
-                        }
+                    <div class="friend-actions" data-actions>
+                        <button class="btn btn-primary" data-add-btn>
+                            <i class="fas fa-user-plus"></i> Add Friend
+                        </button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            
+            // Clear and add header
+            resultsDiv.innerHTML = '<h4>Search Results:</h4>';
+            
+            // Create each result safely
+            results.forEach(user => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-avatar]').textContent = (user.username || user.email).charAt(0).toUpperCase();
+                clone.querySelector('[data-username]').textContent = user.username || 'User';
+                clone.querySelector('[data-email]').textContent = user.email || 'Phone user';
+                
+                const actionsDiv = clone.querySelector('[data-actions]');
+                if (friendsData[user.uid]) {
+                    actionsDiv.innerHTML = '<span style="color: #00ff88;">✓ Friends</span>';
+                } else {
+                    const addBtn = clone.querySelector('[data-add-btn]');
+                    addBtn.onclick = () => sendFriendRequest(user.uid);
+                }
+                
+                resultsDiv.appendChild(clone);
+            });
         }
     } catch (error) {
         console.error('Search error:', error);
@@ -218,29 +237,43 @@ export function updateFriendsList() {
         const friendInfo = friendSnapshot.val();
         
         if (friendInfo) {
-            const friendDiv = document.createElement('div');
-            friendDiv.className = 'friend-item';
-            friendDiv.innerHTML = `
-                <div class="friend-info">
-                    <div class="friend-avatar-small">
-                        ${(friendInfo.username || friendInfo.email || 'U').charAt(0).toUpperCase()}
+            // Create template for friend item
+            const template = document.createElement('template');
+            template.innerHTML = `
+                <div class="friend-item">
+                    <div class="friend-info">
+                        <div class="friend-avatar-small" data-avatar></div>
+                        <div class="friend-details">
+                            <h4 data-username></h4>
+                            <p data-email></p>
+                        </div>
                     </div>
-                    <div class="friend-details">
-                        <h4>${friendInfo.username || 'Friend'}</h4>
-                        <p>${friendInfo.email || 'Phone user'}</p>
+                    <div class="friend-actions">
+                        <select class="permission-select" data-permission>
+                            <option value="observer">Observer</option>
+                            <option value="buddy">Buddy</option>
+                            <option value="guardian">Guardian</option>
+                        </select>
+                        <button class="btn btn-danger" data-remove-btn>
+                            <i class="fas fa-user-minus"></i>
+                        </button>
                     </div>
-                </div>
-                <div class="friend-actions">
-                    <select class="permission-select" onchange="updateFriendPermission('${friendId}', this.value)">
-                        <option value="observer" ${friend.permission === 'observer' ? 'selected' : ''}>Observer</option>
-                        <option value="buddy" ${friend.permission === 'buddy' ? 'selected' : ''}>Buddy</option>
-                        <option value="guardian" ${friend.permission === 'guardian' ? 'selected' : ''}>Guardian</option>
-                    </select>
-                    <button class="btn btn-danger" onclick="removeFriend('${friendId}')">
-                        <i class="fas fa-user-minus"></i>
-                    </button>
                 </div>
             `;
+            
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('[data-avatar]').textContent = (friendInfo.username || friendInfo.email || 'U').charAt(0).toUpperCase();
+            clone.querySelector('[data-username]').textContent = friendInfo.username || 'Friend';
+            clone.querySelector('[data-email]').textContent = friendInfo.email || 'Phone user';
+            
+            const permissionSelect = clone.querySelector('[data-permission]');
+            permissionSelect.value = friend.permission || 'observer';
+            permissionSelect.onchange = (e) => updateFriendPermission(friendId, e.target.value);
+            
+            const removeBtn = clone.querySelector('[data-remove-btn]');
+            removeBtn.onclick = () => removeFriend(friendId);
+            
+            const friendDiv = clone.querySelector('.friend-item');
             friendsList.appendChild(friendDiv);
         }
     });

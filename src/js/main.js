@@ -493,24 +493,39 @@ class PartyEventManager {
                 return;
             }
             
-            listEl.innerHTML = publicParties.map(party => `
+            // Create template for public party
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item" style="margin-bottom: 15px;">
                     <div class="friend-info">
                         <div class="friend-avatar-small">🎉</div>
                         <div class="friend-details">
-                            <h4>${party.name}</h4>
-                            <p style="opacity: 0.7;">
-                                👥 ${party.memberCount} members
-                                ${party.address ? `• 📍 ${party.address}` : ''}
-                                ${party.duration === '24h' ? '• ⏰ 24h party' : ''}
+                            <h4 data-party-name></h4>
+                            <p style="opacity: 0.7;" data-party-details>
                             </p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" data-action="join-public-party" data-party-code="${party.code}">
+                    <button class="btn btn-primary" data-action="join-public-party" data-join-btn>
                         Join
                     </button>
                 </div>
-            `).join('');
+            `;
+            
+            listEl.innerHTML = '';
+            publicParties.forEach(party => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-party-name]').textContent = party.name;
+                
+                const detailsText = `👥 ${party.memberCount} members` +
+                    (party.address ? ` • 📍 ${party.address}` : '') +
+                    (party.duration === '24h' ? ' • ⏰ 24h party' : '');
+                clone.querySelector('[data-party-details]').textContent = detailsText;
+                
+                const joinBtn = clone.querySelector('[data-join-btn]');
+                joinBtn.setAttribute('data-party-code', party.code);
+                
+                listEl.appendChild(clone);
+            });
         } catch (error) {
             console.error('Refresh parties error:', error);
             listEl.innerHTML = '<p style="opacity: 0.7;">Failed to load parties</p>';
@@ -532,25 +547,39 @@ class PartyEventManager {
                 return;
             }
             
-            listEl.innerHTML = parties.map(party => `
+            // Create template for friends' party
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item" style="margin-bottom: 15px;">
                     <div class="friend-info">
                         <div class="friend-avatar-small">🎉</div>
                         <div class="friend-details">
-                            <h4>${party.name}</h4>
-                            <p style="opacity: 0.7;">
-                                👤 by ${party.creatorName} • 
-                                👥 ${party.memberCount} members
-                                ${party.address ? ` • 📍 ${party.address}` : ''}
-                                ${party.duration === '24h' ? ' • ⏰ 24h party' : ''}
+                            <h4 data-party-name></h4>
+                            <p style="opacity: 0.7;" data-party-details>
                             </p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" data-action="join-public-party" data-party-code="${party.code}">
+                    <button class="btn btn-primary" data-action="join-public-party" data-join-btn>
                         Join
                     </button>
                 </div>
-            `).join('');
+            `;
+            
+            listEl.innerHTML = '';
+            parties.forEach(party => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-party-name]').textContent = party.name;
+                
+                const detailsText = `👤 by ${party.creatorName} • 👥 ${party.memberCount} members` +
+                    (party.address ? ` • 📍 ${party.address}` : '') +
+                    (party.duration === '24h' ? ' • ⏰ 24h party' : '');
+                clone.querySelector('[data-party-details]').textContent = detailsText;
+                
+                const joinBtn = clone.querySelector('[data-join-btn]');
+                joinBtn.setAttribute('data-party-code', party.code);
+                
+                listEl.appendChild(clone);
+            });
         } catch (error) {
             console.error('Refresh friends parties error:', error);
             listEl.innerHTML = '<p style="opacity: 0.7;">Failed to load friends\' parties</p>';
@@ -918,11 +947,24 @@ function setupFirebaseListeners() {
                 const deleteBtn = isDeveloper(currentUser.uid) ? 
                     `<button onclick="deleteMessage('${msg.id}')" style="position: absolute; right: 10px; top: 5px; background: rgba(255,68,68,0.2); border: 1px solid rgba(255,68,68,0.5); color: #ff4444; padding: 2px 8px; border-radius: 5px; cursor: pointer; font-size: 0.8em;">×</button>` : '';
                 
-                messageDiv.innerHTML = `
-                    ${deleteBtn}
-                    <div class="chat-author">${msg.username || 'Anonymous'}${devBadge}</div>
-                    <div>${escapeHtml(msg.message || '')}</div>
+                // Create template for chat message
+                const template = document.createElement('template');
+                template.innerHTML = `
+                    <div class="chat-author" data-author></div>
+                    <div data-message></div>
                 `;
+                
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-author]').textContent = (msg.username || 'Anonymous') + (msg.isDeveloper ? ' 🛠️' : '');
+                clone.querySelector('[data-message]').textContent = msg.message || '';
+                
+                if (deleteBtn) {
+                    messageDiv.innerHTML = deleteBtn;
+                    messageDiv.appendChild(clone);
+                } else {
+                    messageDiv.innerHTML = '';
+                    messageDiv.appendChild(clone);
+                }
                 chatMessages.appendChild(messageDiv);
             });
             
@@ -1477,15 +1519,24 @@ function updatePartyChat(messages) {
     const chatEl = document.getElementById('partyChat');
     if (!chatEl) return;
     
-    chatEl.innerHTML = messages.map(msg => `
+    // Create template for party chat message
+    const template = document.createElement('template');
+    template.innerHTML = `
         <div style="margin-bottom: 10px;">
-            <strong style="color: #00ff88;">${msg.userName}:</strong>
-            <span>${msg.message}</span>
-            <span style="opacity: 0.5; font-size: 0.8em; margin-left: 10px;">
-                ${new Date(msg.timestamp).toLocaleTimeString()}
-            </span>
+            <strong style="color: #00ff88;" data-username></strong>
+            <span data-message></span>
+            <span style="opacity: 0.5; font-size: 0.8em; margin-left: 10px;" data-timestamp></span>
         </div>
-    `).join('');
+    `;
+    
+    chatEl.innerHTML = '';
+    messages.forEach(msg => {
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('[data-username]').textContent = (msg.userName || 'Anonymous') + ':';
+        clone.querySelector('[data-message]').textContent = msg.message || '';
+        clone.querySelector('[data-timestamp]').textContent = new Date(msg.timestamp).toLocaleTimeString();
+        chatEl.appendChild(clone);
+    });
     
     // Scroll to bottom
     chatEl.scrollTop = chatEl.scrollHeight;
@@ -1505,26 +1556,37 @@ async function updatePartyLeaderboard() {
         return;
     }
     
-    leaderboardEl.innerHTML = leaderboard.map((member, index) => {
+    // Create template for leaderboard item
+    const template = document.createElement('template');
+    template.innerHTML = `
+        <div class="friend-item" style="margin-bottom: 10px;">
+            <div class="friend-info">
+                <div style="font-size: 2em; margin-right: 15px;" data-badge></div>
+                <div class="friend-avatar-small" data-avatar></div>
+                <div class="friend-details">
+                    <h4 data-name></h4>
+                    <p style="opacity: 0.7;" data-bac></p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    leaderboardEl.innerHTML = '';
+    leaderboard.forEach((member, index) => {
         const position = index + 1;
         let badge = '';
         if (position === 1) badge = '🥇';
         else if (position === 2) badge = '🥈';
         else if (position === 3) badge = '🥉';
         
-        return `
-            <div class="friend-item" style="margin-bottom: 10px;">
-                <div class="friend-info">
-                    <div style="font-size: 2em; margin-right: 15px;">${badge || position}</div>
-                    <div class="friend-avatar-small">${member.role === 'creator' ? '👑' : '👤'}</div>
-                    <div class="friend-details">
-                        <h4>${member.name}</h4>
-                        <p style="opacity: 0.7;">BAC: ${member.bac.toFixed(3)}‰</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('[data-badge]').textContent = badge || position;
+        clone.querySelector('[data-avatar]').textContent = member.role === 'creator' ? '👑' : '👤';
+        clone.querySelector('[data-name]').textContent = member.name;
+        clone.querySelector('[data-bac]').textContent = `BAC: ${member.bac.toFixed(3)}‰`;
+        
+        leaderboardEl.appendChild(clone);
+    });
 }
 
 // Handle party join request

@@ -128,31 +128,46 @@ export async function refreshPublicParties() {
         const currentUser = window.firebase?.auth?.currentUser;
         const isDev = currentUser && window.isDeveloper && window.isDeveloper(currentUser.uid);
         
-        listEl.innerHTML = publicParties.map(party => `
+        // Create template for public party
+        const template = document.createElement('template');
+        template.innerHTML = `
             <div class="friend-item" style="margin-bottom: 15px;">
                 <div class="friend-info">
                     <div class="friend-avatar-small">🎉</div>
                     <div class="friend-details">
-                        <h4>${party.name}</h4>
-                        <p style="opacity: 0.7;">
-                            👥 ${party.memberCount} members
-                            ${party.address ? `• 📍 ${party.address}` : ''}
-                            ${party.duration === '24h' ? '• ⏰ 24h party' : ''}
-                        </p>
+                        <h4 data-party-name></h4>
+                        <p style="opacity: 0.7;" data-party-details></p>
                     </div>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn btn-primary" onclick="joinPublicParty('${party.code}')">
-                        Join
-                    </button>
-                    ${isDev ? `
-                        <button class="btn btn-danger" onclick="deletePartyAsDev('${party.id}')" title="Developer: Delete this party">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    ` : ''}
+                <div style="display: flex; gap: 10px;" data-party-actions>
+                    <button class="btn btn-primary" data-join-btn>Join</button>
                 </div>
             </div>
-        `).join('');
+        `;
+        
+        listEl.innerHTML = '';
+        publicParties.forEach(party => {
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('[data-party-name]').textContent = party.name;
+            
+            const detailsText = `👥 ${party.memberCount} members` +
+                (party.address ? ` • 📍 ${party.address}` : '') +
+                (party.duration === '24h' ? ' • ⏰ 24h party' : '');
+            clone.querySelector('[data-party-details]').textContent = detailsText;
+            
+            clone.querySelector('[data-join-btn]').onclick = () => joinPublicParty(party.code);
+            
+            if (isDev) {
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-danger';
+                deleteBtn.title = 'Developer: Delete this party';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.onclick = () => deletePartyAsDev(party.id);
+                clone.querySelector('[data-party-actions]').appendChild(deleteBtn);
+            }
+            
+            listEl.appendChild(clone);
+        });
     } catch (error) {
         listEl.innerHTML = '<p style="opacity: 0.7;">Failed to load parties</p>';
     }
