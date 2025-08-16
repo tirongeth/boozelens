@@ -712,7 +712,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateVisualizer();
     }, 500);
     
-    // Load drink history from localStorage
+    // Setup hydration timer BEFORE loading drink history
+    // Hydration timer variables
+    window.lastDrinkTime = null;
+    window.hydrationTimerInterval = null;
+    window.hydrationTargetTime = null;
+    
+    // Start or restart hydration countdown (30 minutes)
+    window.startHydrationCountdown = function() {
+        // Set target time 30 minutes from now
+        window.hydrationTargetTime = Date.now() + (30 * 60 * 1000);
+        
+        // Clear existing timer if any
+        if (window.hydrationTimerInterval) {
+            clearInterval(window.hydrationTimerInterval);
+        }
+        
+        // Start new timer that updates every minute
+        window.hydrationTimerInterval = setInterval(() => {
+            const now = Date.now();
+            
+            // Check if last drink was more than 3 hours ago
+            if (!window.lastDrinkTime || (now - window.lastDrinkTime) > (3 * 60 * 60 * 1000)) {
+                // Stop timer - no drinks in 3 hours
+                clearInterval(window.hydrationTimerInterval);
+                window.hydrationTimerInterval = null;
+                window.hydrationTargetTime = null;
+                updateUI(); // Refresh dashboard
+                return;
+            }
+            
+            // Check if countdown reached zero
+            if (now >= window.hydrationTargetTime) {
+                // Show water reminder
+                AllFunctions.showHydrationReminder();
+                // Restart countdown
+                window.hydrationTargetTime = now + (30 * 60 * 1000);
+            }
+            
+            // Update dashboard display
+            updateUI();
+        }, 60000); // Run every minute
+        
+        // Also run immediately to update display
+        updateUI();
+    };
+    
+    // Load drink history from localStorage (timer will start if needed)
     Drinks.loadDrinkHistory();
     
     // Setup drink type selection
@@ -737,13 +783,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     
-    // Hydration reminders
-    setInterval(() => {
-        const minutes = new Date().getMinutes();
-        if (minutes % 15 === 0) {
-            AllFunctions.showHydrationReminder();
-        }
-    }, 60000);
     
     // Window click handlers
     window.onclick = (event) => {

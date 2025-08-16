@@ -77,6 +77,18 @@ export async function logDrink() {
             // If achievements module is loaded
             onDrinkLogged(type, drinkHistory);
         }
+
+        // Update last drink time
+        window.lastDrinkTime = Date.now();
+        
+        // Only start timer if it's not already running (and not water)
+        if (type !== 'water') {
+            // Check if timer is NOT already active
+            if (!window.hydrationTimerInterval && typeof window.startHydrationCountdown === 'function') {
+                window.startHydrationCountdown();
+            }
+            // If timer is already running, don't restart it - just update lastDrinkTime
+        }
         
         // Confetti for water!
         if (type === 'water') {
@@ -332,6 +344,44 @@ export function removeDrink(drinkId) {
     updateDrinkHistory();
     updateDrinkChart();
     updateEmergencySummary();
+    
+    // Check if timer should stop after removing drink
+    const now = Date.now();
+    const recentAlcoholicDrink = drinkHistory.find(d => d.type !== 'water');
+    
+    if (!recentAlcoholicDrink) {
+        // No alcoholic drinks left - stop timer
+        if (window.hydrationTimerInterval) {
+            clearInterval(window.hydrationTimerInterval);
+            window.hydrationTimerInterval = null;
+            window.hydrationTargetTime = null;
+            window.lastDrinkTime = null;
+            // Update dashboard to show "Stay hydrated"
+            if (typeof updateUI === 'function') {
+                updateUI();
+            }
+        }
+    } else {
+        // Check if remaining drinks are too old
+        const drinkTime = new Date(recentAlcoholicDrink.time).getTime();
+        if ((now - drinkTime) > (3 * 60 * 60 * 1000)) {
+            // Last drink is more than 3 hours old - stop timer
+            if (window.hydrationTimerInterval) {
+                clearInterval(window.hydrationTimerInterval);
+                window.hydrationTimerInterval = null;
+                window.hydrationTargetTime = null;
+                window.lastDrinkTime = null;
+                // Update dashboard to show "Stay hydrated"
+                if (typeof updateUI === 'function') {
+                    updateUI();
+                }
+            }
+        } else {
+            // Update last drink time to the most recent remaining drink
+            window.lastDrinkTime = drinkTime;
+        }
+    }
+    
     showNotification('🗑️ Drink removed');
 }
 
@@ -555,6 +605,53 @@ export function loadDrinkHistory() {
                 d.time = new Date(d.time);
             });
             setStateValue('drinkHistory', drinkHistory);
+            
+            // Check if we should start hydration timer
+            if (drinkHistory.length > 0) {
+                // Find most recent non-water drink
+                const recentAlcoholicDrink = drinkHistory.find(d => d.type !== 'water');
+                if (recentAlcoholicDrink) {
+                    const drinkTime = new Date(recentAlcoholicDrink.time).getTime();
+                    const now = Date.now();
+                    
+                    // If last drink was less than 3 hours ago, initialize timer
+                    if ((now - drinkTime) < (3 * 60 * 60 * 1000)) {
+                        window.lastDrinkTime = drinkTime;
+                        
+                        // Find the earliest alcoholic drink within the last 3 hours
+                        const threeHoursAgo = now - (3 * 60 * 60 * 1000);
+                        const recentAlcoholicDrinks = drinkHistory
+                            .filter(d => d.type !== 'water' && new Date(d.time).getTime() > threeHoursAgo);
+                        
+                        const earliestAlcoholicDrink = recentAlcoholicDrinks
+                            .pop(); // Get last item (earliest within 3-hour window)
+                        
+                        if (earliestAlcoholicDrink) {
+                            const timerActivationTime = new Date(earliestAlcoholicDrink.time).getTime();
+                            
+                            // Calculate when next reminder should be based on timer activation time
+                            const timeSinceActivation = now - timerActivationTime;
+                            const thirtyMinutes = 30 * 60 * 1000;
+                            
+                            // Find the next 30-minute mark from activation time
+                            const timeInCurrentCycle = timeSinceActivation % thirtyMinutes;
+                            const nextReminderTime = now + (thirtyMinutes - timeInCurrentCycle);
+                            
+                            // Set the target time BEFORE starting
+                            window.hydrationTargetTime = nextReminderTime;
+                            
+                            // Now start the timer (but don't let it override our calculated time)
+                            if (typeof window.startHydrationCountdown === 'function') {
+                                // Temporarily store our calculated time
+                                const calculatedTime = nextReminderTime;
+                                window.startHydrationCountdown();
+                                // Restore our calculated time (in case startHydrationCountdown changed it)
+                                window.hydrationTargetTime = calculatedTime;
+                            }
+                        }
+                    }
+                }
+            }
         } catch (error) {
             console.error('Failed to load drink history:', error);
         }

@@ -98,10 +98,35 @@ function updateStats() {
     const safeElement = document.getElementById('safeFriends');
     if (safeElement) safeElement.textContent = safeCount;
     
-    // Update hydration timer
-    const hydrationMinutes = 15 - (Date.now() % (15 * 60 * 1000)) / 60000;
+    // Update hydration timer display
     const hydrationElement = document.getElementById('hydrationTime');
-    if (hydrationElement) hydrationElement.textContent = Math.floor(hydrationMinutes) + 'm';
+    const hydrationLabel = document.getElementById('hydrationLabel');
+    
+    if (hydrationElement) {
+        // Check if timer is active
+        if (window.hydrationTimerInterval && window.hydrationTargetTime) {
+            // Timer is running - show countdown
+            const now = Date.now();
+            const timeRemaining = Math.max(0, window.hydrationTargetTime - now);
+            const minutesRemaining = Math.ceil(timeRemaining / 60000);
+            
+            hydrationElement.textContent = minutesRemaining + 'm';
+            
+            // Show "until water break" label
+            if (hydrationLabel) {
+                hydrationLabel.style.display = 'block';
+                hydrationLabel.textContent = 'until water break';
+            }
+        } else {
+            // Timer is not running - show "Stay hydrated"
+            hydrationElement.textContent = 'Stay hydrated';
+            
+            // Hide the label
+            if (hydrationLabel) {
+                hydrationLabel.style.display = 'none';
+            }
+        }
+    }
 }
 
 // ========================================
