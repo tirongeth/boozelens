@@ -27,24 +27,74 @@ export async function searchFriends() {
     try {
         const database = getFirebaseDatabase();
         const currentUser = getCurrentUser();
-        const usersSnapshot = await get(ref(database, 'users'));
-        const users = usersSnapshot.val() || {};
-        
+        const friendsData = getAppState().friendsData || {};
         const results = [];
-        Object.entries(users).forEach(([uid, user]) => {
-            if (uid !== currentUser.uid && 
-                user.settings?.publicProfile !== false &&
-                (user.username?.toLowerCase().includes(searchTerm) || 
-                 user.email?.toLowerCase().includes(searchTerm))) {
-                results.push({ uid, ...user });
+        
+        // 1. Search through existing friends first (you can read their data)
+        const friendPromises = Object.keys(friendsData).map(async (friendUid) => {
+            try {
+                const friendSnapshot = await get(ref(database, 'users/' + friendUid));
+                const friendData = friendSnapshot.val();
+                if (friendData && 
+                    (friendData.username?.toLowerCase().includes(searchTerm) || 
+                     friendData.email?.toLowerCase().includes(searchTerm))) {
+                    return { uid: friendUid, ...friendData, isExistingFriend: true };
+                }
+            } catch (e) {
+                console.log('Could not read friend data for:', friendUid);
             }
+            return null;
         });
+        
+        // 2. Search through public usernames for new people to add
+        let usernamesSnapshot;
+        try {
+            usernamesSnapshot = await get(ref(database, 'usernames'));
+        } catch (e) {
+            console.log('Could not read usernames collection');
+            usernamesSnapshot = { val: () => ({}) };
+        }
+        
+        const usernames = usernamesSnapshot.val() || {};
+        const newUserPromises = Object.entries(usernames)
+            .filter(([username, uid]) => 
+                uid !== currentUser.uid && 
+                !friendsData[uid] && 
+                username.includes(searchTerm)
+            )
+            .map(async ([username, uid]) => {
+                try {
+                    const userSnapshot = await get(ref(database, 'users/' + uid));
+                    const userData = userSnapshot.val();
+                    if (userData && userData.settings?.publicProfile !== false) {
+                        return { uid, username, ...userData, isExistingFriend: false };
+                    }
+                } catch (e) {
+                    // Can't read full user data, but we can still show them with basic info
+                    console.log('Could not read user data for:', uid, '- showing basic info only');
+                    return { 
+                        uid, 
+                        username, 
+                        email: 'User', // Placeholder since we can't read their email
+                        isExistingFriend: false
+                    };
+                }
+                return null;
+            });
+        
+        // Wait for all searches to complete
+        const [friendResults, newUserResults] = await Promise.all([
+            Promise.all(friendPromises),
+            Promise.all(newUserPromises)
+        ]);
+        
+        // Combine results
+        friendResults.forEach(result => result && results.push(result));
+        newUserResults.forEach(result => result && results.push(result));
         
         if (results.length === 0) {
             resultsDiv.innerHTML = '<p style="text-align: center; opacity: 0.7;">No users found</p>';
         } else {
-            const friendsData = getAppState().friendsData || {};
-            
             // Create template for friend search results
             const template = document.createElement('template');
             template.innerHTML = `
@@ -70,12 +120,12 @@ export async function searchFriends() {
             // Create each result safely
             results.forEach(user => {
                 const clone = template.content.cloneNode(true);
-                clone.querySelector('[data-avatar]').textContent = (user.username || user.email).charAt(0).toUpperCase();
+                clone.querySelector('[data-avatar]').textContent = (user.username || user.email || 'U').charAt(0).toUpperCase();
                 clone.querySelector('[data-username]').textContent = user.username || 'User';
                 clone.querySelector('[data-email]').textContent = user.email || 'Phone user';
                 
                 const actionsDiv = clone.querySelector('[data-actions]');
-                if (friendsData[user.uid]) {
+                if (user.isExistingFriend) {
                     actionsDiv.innerHTML = '<span style="color: #00ff88;">✓ Friends</span>';
                 } else {
                     const addBtn = clone.querySelector('[data-add-btn]');
