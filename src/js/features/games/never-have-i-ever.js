@@ -17,7 +17,9 @@ import {
     selectGameCategory,
     changeCategoryMidGame,
     updateCategoryBadge,
-    shufflePlayers
+    shufflePlayers,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 // Create Never Have I Ever game HTML
@@ -112,6 +114,9 @@ export function startNeverHaveIEver() {
     // Shuffle players for random order
     shufflePlayers();
     
+    // Reset question queue for this category to ensure fresh randomization
+    resetQuestionQueue('neverHaveIEver', gameState.selectedCategory);
+    
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
     updateCategoryBadge();
@@ -121,8 +126,8 @@ export function startNeverHaveIEver() {
 // Get next question
 export function nextNeverHaveIEver() {
     const questions = gameData.neverHaveIEver[gameState.selectedCategory] || gameData.neverHaveIEver.classic;
-    const random = Math.floor(Math.random() * questions.length);
-    document.getElementById('gameQuestion').textContent = questions[random];
+    const question = getRandomizedQuestion('neverHaveIEver', gameState.selectedCategory, questions);
+    document.getElementById('gameQuestion').textContent = question;
 }
 
 // Initialize the game

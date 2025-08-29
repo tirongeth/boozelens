@@ -15,7 +15,9 @@ import {
     selectGameCategory,
     changeCategoryMidGame,
     updateCategoryBadge,
-    shufflePlayers
+    shufflePlayers,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 // Create Most Likely To game HTML
@@ -111,6 +113,9 @@ export function startMostLikelyTo() {
     // Shuffle players for random order
     shufflePlayers();
     
+    // Reset question queue for this category to ensure fresh randomization
+    resetQuestionQueue('mostLikelyTo', gameState.selectedCategory);
+    
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
     updateCategoryBadge();
@@ -120,7 +125,7 @@ export function startMostLikelyTo() {
 // Get next question
 export function nextMostLikelyTo() {
     const questions = gameData.mostLikelyTo[gameState.selectedCategory] || gameData.mostLikelyTo.classic;
-    const question = questions[Math.floor(Math.random() * questions.length)];
+    const question = getRandomizedQuestion('mostLikelyTo', gameState.selectedCategory, questions);
     
     document.getElementById('gameQuestion').textContent = question;
     

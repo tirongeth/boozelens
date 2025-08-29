@@ -16,7 +16,9 @@ import {
     selectGameCategory,
     changeCategoryMidGame,
     updateCategoryBadge,
-    shufflePlayers
+    shufflePlayers,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 let currentWouldYouRatherVotes = { 0: [], 1: [] };
@@ -118,6 +120,9 @@ export function startWouldYouRather() {
     // Shuffle players for random order
     shufflePlayers();
     
+    // Reset question queue for this category to ensure fresh randomization
+    resetQuestionQueue('wouldYouRather', gameState.selectedCategory);
+    
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
     updateCategoryBadge();
@@ -128,7 +133,7 @@ export function startWouldYouRather() {
 // Get next question
 export function nextWouldYouRather() {
     const questions = gameData.wouldYouRather[gameState.selectedCategory] || gameData.wouldYouRather.classic;
-    const question = questions[Math.floor(Math.random() * questions.length)];
+    const question = getRandomizedQuestion('wouldYouRather', gameState.selectedCategory, questions);
     
     // Split the question
     const parts = question.split(' or ');
