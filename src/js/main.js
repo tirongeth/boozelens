@@ -8,7 +8,7 @@ import { initializeDevices } from './features/devices.js';
 import { updateUI } from './ui/dashboard.js';
 import { showNotification } from './ui/notifications.js';
 import { DRINK_PRESETS } from './config/constants.js';
-import { ref, onValue, remove } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+import { ref, onValue, remove, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 import { 
     getAppState, 
     setStateValue, 
@@ -1196,6 +1196,16 @@ async function switchSection(sectionId) {
           if (sectionId === 'achievements') {
               Achievements.updateAchievements();
           } else if (sectionId === 'drinks') {
+              // Setup drink type selection event listener
+              const drinkTypeSelect = document.getElementById('drinkType');
+              if (drinkTypeSelect) {
+                  drinkTypeSelect.addEventListener('change', function() {
+                      const preset = DRINK_PRESETS[this.value];
+                      document.getElementById('drinkAmount').value = preset.amount;
+                      document.getElementById('alcoholPercent').value = preset.alcohol;
+                  });
+              }
+              
               Drinks.updateDrinkStats();
               Drinks.updateDrinkChart();
               Drinks.updateDrinkHistory();
@@ -1484,6 +1494,91 @@ async function showModal(type, data = null) {
                 </div>
                 <button class="btn" onclick="closeModal()">Close</button>
             `;
+            break;
+            
+        case 'sober-friend':
+            content = `
+                <h2>🤝 Call Sober Friend</h2>
+                <p>Select a sober friend to call for help:</p>
+                <div id="soberFriendsContainer" style="margin: 20px 0;">
+                    <p style="opacity: 0.7;">Loading friends...</p>
+                </div>
+                <button class="btn" onclick="closeModal()">Close</button>
+            `;
+            
+            // Load sober friends after modal is shown
+            setTimeout(async () => {
+                const container = document.getElementById('soberFriendsContainer');
+                if (!container) return;
+                
+                const friendsData = getAppState().friendsData || {};
+                const partyDataFriends = getAppState().partyData || {};
+                const database = getFirebaseDatabase();
+                
+                if (Object.keys(friendsData).length === 0) {
+                    container.innerHTML = `
+                        <div class="info-box" style="text-align: center; padding: 20px;">
+                            <p style="opacity: 0.8;">🚫 No sober friends available</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const soberFriends = [];
+                
+                for (const [friendId, friendInfo] of Object.entries(friendsData)) {
+                    try {
+                        const friendSnapshot = await get(ref(database, 'users/' + friendId));
+                        const friendData = friendSnapshot.val();
+                        
+                        if (friendData) {
+                            const friendPartyData = Object.values(partyDataFriends).find(p => p.friendId === friendId);
+                            const bac = friendPartyData ? friendPartyData.bac : 0;
+                            
+                            if (bac < 0.02) { // Sober friend
+                                soberFriends.push({
+                                    id: friendId,
+                                    name: friendData.username || 'Friend',
+                                    bac: bac,
+                                    phone: friendData.phone || null
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error loading friend data:', error);
+                    }
+                }
+                
+                if (soberFriends.length > 0) {
+                    container.innerHTML = soberFriends.map(friend => `
+                        <div class="friend-item" style="margin-bottom: 15px; padding: 15px; background: rgba(0,255,136,0.1); border-radius: 8px; border: 1px solid rgba(0,255,136,0.3);">
+                            <div class="friend-info">
+                                <div class="friend-avatar-small">✅</div>
+                                <div class="friend-details">
+                                    <h4>${friend.name}</h4>
+                                    <p style="opacity: 0.7;">BAC: ${friend.bac.toFixed(3)}‰ - Safe to help</p>
+                                    ${friend.phone ? `<p style="opacity: 0.8; font-size: 0.9em;">📞 ${friend.phone}</p>` : ''}
+                                </div>
+                            </div>
+                            ${friend.phone ? `
+                                <button class="btn btn-primary" onclick="window.location.href='tel:${friend.phone}'">
+                                    <i class="fas fa-phone"></i> Call ${friend.name}
+                                </button>
+                            ` : `
+                                <button class="btn" onclick="showNotification('No phone number available for ${friend.name}', 'info')">
+                                    <i class="fas fa-phone-slash"></i> No Number
+                                </button>
+                            `}
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `
+                        <div class="info-box" style="text-align: center; padding: 20px;">
+                            <p style="opacity: 0.8;">🚫 No sober friends available</p>
+                        </div>
+                    `;
+                }
+            }, 100);
             break;
     }
     

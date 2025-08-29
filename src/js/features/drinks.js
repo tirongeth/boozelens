@@ -298,7 +298,14 @@ export function updateEmergencySummary() {
     const summary = document.getElementById('emergencySummary');
     if (!summary) return;
     
-    const drinkHistory = getAppState().drinkHistory || [];
+    // Filter to only show drinks from last 24 hours
+    let drinkHistory = getAppState().drinkHistory || [];
+    const now = Date.now();
+    const twentyFourHoursAgo = now - (24 * 60 * 60 * 1000);
+    drinkHistory = drinkHistory.filter(drink => 
+        new Date(drink.time).getTime() > twentyFourHoursAgo
+    );
+    
     const totalAlcohol = drinkHistory.reduce((sum, d) => sum + parseFloat(d.pureAlcohol), 0);
     const timeSpan = drinkHistory.length > 0 ? 
         ((Date.now() - drinkHistory[drinkHistory.length - 1].time) / 3600000).toFixed(1) : 0;
@@ -314,7 +321,7 @@ export function updateEmergencySummary() {
     
     summary.innerHTML = `
         <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 15px; margin: 10px 0;">
-            <p><strong>Time Period:</strong> ${timeSpan} hours</p>
+            <p><strong>Time Period:</strong> Last 24 hours (${timeSpan} hours since last drink)</p>
             <p><strong>Total Pure Alcohol:</strong> ${totalAlcohol.toFixed(0)}ml</p>
             <p><strong>Drink Breakdown:</strong></p>
             <ul style="margin-left: 20px;">
@@ -323,7 +330,7 @@ export function updateEmergencySummary() {
                 ).join('')}
             </ul>
             <p><strong>Last Drink:</strong> ${drinkHistory.length > 0 ? 
-                formatDrinkTime(drinkHistory[0].time) : 'None'}</p>
+                formatDrinkTime(drinkHistory[0].time) : 'None in last 24h'}</p>
             <p><strong>Estimated BAC:</strong> ${estimateBAC().toFixed(3)}‰</p>
             <p><strong>Medical Info:</strong> ${escapeHtml(medicalInfo)}</p>
             <p><strong>Safety Notes:</strong> ${escapeHtml(safetyNotes)}</p>
@@ -430,7 +437,14 @@ export function toggleTimeRange() {
 // ========================================
 export function showEmergencyReport() {
     try {
-        const drinkHistory = getAppState().drinkHistory || [];
+        // Filter to only show drinks from last 24 hours
+        let drinkHistory = getAppState().drinkHistory || [];
+        const now = Date.now();
+        const twentyFourHoursAgo = now - (24 * 60 * 60 * 1000);
+        drinkHistory = drinkHistory.filter(drink => 
+            new Date(drink.time).getTime() > twentyFourHoursAgo
+        );
+        
         const userData = getAppState().userData;
         const currentUser = getCurrentUser();
         
@@ -463,18 +477,18 @@ SAFETY NOTES
 ------------
 ${report.userData.safetyNotes}
 
-ALCOHOL CONSUMPTION SUMMARY
----------------------------
+ALCOHOL CONSUMPTION SUMMARY (LAST 24 HOURS)
+--------------------------------------------
 Estimated BAC: ${report.estimatedBAC}‰
 Total Pure Alcohol: ${report.totalAlcohol.toFixed(0)}ml
 Number of Drinks: ${drinkHistory.filter(d => d.type !== 'water').length}
 Water Consumed: ${drinkHistory.filter(d => d.type === 'water').length} glasses
 
-DETAILED DRINK LOG
-------------------
-${drinkHistory.map(d => 
+DETAILED DRINK LOG (LAST 24 HOURS)
+----------------------------------
+${drinkHistory.length > 0 ? drinkHistory.map(d => 
     `${formatDrinkTime(d.time)}: ${d.emoji} ${d.type} - ${d.amount}ml @ ${d.alcoholPercent}%`
-).join('\n')}
+).join('\n') : 'No drinks logged in the last 24 hours'}
 
 MEDICAL NOTES
 -------------
