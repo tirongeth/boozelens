@@ -611,9 +611,9 @@ export function callEmergency(type) {
                 window.location.href = 'tel:112';
             }
             break;
-        case 'campus-security':
-            if (confirm('Call HSG Campus Security?')) {
-                window.location.href = 'tel:+41712242424';
+        case 'police':
+            if (confirm('Call Swiss Police (117)?')) {
+                window.location.href = 'tel:117';
             }
             break;
         case 'taxi':
