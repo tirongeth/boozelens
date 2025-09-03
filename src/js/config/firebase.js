@@ -28,6 +28,7 @@ import {
     serverTimestamp as firebaseServerTimestamp
 } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
+import { getFunctions } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js';
 
 // Firebase configuration - these are public keys, safe to expose
 // Firebase uses security rules on the backend for actual protection
@@ -47,6 +48,7 @@ let app = null;
 let auth = null;
 let database = null;
 let storage = null;
+let functions = null;
 let isInitialized = false;
 
 // Initialize Firebase
@@ -69,6 +71,7 @@ export function initializeFirebase() {
         auth = getAuth(app);
         database = getDatabase(app);
         storage = getStorage(app);
+        functions = getFunctions(app);
         
         isInitialized = true;
         console.log('✅ Firebase initialized successfully');
@@ -108,6 +111,15 @@ export function getFirebaseStorage() {
         return null;
     }
     return storage;
+}
+
+// Get the functions service
+export function getFirebaseFunctions() {
+    if (!functions) {
+        console.error('Firebase Functions not initialized. Call initializeFirebase() first.');
+        return null;
+    }
+    return functions;
 }
 
 // Export Firebase Auth functions

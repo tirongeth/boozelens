@@ -1,0 +1,33 @@
+/* Enhanced Logo */
+.logo {
+    font-size: 1.75em;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #00ff88, #00d4ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.logo img {
+    height: 56px !important;
+    width: 56px !important;
+    filter: drop-shadow(0 2px 8px rgba(0, 255, 136, 0.3));
+    animation: breathe 4s ease-in-out infinite;
+}
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+.logo:hover img {
+    filter: drop-shadow(0 4px 16px rgba(0, 255, 136, 0.5));
+    transform: rotate(5deg);
+}

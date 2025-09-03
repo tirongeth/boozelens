@@ -17,7 +17,9 @@ import {
     selectGameCategory,
     changeCategoryMidGame,
     updateCategoryBadge,
-    shufflePlayers
+    shufflePlayers,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 // Create Spin the Bottle game HTML
@@ -114,6 +116,9 @@ export function startSpinBottle() {
     // Shuffle players for random order
     shufflePlayers();
     
+    // Reset question queue for this category to ensure fresh randomization
+    resetQuestionQueue('spinBottleTasks', gameState.selectedCategory);
+    
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
     setCurrentPlayerIndex(0);
@@ -139,7 +144,7 @@ export function spinBottle() {
         
         // Show random task
         const tasks = gameData.spinBottleTasks[gameState.selectedCategory] || gameData.spinBottleTasks.classic;
-        const task = tasks[Math.floor(Math.random() * tasks.length)];
+        const task = getRandomizedQuestion('spinBottleTasks', gameState.selectedCategory, tasks);
         
         document.getElementById('gameTask').textContent = task;
         document.getElementById('gameTask').style.display = 'block';

@@ -43,7 +43,9 @@ export const gameState = {
         }
     },
     // Category state for games
-    selectedCategory: 'classic'
+    selectedCategory: 'classic',
+    // Question randomization state per game type and category
+    questionQueues: {}
 };
 
 // Utility functions for player management
@@ -274,6 +276,34 @@ export function updateCategoryBadge() {
             couples: 'linear-gradient(45deg, #E91E63, #FF4081)'
         }[gameState.selectedCategory] || 'linear-gradient(45deg, #00ff88, #00d4ff)';
     }
+}
+
+// Question randomization utilities
+export function getRandomizedQuestion(gameType, category, questions) {
+    const queueKey = `${gameType}_${category}`;
+    
+    // Initialize queue if it doesn't exist or is empty
+    if (!gameState.questionQueues[queueKey] || gameState.questionQueues[queueKey].length === 0) {
+        gameState.questionQueues[queueKey] = shuffleArray([...questions]);
+    }
+    
+    // Get next question from queue
+    return gameState.questionQueues[queueKey].shift();
+}
+
+export function resetQuestionQueue(gameType, category) {
+    const queueKey = `${gameType}_${category}`;
+    delete gameState.questionQueues[queueKey];
+}
+
+// Shuffle array utility
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
 }
 
 // Initialize game modules storage

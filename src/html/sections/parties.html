@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="./src/css/features/party.css">
+<section id="parties" class="section">
+            <h2>🎉 Party Mode 🎉</h2>
+            
+            <!-- Current Party -->
+            <div id="currentPartySection" class="card" style="display: none; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88;">
+                <h3 style="color: #00ff88; margin-bottom: 20px;">🎆 Current Party: <span id="currentPartyName"></span></h3>
+                
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px;">
+                    <p style="margin-bottom: 10px;">Share this code:</p>
+                    <div style="font-size: 3em; font-weight: bold; letter-spacing: 0.2em; color: #00ff88;" id="currentPartyCode"></div>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <h4>👥 Party Members</h4>
+                    <div id="partyMembersList" style="margin-top: 15px;">
+                        <!-- Members show here -->
+                    </div>
+                </div>
+                
+                <!-- Party Stats -->
+                <div id="partyStats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+                    <!-- Stats will show here -->
+                </div>
+                
+                <!-- Party Leaderboard -->
+                <div style="margin: 20px 0;">
+                    <h4>🏆 Party Leaderboard</h4>
+                    <div id="partyLeaderboard" style="margin-top: 15px;">
+                        <!-- Leaderboard will show here -->
+                    </div>
+                </div>
+                
+                <!-- Pending Requests (for creator only) -->
+                <div id="pendingRequestsSection" style="display: none; margin: 20px 0;">
+                    <h4>📋 Join Requests</h4>
+                    <div id="pendingRequestsList" style="margin-top: 15px;">
+                        <!-- Requests will show here -->
+                    </div>
+                </div>
+                
+                <!-- Creator Controls (for creator only) -->
+                <div id="creatorControlsSection" style="display: none; margin: 20px 0;">
+                    <h4>🎛️ Host Controls</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <button class="btn" onclick="togglePartyLockUI()" id="lockPartyBtn">
+                            <i class="fas fa-lock"></i> Lock Party
+                        </button>
+                        <button class="btn" onclick="editPartySettings()">
+                            <i class="fas fa-edit"></i> Edit Settings
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Party Chat -->
+                <div style="margin: 20px 0;">
+                    <h4>💬 Party Chat</h4>
+                    <div id="partyChat" style="background: rgba(0, 0, 0, 0.3); border-radius: 10px; padding: 15px; height: 200px; overflow-y: auto; margin: 10px 0;">
+                        <!-- Chat messages show here -->
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="partyChatInput" placeholder="Type a message..." style="flex: 1; padding: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; color: white;">
+                        <button class="btn" id="sendPartyChatBtn">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="btn btn-danger" id="leavePartyBtn" style="width: 100%;">
+                    <i class="fas fa-door-open"></i> Leave Party
+                </button>
+            </div>
+            
+            <div style="margin: 20px 0;"></div>
+            
+            <!-- Create or Join -->
+            <div class="card">
+                <h3>🎊 Start the Party</h3>
+                
+                <div style="margin: 20px 0;">
+                    <h4>Create New Party</h4>
+                    <div style="display: grid; gap: 15px; margin-top: 15px;">
+                        <input type="text" id="partyName" placeholder="Party Name" style="padding: 15px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; color: white; font-size: 1.1em;">
+                        
+                        <select id="partyPrivacy" style="padding: 15px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; color: white;">
+                            <option value="private">🔒 Private - Join by code only</option>
+                            <option value="friends-only">👥 Friends Only</option>
+                            <option value="public">🌍 Public - Anyone can join</option>
+                        </select>
+                        
+                        <select id="partyDuration" style="padding: 15px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; color: white;">
+                            <option value="24h">⏰ 24 Hour Party</option>
+                            <option value="ongoing">♾️ Ongoing Party</option>
+                        </select>
+                        
+                        <input type="text" id="partyAddress" placeholder="📍 Party Location (optional)" style="padding: 15px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; color: white;">
+                        
+                        <button class="btn btn-primary" id="createPartyBtn" style="padding: 15px 30px;">
+                            <i class="fas fa-plus"></i> Create Party
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0; opacity: 0.7;">- OR -</div>
+                
+                <div style="margin: 20px 0;">
+                    <h4>Join Existing Party</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <input type="text" id="joinPartyCode" placeholder="ENTER CODE" maxlength="6" style="flex: 1; padding: 15px; background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); border-radius: 10px; color: white; font-size: 1.3em; text-align: center; text-transform: uppercase; letter-spacing: 0.1em;">
+                        <button class="btn btn-primary" id="joinPartyBtn" style="padding: 15px 30px;">
+                            <i class="fas fa-sign-in-alt"></i> Join
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Friends' Parties -->
+            <div class="card" style="margin-top: 20px;">
+                <h3>👥 Friends' Parties</h3>
+                <div id="friendsPartiesList" style="margin-top: 15px;">
+                    <!-- Friends' parties will show here -->
+                </div>
+                <button class="btn" id="refreshFriendsPartiesBtn" style="margin-top: 15px;">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+            
+            <!-- Public Parties -->
+            <div class="card" style="margin-top: 20px;">
+                <h3>🌍 Public Parties Near You</h3>
+                <div id="publicPartiesList" style="margin-top: 15px;">
+                    <!-- Public parties will show here -->
+                </div>
+                <button class="btn" id="refreshPartiesBtn" style="margin-top: 15px;">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+        </section>

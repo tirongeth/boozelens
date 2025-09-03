@@ -1,0 +1,182 @@
+/* Navigation Menu - Modern Industrial Design */
+nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    z-index: 1000;
+    padding: 0;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Scroll effect */
+nav.scrolled {
+    top: 10px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        0 0 60px rgba(0, 255, 136, 0.1);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    align-items: center;
+}
+
+/* Modern Compact Nav Items */
+.nav-item {
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 48px;
+}
+
+/* Icon styling */
+.nav-item i {
+    font-size: 1.3em;
+}
+
+/* Hide text by default, show on hover */
+.nav-item span {
+    position: absolute;
+    opacity: 0;
+    transform: translateX(-10px);
+    white-space: nowrap;
+    pointer-events: none;
+    padding-left: 8px;
+}
+
+/* Hover state shows text */
+.nav-item:hover {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #00ff88;
+    min-width: auto;
+}
+
+.nav-item:hover span {
+    position: static;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-item:hover i {
+    margin-right: 8px;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-gradient);
+    z-index: -1;
+}
+
+.nav-item:hover::before {
+    left: 0;
+}
+
+/* Active state with underglow */
+.nav-item.active {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 136, 0.3),
+        inset 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.nav-item.active i {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 136, 0.8));
+}
+
+/* Mobile menu toggle - make it visible */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+}
+
+/* Hide mobile-only elements on desktop */
+.mobile-only-nav,
+.mobile-more-button,
+.mobile-more-menu,
+.mobile-more-backdrop {
+    display: none !important;
+}
+
+/* Medium screens - show hamburger menu */
+@media (max-width: 1200px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 0 0 20px 20px;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .nav-menu.show {
+        display: flex;
+    }
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    .nav-menu.show {
+        display: flex;
+    }
+}

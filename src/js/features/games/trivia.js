@@ -5,7 +5,9 @@
 import { gameData } from './game-data.js';
 import { 
     gameState,
-    showNotification
+    showNotification,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 // Create Trivia game HTML
@@ -66,16 +68,8 @@ export function selectCategory(category) {
     gameState.currentCategory = category;
     gameState.currentTriviaIndex = 0;
     
-    // Shuffle questions if it's the flags category
-    if (category === 'flags') {
-        const flags = [...gameData.triviaCategories.flags];
-        // Fisher-Yates shuffle algorithm
-        for (let i = flags.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [flags[i], flags[j]] = [flags[j], flags[i]];
-        }
-        gameState.shuffledFlags = flags;
-    }
+    // Reset question queue for this category to ensure fresh randomization
+    resetQuestionQueue('trivia', category);
     
     // Hide category selection, show game
     document.getElementById('categorySelection').style.display = 'none';
@@ -104,30 +98,9 @@ export function backToCategories() {
 // Get next trivia question
 export function nextTrivia() {
     const category = gameState.currentCategory || 'sports';
-    let trivia;
+    const trivia = gameData.triviaCategories[category] || gameData.trivia;
     
-    // Use shuffled flags if available
-    if (category === 'flags' && gameState.shuffledFlags) {
-        trivia = gameState.shuffledFlags;
-    } else {
-        trivia = gameData.triviaCategories[category] || gameData.trivia;
-    }
-    
-    if (gameState.currentTriviaIndex >= trivia.length) {
-        gameState.currentTriviaIndex = 0;
-        // Reshuffle flags when starting over
-        if (category === 'flags') {
-            const flags = [...gameData.triviaCategories.flags];
-            for (let i = flags.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [flags[i], flags[j]] = [flags[j], flags[i]];
-            }
-            gameState.shuffledFlags = flags;
-            trivia = gameState.shuffledFlags;
-        }
-    }
-    
-    const current = trivia[gameState.currentTriviaIndex];
+    const current = getRandomizedQuestion('trivia', category, trivia);
     
     const questionElement = document.getElementById('gameQuestion');
     

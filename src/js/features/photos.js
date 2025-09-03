@@ -9,6 +9,7 @@ import { ref, set, get, push, onValue, off, remove, serverTimestamp } from 'http
 import { getCurrentUser, getStateValue, setStateValue } from '../config/app-state.js';
 import { showNotification } from '../ui/notifications.js';
 import { handleError, safeAsync } from '../utils/error-handler.js';
+import { getBoozeLensDeviceList, getOnlineBoozeLensDeviceCount } from './devices.js';
 
 // Photo feed state
 let photoFeedListener = null;
@@ -26,6 +27,12 @@ export function initializePhotos() {
     
     // Initialize upload handler for ESP32 devices
     initializeUploadHandler();
+    
+    // Initialize BoozeLens status display
+    initializeBoozeLensStatus();
+    
+    // Update device status every 30 seconds
+    setInterval(updateBoozeLensStatus, 30000);
 }
 
 // ========================================
@@ -195,7 +202,8 @@ function listenToPhotoFeed() {
                 if (currentFilter === 'all' ||
                     (currentFilter === 'recent' && isRecent(photo.timestamp)) ||
                     (currentFilter === 'party' && photo.partyId === currentPartyId) ||
-                    (currentFilter === 'high-bac' && photo.bac !== null && photo.bac >= 0.08)) {
+                    (currentFilter === 'high-bac' && photo.bac !== null && photo.bac >= 0.08) ||
+                    (currentFilter === 'boozelens' && photo.source === 'BoozeLens_ESP32')) {
                     
                     visiblePhotos.push({ id: photoId, ...photo });
                 }
@@ -640,6 +648,186 @@ export function initializeUploadHandler() {
 // ========================================
 // CLEANUP
 // ========================================
+// ========================================
+// BOOZELENS DEVICE STATUS
+// ========================================
+
+// Initialize BoozeLens status display
+function initializeBoozeLensStatus() {
+    updateBoozeLensStatus();
+}
+
+// Update BoozeLens device status display
+export function updateBoozeLensStatus() {
+    const statusContainer = document.getElementById('boozeLensStatus');
+    if (!statusContainer) return;
+    
+    try {
+        const devices = getBoozeLensDeviceList();
+        const onlineCount = getOnlineBoozeLensDeviceCount();
+        const totalDevices = devices.length;
+        
+        if (totalDevices === 0) {
+            statusContainer.innerHTML = `
+                <div class="status-message info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>No BoozeLens devices paired. Go to Settings to pair your device!</span>
+                </div>
+            `;
+            return;
+        }
+        
+        let statusClass = 'success';
+        let statusIcon = 'fas fa-check-circle';
+        let statusText = `${onlineCount} of ${totalDevices} BoozeLens devices online`;
+        
+        if (onlineCount === 0) {
+            statusClass = 'error';
+            statusIcon = 'fas fa-exclamation-triangle';
+            statusText = `All ${totalDevices} BoozeLens devices offline`;
+        } else if (onlineCount < totalDevices) {
+            statusClass = 'warning';
+            statusIcon = 'fas fa-exclamation-circle';
+        }
+        
+        statusContainer.innerHTML = `
+            <div class="status-message ${statusClass}">
+                <i class="${statusIcon}"></i>
+                <span>${statusText}</span>
+                <div class="device-quick-list">
+                    ${devices.slice(0, 3).map(device => {
+                        const isOnline = device.lastSeen && (Date.now() - device.lastSeen) < 5 * 60 * 1000;
+                        return `
+                            <span class="device-badge ${isOnline ? 'online' : 'offline'}">
+                                <i class="fas fa-camera-retro"></i>
+                                ${device.nickname || device.deviceId.slice(-4)}
+                                <i class="fas fa-circle status-dot"></i>
+                            </span>
+                        `;
+                    }).join('')}
+                    ${totalDevices > 3 ? `<span class="device-count">+${totalDevices - 3} more</span>` : ''}
+                </div>
+            </div>
+        `;
+        
+    } catch (error) {
+        console.error('Failed to update BoozeLens status:', error);
+        statusContainer.innerHTML = `
+            <div class="status-message warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Unable to check device status</span>
+            </div>
+        `;
+    }
+}
+
+// Show upload notification for ESP32 uploads
+export function showBoozeLensUploadNotification(deviceId, photoId) {
+    const devices = getBoozeLensDeviceList();
+    const device = devices.find(d => d.deviceId === deviceId);
+    const deviceName = device ? device.nickname : deviceId;
+    
+    showNotification(`📸 Photo uploaded from ${deviceName}!`, 'success');
+    
+    // Update upload status
+    const uploadStatus = document.getElementById('uploadStatus');
+    if (uploadStatus) {
+        uploadStatus.style.display = 'none';
+    }
+    
+    // Refresh photo feed to show new photo
+    setTimeout(() => {
+        refreshPhotoFeed();
+    }, 1000);
+}
+
+// Add CSS styles for BoozeLens status
+function addBoozeLensStatusStyles() {
+    if (document.getElementById('boozelens-status-styles')) return;
+    
+    const style = document.createElement('style');
+    style.id = 'boozelens-status-styles';
+    style.innerHTML = `
+        .boozelens-status {
+            margin: 20px 0;
+        }
+        
+        .status-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .status-message.success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+        }
+        
+        .status-message.warning {
+            background: rgba(255, 165, 0, 0.1);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            color: #ffa500;
+        }
+        
+        .status-message.error {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+        }
+        
+        .status-message.info {
+            background: rgba(100, 149, 237, 0.1);
+            border: 1px solid rgba(100, 149, 237, 0.3);
+            color: #6495ed;
+        }
+        
+        .device-quick-list {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+            flex-wrap: wrap;
+        }
+        
+        .device-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        
+        .device-badge.online .status-dot {
+            color: #00ff88;
+        }
+        
+        .device-badge.offline .status-dot {
+            color: #ff6b6b;
+        }
+        
+        .device-count {
+            opacity: 0.7;
+            font-size: 0.8em;
+        }
+        
+        .status-dot {
+            font-size: 0.5em;
+        }
+    `;
+    
+    document.head.appendChild(style);
+}
+
+// Initialize styles
+addBoozeLensStatusStyles();
+
 export function cleanupPhotos() {
     if (photoFeedListener) {
         const database = getFirebaseDatabase();

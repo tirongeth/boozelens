@@ -1,0 +1,21 @@
+# Node.js dependencies
+node_modules/
+
+# Firebase cache
+.firebase/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables (falls später verwendet)
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

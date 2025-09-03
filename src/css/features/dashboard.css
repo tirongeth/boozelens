@@ -1,0 +1,61 @@
+/* Dashboard Grid */
+.dashboard {
+    margin-bottom: 40px;
+}
+
+/* Stats Components */
+.party-stats {
+    margin: 40px 0;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2em;
+    font-weight: bold;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* Music Visualizer */
+.visualizer {
+    height: 200px;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+.bar {
+    width: 100%;
+    background: var(--accent-gradient);
+    border-radius: 5px 5px 0 0;
+}

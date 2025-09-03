@@ -174,7 +174,27 @@ export const gameData = {
             "Never have I ever fallen asleep at work/in class",
             "Never have I ever gotten a tattoo I regret",
             "Never have I ever crashed a wedding or private party",
-            "Never have I ever danced on a table or bar"
+            "Never have I ever danced on a table or bar",
+            "Never have I ever pretended to be someone else online",
+            "Never have I ever accidentally sent a text to the wrong person",
+            "Never have I ever forgotten someone's name right after being introduced",
+            "Never have I ever laughed at something I didn't understand",
+            "Never have I ever pretended to know a song I'd never heard",
+            "Never have I ever fallen asleep during a movie in theaters",
+            "Never have I ever googled myself",
+            "Never have I ever tried to look cool and failed miserably",
+            "Never have I ever pretended my phone was dead to avoid talking",
+            "Never have I ever used fake ID",
+            "Never have I ever been caught talking to myself",
+            "Never have I ever pretended to be sick to get out of something",
+            "Never have I ever accidentally liked an old photo while stalking someone",
+            "Never have I ever said 'I'm almost there' when I haven't left yet",
+            "Never have I ever fallen asleep on public transport and missed my stop",
+            "Never have I ever pretended to understand directions and gotten completely lost",
+            "Never have I ever waved back at someone who wasn't waving at me",
+            "Never have I ever practiced conversations in my head before making phone calls",
+            "Never have I ever pretended to text someone to avoid awkward situations",
+            "Never have I ever sang in the shower and thought I sounded amazing"
         ],
         gettingStarted: [
             "Never have I ever traveled to another continent",
@@ -186,7 +206,36 @@ export const gameData = {
             "Never have I ever gone surfing",
             "Never have I ever stayed up for 24 hours straight",
             "Never have I ever eaten something I couldn't identify",
-            "Never have I ever gotten lost in a foreign country"
+            "Never have I ever gotten lost in a foreign country",
+            "Never have I ever tried a food I couldn't pronounce",
+            "Never have I ever been in a limousine",
+            "Never have I ever seen the ocean",
+            "Never have I ever been to a music festival",
+            "Never have I ever ridden a horse",
+            "Never have I ever been camping",
+            "Never have I ever been to a wedding",
+            "Never have I ever tried sushi",
+            "Never have I ever been on a blind date",
+            "Never have I ever been to a zoo",
+            "Never have I ever tried karaoke",
+            "Never have I ever been to a casino",
+            "Never have I ever been on a road trip longer than 8 hours",
+            "Never have I ever been to a professional sports game",
+            "Never have I ever tried ice skating",
+            "Never have I ever been to a museum",
+            "Never have I ever tried skiing or snowboarding",
+            "Never have I ever been to a comedy show",
+            "Never have I ever been to a farmers market",
+            "Never have I ever tried rock climbing",
+            "Never have I ever been to a drive-in movie",
+            "Never have I ever been on a boat",
+            "Never have I ever tried mini golf",
+            "Never have I ever been to a theme park",
+            "Never have I ever tried bowling",
+            "Never have I ever been to a library as an adult",
+            "Never have I ever tried fishing",
+            "Never have I ever been to a bookstore and stayed for hours",
+            "Never have I ever tried a cooking class"
         ],
         normal: [
             "Never have I ever ghosted someone",
@@ -198,7 +247,27 @@ export const gameData = {
             "Never have I ever lied on my resume",
             "Never have I ever eaten food off the floor",
             "Never have I ever gone 3+ days without showering",
-            "Never have I ever broken something and blamed someone else"
+            "Never have I ever broken something and blamed someone else",
+            "Never have I ever pretended to know how to cook something and completely messed it up",
+            "Never have I ever cried during a commercial",
+            "Never have I ever stalked someone on social media for hours",
+            "Never have I ever pretended to be asleep to avoid doing something",
+            "Never have I ever eaten an entire pizza by myself",
+            "Never have I ever Googled someone before a first date",
+            "Never have I ever pretended to be busy to avoid hanging out with someone",
+            "Never have I ever taken a selfie in a public bathroom",
+            "Never have I ever bought something expensive and hid it from family/friends",
+            "Never have I ever pretended to have read a book I never actually read",
+            "Never have I ever used someone else's Netflix password without asking",
+            "Never have I ever fallen asleep while someone was talking to me",
+            "Never have I ever pretended my internet was down to avoid video calls",
+            "Never have I ever eaten expired food because I was too lazy to go shopping",
+            "Never have I ever lied about my weight or height",
+            "Never have I ever pretended to like a gift I actually hated",
+            "Never have I ever checked my ex's social media obsessively",
+            "Never have I ever pretended to understand a movie that made no sense",
+            "Never have I ever bought clothes online in the wrong size and kept them anyway",
+            "Never have I ever pretended to be someone else's friend for personal benefit"
         ],
         spicy: [
             "Never have I ever kissed someone I just met",
@@ -210,7 +279,27 @@ export const gameData = {
             "Never have I ever been in a hot tub with strangers",
             "Never have I ever woken up wearing someone else's clothes",
             "Never have I ever dated two people at once",
-            "Never have I ever kissed someone to make someone else jealous"
+            "Never have I ever kissed someone to make someone else jealous",
+            "Never have I ever sent a flirty text to the wrong person",
+            "Never have I ever had a crush on my friend's sibling",
+            "Never have I ever made out in a car",
+            "Never have I ever had a friends with benefits situation",
+            "Never have I ever kissed someone on the first date",
+            "Never have I ever had a romantic encounter at work",
+            "Never have I ever sent or received a sext",
+            "Never have I ever had a one night stand with someone I met online",
+            "Never have I ever fooled around in a public place",
+            "Never have I ever had a threesome fantasy",
+            "Never have I ever kissed someone the same night I met them",
+            "Never have I ever hooked up with someone significantly older/younger",
+            "Never have I ever had a romantic encounter while traveling",
+            "Never have I ever made the first move on someone",
+            "Never have I ever had a crush on a celebrity and fantasized about them",
+            "Never have I ever hooked up with someone I shouldn't have",
+            "Never have I ever been in a relationship for the wrong reasons",
+            "Never have I ever kissed multiple people in the same night",
+            "Never have I ever had a romantic encounter in an unusual location",
+            "Never have I ever pretended to be single when I wasn't"
         ],
         couples: [
             "Never have I ever been in love with my best friend",
@@ -222,7 +311,27 @@ export const gameData = {
             "Never have I ever lied to my partner about where I was",
             "Never have I ever kept a secret from my partner",
             "Never have I ever dreamt about someone else while in a relationship",
-            "Never have I ever compared my partner to an ex"
+            "Never have I ever compared my partner to an ex",
+            "Never have I ever snooped through my partner's phone",
+            "Never have I ever pretended to like my partner's friends when I didn't",
+            "Never have I ever faked being happy about a gift my partner gave me",
+            "Never have I ever been jealous of my partner's ex",
+            "Never have I ever gone through my partner's social media",
+            "Never have I ever pretended to enjoy something my partner loves",
+            "Never have I ever had doubts about my relationship but stayed anyway",
+            "Never have I ever been tempted to cheat but didn't",
+            "Never have I ever lied about how much something cost to my partner",
+            "Never have I ever been embarrassed by something my partner did in public",
+            "Never have I ever fantasized about someone else during intimacy",
+            "Never have I ever pretended to be asleep to avoid intimacy",
+            "Never have I ever checked up on my partner without them knowing",
+            "Never have I ever been in love with two people at the same time",
+            "Never have I ever kept a major secret from my partner",
+            "Never have I ever regretted introducing my partner to my family",
+            "Never have I ever pretended my partner's cooking was good when it wasn't",
+            "Never have I ever been attracted to one of my partner's friends",
+            "Never have I ever thought about breaking up during a fight",
+            "Never have I ever wished my partner would change something about themselves"
         ]
     },
     truths: {
@@ -236,7 +345,26 @@ export const gameData = {
             "Who here would you want to switch lives with?",
             "What's the most embarrassing thing on your phone right now?",
             "What's the craziest thing you've done for money?",
-            "What's your most embarrassing moment?"
+            "What's your most embarrassing moment?",
+            "What's the weirdest thing you've eaten and actually liked?",
+            "What's your most irrational fear?",
+            "What's the worst haircut you've ever had?",
+            "What's your most embarrassing childhood memory?",
+            "What's the strangest thing you believed as a child?",
+            "What's your worst fashion mistake?",
+            "What's the most embarrassing thing you've done in front of your parents?",
+            "What's your weirdest habit that no one knows about?",
+            "What's the most embarrassing thing you've said to someone you had a crush on?",
+            "What's your most awkward encounter with a celebrity or famous person?",
+            "What's the worst advice you've ever given someone?",
+            "What's your most embarrassing social media post?",
+            "What's the weirdest place you've fallen asleep?",
+            "What's your most embarrassing autocorrect fail?",
+            "What's the strangest compliment you've ever received?",
+            "What's your worst 'foot in mouth' moment?",
+            "What's the most embarrassing thing you've done while trying to impress someone?",
+            "What's your weirdest dream that you still remember?",
+            "What's the most childish thing you still secretly enjoy?"
         ],
         gettingStarted: [
             "What's your dream vacation destination?",
@@ -248,7 +376,26 @@ export const gameData = {
             "What's your biggest pet peeve?",
             "What's the best advice you've ever received?",
             "What's your guilty pleasure TV show?",
-            "What's something you've never told anyone?"
+            "What's something you've never told anyone?",
+            "What's your favorite memory from this year?",
+            "What's something you're really proud of?",
+            "What's your biggest goal for next year?",
+            "What's your favorite thing about yourself?",
+            "What's the nicest thing someone has ever done for you?",
+            "What's your favorite family tradition?",
+            "What's something you're grateful for today?",
+            "What's your favorite way to relax?",
+            "What's the best gift you've ever received?",
+            "What's your favorite season and why?",
+            "What's something you've always wanted to learn?",
+            "What's your favorite childhood toy?",
+            "What's the best book you've ever read?",
+            "What's your favorite type of music?",
+            "What's something that always makes you smile?",
+            "What's your favorite food that reminds you of home?",
+            "What's the most beautiful place you've ever been?",
+            "What's something you're looking forward to?",
+            "What's your favorite thing to do on weekends?"
         ],
         normal: [
             "What's the weirdest thing you do when you're alone?",
@@ -260,7 +407,26 @@ export const gameData = {
             "What's your worst dating app experience?",
             "What's the most embarrassing thing your parents have caught you doing?",
             "What's your biggest insecurity?",
-            "What's the meanest thing you've ever said to someone?"
+            "What's the meanest thing you've ever said to someone?",
+            "What's your most embarrassing browser history?",
+            "What's the weirdest thing in your fridge right now?",
+            "What's your most embarrassing habit when you think no one is watching?",
+            "What's the strangest thing you've done for attention?",
+            "What's your most embarrassing moment in school?",
+            "What's the weirdest thing you've googled recently?",
+            "What's your most embarrassing text message fail?",
+            "What's the strangest thing you've pretended to like to impress someone?",
+            "What's your most embarrassing moment at work?",
+            "What's the weirdest thing you've done when you couldn't sleep?",
+            "What's your most embarrassing social media stalking story?",
+            "What's the strangest thing you've done while home alone?",
+            "What's your most embarrassing moment in a public bathroom?",
+            "What's the weirdest thing you've done to avoid someone?",
+            "What's your most embarrassing shopping experience?",
+            "What's the strangest thing you've done to get out of a conversation?",
+            "What's your most embarrassing moment with technology?",
+            "What's the weirdest thing you've done while procrastinating?",
+            "What's your most embarrassing moment trying to be cool?"
         ],
         spicy: [
             "What's your biggest turn on?",
@@ -272,7 +438,26 @@ export const gameData = {
             "If you had to date someone here, who would it be?",
             "What's your body count?",
             "What's the kinkiest thing you've ever done?",
-            "Who in this room do you think is the best looking?"
+            "Who in this room do you think is the best looking?",
+            "What's your most embarrassing sexual experience?",
+            "What's the most scandalous thing you've done in public?",
+            "What's your biggest sexual regret?",
+            "What's the wildest thing on your bucket list?",
+            "What's your most embarrassing bedroom story?",
+            "What's the most adventurous thing you've ever done?",
+            "What's your biggest secret crush right now?",
+            "What's the most inappropriate place you've been turned on?",
+            "What's your most embarrassing dating story?",
+            "What's the wildest thing you've done while drunk?",
+            "What's your biggest turn-off in bed?",
+            "What's the most embarrassing thing you've said during intimacy?",
+            "What's your most scandalous text message exchange?",
+            "What's the wildest place you've fantasized about someone?",
+            "What's your biggest relationship deal-breaker?",
+            "What's the most embarrassing thing you've done to get someone's attention?",
+            "What's your wildest 'what if' fantasy about someone you know?",
+            "What's the most inappropriate thought you've had about someone here?",
+            "What's your biggest secret that would shock everyone here?"
         ],
         couples: [
             "What's the most embarrassing thing you've done for love?",
@@ -284,7 +469,26 @@ export const gameData = {
             "Have you ever faked an orgasm?",
             "What's your partner's most annoying habit?",
             "What's something you've lied to your partner about?",
-            "If you could change one thing about your partner, what would it be?"
+            "If you could change one thing about your partner, what would it be?",
+            "What's the most romantic thing you've ever done for someone?",
+            "What's your biggest fear about relationships?",
+            "What's the worst breakup line you've ever used or heard?",
+            "What's your most embarrassing moment with your current or ex partner?",
+            "What's the biggest sacrifice you've made for love?",
+            "What's your biggest relationship insecurity?",
+            "What's the most embarrassing thing your partner has caught you doing?",
+            "What's your biggest turn-on about your partner?",
+            "What's something you wish your partner would do more of?",
+            "What's your most embarrassing couple's fight about?",
+            "What's the weirdest thing you and your partner do together?",
+            "What's your biggest relationship pet peeve?",
+            "What's the most embarrassing thing you've done while jealous?",
+            "What's your most cringe-worthy romantic gesture?",
+            "What's something you've never told your partner but want to?",
+            "What's your biggest relationship deal-breaker that you've overlooked?",
+            "What's the most embarrassing thing about your dating history?",
+            "What's your most irrational relationship worry?",
+            "What's the weirdest thing that turns you on about your partner?"
         ]
     },
     dares: {
@@ -298,7 +502,26 @@ export const gameData = {
             "Take a shot without using your hands",
             "Finish your drink",
             "Do 20 jumping jacks",
-            "Tell a joke and make someone laugh"
+            "Tell a joke and make someone laugh",
+            "Do your best moonwalk",
+            "Sing the alphabet backwards",
+            "Do a cartwheel (or attempt one)",
+            "Pretend to be a weather reporter for 1 minute",
+            "Do your best zombie impression",
+            "Hop on one foot for 30 seconds",
+            "Do 15 sit-ups",
+            "Pretend to be a robot for 1 minute",
+            "Do your best opera singing voice",
+            "Act out your morning routine in fast forward",
+            "Do a dramatic reading of a text message",
+            "Pretend to be a news anchor reporting on the party",
+            "Do your best runway model walk",
+            "Act like you're underwater for 1 minute",
+            "Do 10 burpees",
+            "Pretend to be a mime stuck in a box",
+            "Do your best superhero pose and hold it for 30 seconds",
+            "Act out a movie scene without speaking",
+            "Do the funky chicken dance"
         ],
         gettingStarted: [
             "Show your best dance move",
@@ -310,7 +533,26 @@ export const gameData = {
             "Speak in a British accent for 2 turns",
             "Make animal noises for 30 seconds",
             "Do the robot dance",
-            "High five everyone in the room"
+            "High five everyone in the room",
+            "Do a silly face for 10 seconds",
+            "Clap your hands above your head 20 times",
+            "Do your best ballerina spin",
+            "Make everyone laugh without speaking",
+            "Do 3 jumping jacks",
+            "Show your best thumbs up pose",
+            "Do a funny walk across the room",
+            "Make your silliest sound for 15 seconds",
+            "Do your best statue impression for 30 seconds",
+            "Show everyone your best smile",
+            "Do a gentle dance for 20 seconds",
+            "Make a toast to everyone in the room",
+            "Do your best wave like you're famous",
+            "Show your most creative hand gesture",
+            "Do a simple magic trick (or pretend to)",
+            "Give everyone a compliment",
+            "Do your best 'thinking' pose",
+            "Show your victory celebration dance",
+            "Make everyone say 'aww' without using words"
         ],
         normal: [
             "Let someone draw on your face with marker",
@@ -322,7 +564,26 @@ export const gameData = {
             "Make a gross drink combination and take a sip",
             "Waterfall for 5 seconds",
             "Let someone go through your phone for 30 seconds",
-            "Do the worm"
+            "Do the worm",
+            "Let someone pick your next Instagram story",
+            "Do a handstand against the wall for 10 seconds",
+            "Let the group give you a new nickname for the night",
+            "Eat a weird food combination chosen by the group",
+            "Let someone rearrange your hair with just their hands",
+            "Do your best impression of a baby for 1 minute",
+            "Let someone write something funny on your arm",
+            "Try to lick your own elbow for 30 seconds",
+            "Let the group choose your next profile picture",
+            "Do 25 jumping jacks while singing",
+            "Let someone apply makeup on you blindfolded",
+            "Try to touch your nose with your tongue for 15 seconds",
+            "Let someone mess up your outfit for 2 rounds",
+            "Do your best runway walk in slow motion",
+            "Let the group pick an embarrassing song for you to sing",
+            "Try to do a split (or your best attempt)",
+            "Let someone give you a temporary tattoo with a pen",
+            "Do your best interpretive dance for 45 seconds",
+            "Let the group choose a funny filter for your next selfie"
         ],
         spicy: [
             "Do your best twerk for 30 seconds",
@@ -334,7 +595,26 @@ export const gameData = {
             "Post 'I'm pregnant' on your story for 1 minute",
             "Like your crush's oldest Instagram photo",
             "Send the last photo in your gallery to your ex",
-            "Take a body shot off someone"
+            "Take a body shot off someone",
+            "Do a sexy dance for 45 seconds",
+            "Let someone blindfold you and feed you something",
+            "Give someone a sensual shoulder massage for 1 minute",
+            "Do your best seductive walk across the room",
+            "Let someone tie your hands behind your back for 2 rounds",
+            "Whisper your biggest turn-on to the person next to you",
+            "Do a strip tease to your socks (keep clothes on!)",
+            "Let someone apply lipstick on you while blindfolded",
+            "Give someone a flirty compliment in a sexy voice",
+            "Do your best impression of a romantic movie scene",
+            "Let someone feed you whipped cream or chocolate",
+            "Dance seductively with an imaginary partner",
+            "Let someone give you a hickey on your arm",
+            "Do your sexiest runway model pose for 30 seconds",
+            "Let someone write something flirty on your body",
+            "Give someone bedroom eyes for 20 seconds",
+            "Do a sensual dance with the person to your right",
+            "Let someone mess up your hair in a 'just woke up' style",
+            "Recreate your most seductive selfie pose live"
         ],
         couples: [
             "Give your partner a 1 minute massage",
@@ -346,7 +626,26 @@ export const gameData = {
             "Let your partner draw on your face",
             "Feed your partner a shot",
             "Sit on your partner's lap for the next 3 rounds",
-            "Whisper your wildest fantasy to your partner"
+            "Whisper your wildest fantasy to your partner",
+            "Give your partner a romantic kiss on the forehead",
+            "Let your partner style your hair however they want",
+            "Do a couple's dance together for 1 minute",
+            "Let your partner choose your next drink",
+            "Give your partner a piggyback ride across the room",
+            "Let your partner apply makeup on you",
+            "Share your most embarrassing couple moment with everyone",
+            "Let your partner pick your outfit for tomorrow",
+            "Do 10 couple push-ups together (facing each other)",
+            "Let your partner give you a new hairstyle using only their hands",
+            "Feed each other something blindfolded",
+            "Do your partner's signature dance move together",
+            "Let your partner choose your next social media post",
+            "Give your partner a foot massage for 1 minute",
+            "Let your partner draw a heart on your face",
+            "Do the lift from Dirty Dancing (safely!)",
+            "Let your partner choose a pet name for you to use all night",
+            "Give your partner your phone for them to text anyone",
+            "Let your partner give you a makeover using whatever's available"
         ]
     },
     wouldYouRather: {
@@ -608,6 +907,256 @@ export const gameData = {
                 question: "Which country invented ice hockey?",
                 options: ["USA", "Russia", "Canada", "Sweden"],
                 correct: 2
+            },
+            {
+                question: "Which footballer is known as 'CR7'?",
+                options: ["Messi", "Ronaldo", "Neymar", "Mbappé"],
+                correct: 1
+            },
+            {
+                question: "How many Grand Slam tournaments are there in tennis each year?",
+                options: ["3", "4", "5", "6"],
+                correct: 1
+            },
+            {
+                question: "In American football, how many points is a touchdown worth?",
+                options: ["5", "6", "7", "8"],
+                correct: 1
+            },
+            {
+                question: "Which city will host the 2028 Summer Olympics?",
+                options: ["Paris", "Los Angeles", "Brisbane", "Tokyo"],
+                correct: 1
+            },
+            {
+                question: "What is the term for scoring three goals in hockey?",
+                options: ["Triple", "Hat trick", "Three-pointer", "Trilogy"],
+                correct: 1
+            },
+            {
+                question: "Which sport uses terms like 'slam dunk' and 'alley-oop'?",
+                options: ["Volleyball", "Basketball", "Tennis", "Badminton"],
+                correct: 1
+            },
+            {
+                question: "How many periods are in a standard hockey game?",
+                options: ["2", "3", "4", "5"],
+                correct: 1
+            },
+            {
+                question: "Which boxer was known as 'The Greatest'?",
+                options: ["Mike Tyson", "Muhammad Ali", "Floyd Mayweather", "Rocky Balboa"],
+                correct: 1
+            },
+            {
+                question: "In which sport would you perform a slam dunk?",
+                options: ["Volleyball", "Basketball", "Tennis", "Football"],
+                correct: 1
+            },
+            {
+                question: "How long is a standard NFL game?",
+                options: ["90 minutes", "60 minutes", "120 minutes", "80 minutes"],
+                correct: 1
+            },
+            {
+                question: "Which country dominates in Formula 1 with the most constructor championships?",
+                options: ["Italy", "Germany", "United Kingdom", "France"],
+                correct: 0
+            },
+            {
+                question: "What is the maximum weight for heavyweight boxing?",
+                options: ["No limit", "250 lbs", "300 lbs", "200 lbs"],
+                correct: 0
+            },
+            {
+                question: "In baseball, what is it called when a batter hits all four bases in one play?",
+                options: ["Grand slam", "Home run", "Triple", "Bases loaded"],
+                correct: 1
+            },
+            {
+                question: "Which swimming stroke is fastest?",
+                options: ["Backstroke", "Breaststroke", "Freestyle", "Butterfly"],
+                correct: 2
+            },
+            {
+                question: "How many players are on a soccer field at one time per team?",
+                options: ["10", "11", "12", "9"],
+                correct: 1
+            },
+            {
+                question: "Which NBA team has won the most championships?",
+                options: ["Lakers", "Celtics", "Warriors", "Bulls"],
+                correct: 1
+            },
+            {
+                question: "What is the highest possible score in ten-pin bowling?",
+                options: ["250", "300", "350", "400"],
+                correct: 1
+            },
+            {
+                question: "In which sport is the Stanley Cup awarded?",
+                options: ["Basketball", "Football", "Ice Hockey", "Baseball"],
+                correct: 2
+            },
+            {
+                question: "How many points is a field goal worth in American football?",
+                options: ["2", "3", "6", "7"],
+                correct: 1
+            },
+            {
+                question: "Which sport features positions called 'scrum-half' and 'fly-half'?",
+                options: ["American Football", "Rugby", "Soccer", "Australian Football"],
+                correct: 1
+            },
+            {
+                question: "In tennis, what is the term for a score of 40-40?",
+                options: ["Match point", "Deuce", "Advantage", "Set point"],
+                correct: 1
+            },
+            {
+                question: "Which Formula 1 driver holds the record for most race wins?",
+                options: ["Michael Schumacher", "Lewis Hamilton", "Ayrton Senna", "Sebastian Vettel"],
+                correct: 1
+            },
+            {
+                question: "How many holes are played in a standard round of golf?",
+                options: ["16", "18", "20", "22"],
+                correct: 1
+            },
+            {
+                question: "In which sport would you find a 'libero'?",
+                options: ["Basketball", "Volleyball", "Soccer", "Handball"],
+                correct: 1
+            },
+            {
+                question: "What is the term for a perfect game in bowling?",
+                options: ["Strike out", "Clean sweep", "Perfect 300", "All strikes"],
+                correct: 2
+            },
+            {
+                question: "Which cyclist has won the most Tour de France titles?",
+                options: ["Lance Armstrong", "Eddy Merckx", "Miguel Indurain", "Jacques Anquetil"],
+                correct: 1
+            },
+            {
+                question: "In swimming, which stroke must you use in an Individual Medley first?",
+                options: ["Freestyle", "Backstroke", "Butterfly", "Breaststroke"],
+                correct: 2
+            },
+            {
+                question: "What is the term for scoring two under par on a golf hole?",
+                options: ["Birdie", "Eagle", "Albatross", "Bogey"],
+                correct: 1
+            },
+            {
+                question: "Which sport is played at Wimbledon?",
+                options: ["Cricket", "Tennis", "Badminton", "Squash"],
+                correct: 1
+            },
+            {
+                question: "How many substitutions are allowed in soccer during regular play?",
+                options: ["3", "5", "7", "Unlimited"],
+                correct: 1
+            },
+            {
+                question: "In which sport would you perform a 'slam dunk'?",
+                options: ["Volleyball", "Basketball", "Tennis", "Badminton"],
+                correct: 1
+            },
+            {
+                question: "What is the maximum number of sets in a men's tennis Grand Slam match?",
+                options: ["3", "5", "7", "9"],
+                correct: 1
+            },
+            {
+                question: "Which sport uses the term 'love' for a score of zero?",
+                options: ["Tennis", "Badminton", "Squash", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "In basketball, how many personal fouls result in disqualification?",
+                options: ["5", "6", "7", "8"],
+                correct: 1
+            },
+            {
+                question: "What is the diameter of a basketball hoop?",
+                options: ["16 inches", "18 inches", "20 inches", "22 inches"],
+                correct: 1
+            },
+            {
+                question: "Which sport features the 'Fosbury Flop' technique?",
+                options: ["Long jump", "High jump", "Pole vault", "Triple jump"],
+                correct: 1
+            },
+            {
+                question: "How many minutes are in a standard soccer match including stoppage time?",
+                options: ["90+", "100", "120", "80"],
+                correct: 0
+            },
+            {
+                question: "In which sport would you use a shuttlecock?",
+                options: ["Tennis", "Squash", "Badminton", "Table tennis"],
+                correct: 2
+            },
+            {
+                question: "What is the term for hitting a golf ball into the water?",
+                options: ["Water hazard", "Penalty stroke", "Splash shot", "Aqua bogey"],
+                correct: 0
+            },
+            {
+                question: "Which sport is known as 'America's Pastime'?",
+                options: ["Basketball", "Football", "Baseball", "Hockey"],
+                correct: 2
+            },
+            {
+                question: "In track and field, what is the standard distance for a marathon?",
+                options: ["26.2 miles", "25 miles", "27 miles", "30 miles"],
+                correct: 0
+            },
+            {
+                question: "Which sport uses terms like 'spike' and 'dig'?",
+                options: ["Tennis", "Volleyball", "Badminton", "Squash"],
+                correct: 1
+            },
+            {
+                question: "How many points is a safety worth in American football?",
+                options: ["1", "2", "3", "6"],
+                correct: 1
+            },
+            {
+                question: "In which sport would you find a 'wicket'?",
+                options: ["Baseball", "Cricket", "Field Hockey", "Lacrosse"],
+                correct: 1
+            },
+            {
+                question: "What is the term for a score of one under par in golf?",
+                options: ["Eagle", "Birdie", "Bogey", "Albatross"],
+                correct: 1
+            },
+            {
+                question: "Which swimmer holds the most Olympic gold medals?",
+                options: ["Mark Spitz", "Michael Phelps", "Ian Thorpe", "Katie Ledecky"],
+                correct: 1
+            },
+            {
+                question: "In tennis, what surface is used at the French Open?",
+                options: ["Grass", "Hard court", "Clay", "Synthetic"],
+                correct: 2
+            },
+            {
+                question: "How many innings are in a standard baseball game?",
+                options: ["7", "8", "9", "10"],
+                correct: 2
+            },
+            {
+                question: "Which sport is Tiger Woods famous for?",
+                options: ["Tennis", "Golf", "Swimming", "Athletics"],
+                correct: 1
+            },
+            {
+                question: "What is the maximum score possible in a single frame of bowling?",
+                options: ["20", "25", "30", "35"],
+                correct: 2
             }
         ],
         history: [
@@ -659,6 +1208,256 @@ export const gameData = {
             {
                 question: "Which ancient wonder of the world still stands today?",
                 options: ["Colossus of Rhodes", "Great Pyramid of Giza", "Hanging Gardens", "Lighthouse of Alexandria"],
+                correct: 1
+            },
+            {
+                question: "Which emperor built the Roman Colosseum?",
+                options: ["Julius Caesar", "Augustus", "Vespasian", "Nero"],
+                correct: 2
+            },
+            {
+                question: "In which year did the Titanic sink?",
+                options: ["1910", "1911", "1912", "1913"],
+                correct: 2
+            },
+            {
+                question: "Who was the first man to walk on the moon?",
+                options: ["Buzz Aldrin", "Neil Armstrong", "John Glenn", "Alan Shepard"],
+                correct: 1
+            },
+            {
+                question: "Which war was fought from 1914 to 1918?",
+                options: ["World War II", "World War I", "Korean War", "Vietnam War"],
+                correct: 1
+            },
+            {
+                question: "Who was the last Pharaoh of Egypt?",
+                options: ["Tutankhamun", "Cleopatra VII", "Ramesses II", "Akhenaten"],
+                correct: 1
+            },
+            {
+                question: "In which year did the United States gain independence?",
+                options: ["1775", "1776", "1777", "1778"],
+                correct: 1
+            },
+            {
+                question: "Which civilization built Stonehenge?",
+                options: ["Romans", "Celts", "Neolithic Britons", "Vikings"],
+                correct: 2
+            },
+            {
+                question: "Who led the Mongol Empire?",
+                options: ["Attila the Hun", "Genghis Khan", "Tamerlane", "Kublai Khan"],
+                correct: 1
+            },
+            {
+                question: "In which century did the Renaissance begin?",
+                options: ["13th", "14th", "15th", "16th"],
+                correct: 1
+            },
+            {
+                question: "Which country was first to give women the right to vote?",
+                options: ["United States", "United Kingdom", "New Zealand", "Australia"],
+                correct: 2
+            },
+            {
+                question: "Who wrote the Communist Manifesto?",
+                options: ["Lenin", "Stalin", "Marx and Engels", "Trotsky"],
+                correct: 2
+            },
+            {
+                question: "Which battle ended Napoleon's rule?",
+                options: ["Battle of Trafalgar", "Battle of Waterloo", "Battle of Leipzig", "Battle of Austerlitz"],
+                correct: 1
+            },
+            {
+                question: "In which year did the Soviet Union collapse?",
+                options: ["1989", "1990", "1991", "1992"],
+                correct: 2
+            },
+            {
+                question: "Who was the first Roman Emperor?",
+                options: ["Julius Caesar", "Augustus", "Caligula", "Claudius"],
+                correct: 1
+            },
+            {
+                question: "Which explorer discovered the Pacific Ocean for Europeans?",
+                options: ["Magellan", "Balboa", "Columbus", "Cortés"],
+                correct: 1
+            },
+            {
+                question: "In which year was John F. Kennedy assassinated?",
+                options: ["1962", "1963", "1964", "1965"],
+                correct: 1
+            },
+            {
+                question: "Which ancient civilization invented writing?",
+                options: ["Egyptians", "Greeks", "Sumerians", "Chinese"],
+                correct: 2
+            },
+            {
+                question: "Who was known as the Sun King?",
+                options: ["Henry VIII", "Louis XIV", "Napoleon", "Charles V"],
+                correct: 1
+            },
+            {
+                question: "Which war lasted from 1955 to 1975?",
+                options: ["Korean War", "Vietnam War", "Cold War", "World War III"],
+                correct: 1
+            },
+            {
+                question: "In which year did Hitler come to power in Germany?",
+                options: ["1932", "1933", "1934", "1935"],
+                correct: 1
+            },
+            {
+                question: "Which city was the capital of the Byzantine Empire?",
+                options: ["Rome", "Athens", "Constantinople", "Alexandria"],
+                correct: 2
+            },
+            {
+                question: "Who discovered penicillin?",
+                options: ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Joseph Lister"],
+                correct: 1
+            },
+            {
+                question: "Which revolution happened in 1917?",
+                options: ["French Revolution", "American Revolution", "Russian Revolution", "Chinese Revolution"],
+                correct: 2
+            },
+            {
+                question: "Who was the first female Prime Minister of the UK?",
+                options: ["Margaret Thatcher", "Theresa May", "Elizabeth I", "Victoria"],
+                correct: 0
+            },
+            {
+                question: "In which year was the United Nations founded?",
+                options: ["1944", "1945", "1946", "1947"],
+                correct: 1
+            },
+            {
+                question: "Which ancient Greek philosopher taught Alexander the Great?",
+                options: ["Socrates", "Plato", "Aristotle", "Pythagoras"],
+                correct: 2
+            },
+            {
+                question: "What was the name of the ship Charles Darwin sailed on?",
+                options: ["HMS Victory", "HMS Beagle", "HMS Endeavour", "HMS Bounty"],
+                correct: 1
+            },
+            {
+                question: "Which pope called for the First Crusade?",
+                options: ["Urban II", "Gregory VII", "Innocent III", "Alexander VI"],
+                correct: 0
+            },
+            {
+                question: "In which year did the Black Death peak in Europe?",
+                options: ["1347", "1348", "1349", "1350"],
+                correct: 1
+            },
+            {
+                question: "Who unified Germany in 1871?",
+                options: ["Wilhelm I", "Otto von Bismarck", "Frederick III", "Heinrich Himmler"],
+                correct: 1
+            },
+            {
+                question: "Which treaty ended World War I?",
+                options: ["Treaty of Paris", "Treaty of Versailles", "Treaty of Vienna", "Treaty of Ghent"],
+                correct: 1
+            },
+            {
+                question: "Who was the first person to circumnavigate the globe?",
+                options: ["Ferdinand Magellan", "Juan Sebastián Elcano", "Francis Drake", "James Cook"],
+                correct: 1
+            },
+            {
+                question: "Which empire was ruled by Hammurabi?",
+                options: ["Egyptian", "Babylonian", "Assyrian", "Persian"],
+                correct: 1
+            },
+            {
+                question: "In which year was the printing press invented?",
+                options: ["1440", "1450", "1455", "1460"],
+                correct: 0
+            },
+            {
+                question: "Who led the Indian independence movement?",
+                options: ["Jawaharlal Nehru", "Mahatma Gandhi", "Subhas Chandra Bose", "Sardar Patel"],
+                correct: 1
+            },
+            {
+                question: "Which civilization built Petra?",
+                options: ["Romans", "Greeks", "Nabataeans", "Phoenicians"],
+                correct: 2
+            },
+            {
+                question: "In which battle was Admiral Nelson killed?",
+                options: ["Battle of the Nile", "Battle of Copenhagen", "Battle of Trafalgar", "Battle of Cape St Vincent"],
+                correct: 2
+            },
+            {
+                question: "Who painted the ceiling of the Sistine Chapel?",
+                options: ["Leonardo da Vinci", "Raphael", "Michelangelo", "Donatello"],
+                correct: 2
+            },
+            {
+                question: "Which Spanish conquistador conquered the Aztec Empire?",
+                options: ["Francisco Pizarro", "Hernán Cortés", "Diego Velázquez", "Vasco Núñez de Balboa"],
+                correct: 1
+            },
+            {
+                question: "In which year did apartheid end in South Africa?",
+                options: ["1992", "1993", "1994", "1995"],
+                correct: 2
+            },
+            {
+                question: "Who was the first person in space?",
+                options: ["Neil Armstrong", "Yuri Gagarin", "John Glenn", "Alan Shepard"],
+                correct: 1
+            },
+            {
+                question: "Which king signed the Magna Carta?",
+                options: ["King Henry VIII", "King Richard I", "King John", "King Edward I"],
+                correct: 2
+            },
+            {
+                question: "In which year did the Great Fire of London occur?",
+                options: ["1665", "1666", "1667", "1668"],
+                correct: 1
+            },
+            {
+                question: "Who was the first Holy Roman Emperor?",
+                options: ["Charlemagne", "Otto I", "Frederick Barbarossa", "Charles V"],
+                correct: 0
+            },
+            {
+                question: "Which war was triggered by the assassination of Archduke Franz Ferdinand?",
+                options: ["Franco-Prussian War", "World War I", "Crimean War", "Balkan Wars"],
+                correct: 1
+            },
+            {
+                question: "In which year was the Suez Canal opened?",
+                options: ["1867", "1868", "1869", "1870"],
+                correct: 2
+            },
+            {
+                question: "Who founded the Mongol Empire?",
+                options: ["Genghis Khan", "Kublai Khan", "Ögedei Khan", "Tolui Khan"],
+                correct: 0
+            },
+            {
+                question: "Which revolution overthrew the Russian Tsar?",
+                options: ["October Revolution", "February Revolution", "Decembrist Revolt", "Revolution of 1905"],
+                correct: 1
+            },
+            {
+                question: "In which year did the American Civil War end?",
+                options: ["1864", "1865", "1866", "1867"],
+                correct: 1
+            },
+            {
+                question: "Who was known as the 'Maid of Orléans'?",
+                options: ["Marie Antoinette", "Joan of Arc", "Eleanor of Aquitaine", "Catherine de' Medici"],
                 correct: 1
             }
         ],
@@ -712,6 +1511,256 @@ export const gameData = {
                 question: "At what temperature does water boil at sea level?",
                 options: ["90°C", "100°C", "110°C", "120°C"],
                 correct: 1
+            },
+            {
+                question: "How many hearts does an octopus have?",
+                options: ["1", "2", "3", "4"],
+                correct: 2
+            },
+            {
+                question: "What color is a polar bear's skin?",
+                options: ["White", "Pink", "Black", "Brown"],
+                correct: 2
+            },
+            {
+                question: "Which animal can't jump?",
+                options: ["Elephant", "Hippo", "Rhino", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "What's the only mammal that can fly?",
+                options: ["Flying squirrel", "Sugar glider", "Bat", "Flying lemur"],
+                correct: 2
+            },
+            {
+                question: "How long is a day on Venus?",
+                options: ["24 hours", "100 days", "243 Earth days", "1 year"],
+                correct: 2
+            },
+            {
+                question: "What percentage of our brain do we actually use?",
+                options: ["10%", "50%", "Almost 100%", "33%"],
+                correct: 2
+            },
+            {
+                question: "Which came first: fire or the wheel?",
+                options: ["Fire", "Wheel", "Same time", "Neither"],
+                correct: 0
+            },
+            {
+                question: "What's the most abundant gas in the air we breathe?",
+                options: ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+                correct: 2
+            },
+            {
+                question: "How many bones do sharks have?",
+                options: ["Over 200", "About 100", "Zero", "It depends"],
+                correct: 2
+            },
+            {
+                question: "What's the loudest animal on Earth?",
+                options: ["Lion", "Blue whale", "Elephant", "Howler monkey"],
+                correct: 1
+            },
+            {
+                question: "Which planet spins backwards?",
+                options: ["Mars", "Venus", "Uranus", "Neptune"],
+                correct: 1
+            },
+            {
+                question: "What do you call a group of flamingos?",
+                options: ["Flock", "Flamboyance", "Pink parade", "Colony"],
+                correct: 1
+            },
+            {
+                question: "How many smell receptors does a dog have?",
+                options: ["6 million", "300 million", "1 billion", "50 million"],
+                correct: 1
+            },
+            {
+                question: "What's the fastest muscle in your body?",
+                options: ["Heart", "Tongue", "Eye", "Leg"],
+                correct: 2
+            },
+            {
+                question: "Which animal has the highest blood pressure?",
+                options: ["Elephant", "Giraffe", "Whale", "Horse"],
+                correct: 1
+            },
+            {
+                question: "How many times does a hummingbird's heart beat per minute?",
+                options: ["200", "600", "1200", "2000"],
+                correct: 2
+            },
+            {
+                question: "What's the only letter that doesn't appear in any US state name?",
+                options: ["Q", "X", "Z", "J"],
+                correct: 0
+            },
+            {
+                question: "How many teeth does a snail have?",
+                options: ["0", "About 100", "Over 25,000", "Just 2"],
+                correct: 2
+            },
+            {
+                question: "What's the most common element in the human body?",
+                options: ["Carbon", "Hydrogen", "Oxygen", "Nitrogen"],
+                correct: 2
+            },
+            {
+                question: "Which fruit has the most vitamin C?",
+                options: ["Orange", "Lemon", "Kiwi", "Strawberry"],
+                correct: 2
+            },
+            {
+                question: "How long can a cockroach live without its head?",
+                options: ["1 hour", "1 day", "1 week", "1 month"],
+                correct: 2
+            },
+            {
+                question: "What's the hardest substance in the human body?",
+                options: ["Bone", "Tooth enamel", "Cartilage", "Nails"],
+                correct: 1
+            },
+            {
+                question: "How many species of spiders exist?",
+                options: ["5,000", "25,000", "45,000", "100,000"],
+                correct: 2
+            },
+            {
+                question: "Which animal sleeps the most?",
+                options: ["Cat", "Sloth", "Koala", "Brown bat"],
+                correct: 3
+            },
+            {
+                question: "What's the smallest bone in your body?",
+                options: ["In your toe", "In your finger", "In your ear", "In your nose"],
+                correct: 2
+            },
+            {
+                question: "How many muscles do you use to smile?",
+                options: ["5", "17", "25", "43"],
+                correct: 1
+            },
+            {
+                question: "What's the only planet that rotates on its side?",
+                options: ["Mars", "Jupiter", "Uranus", "Saturn"],
+                correct: 2
+            },
+            {
+                question: "Which animal has fingerprints almost identical to humans?",
+                options: ["Chimpanzee", "Gorilla", "Koala", "Orangutan"],
+                correct: 2
+            },
+            {
+                question: "How many calories does your brain burn per day?",
+                options: ["100", "320", "500", "800"],
+                correct: 1
+            },
+            {
+                question: "What's the only food that never expires?",
+                options: ["Salt", "Sugar", "Honey", "Rice"],
+                correct: 2
+            },
+            {
+                question: "How many times per minute does a hummingbird flap its wings?",
+                options: ["200", "800", "3000", "5000"],
+                correct: 2
+            },
+            {
+                question: "What color is the 'black box' on airplanes?",
+                options: ["Black", "Orange", "Red", "Yellow"],
+                correct: 1
+            },
+            {
+                question: "Which animal has blue blood?",
+                options: ["Shark", "Lobster", "Dolphin", "Penguin"],
+                correct: 1
+            },
+            {
+                question: "How many cells die in your body every second?",
+                options: ["1,000", "25,000", "1 million", "25 million"],
+                correct: 3
+            },
+            {
+                question: "What's the most abundant protein in your body?",
+                options: ["Keratin", "Collagen", "Elastin", "Actin"],
+                correct: 1
+            },
+            {
+                question: "Which came first: the lighter or the match?",
+                options: ["Match", "Lighter", "Same time", "Fire"],
+                correct: 1
+            },
+            {
+                question: "How fast does a sneeze travel?",
+                options: ["50 mph", "100 mph", "160 mph", "200 mph"],
+                correct: 2
+            },
+            {
+                question: "What's the only mammal that can't sweat?",
+                options: ["Whale", "Dolphin", "Seal", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "How many times can you fold a piece of paper in half?",
+                options: ["5", "7", "12", "Unlimited"],
+                correct: 1
+            },
+            {
+                question: "What's the most common phobia?",
+                options: ["Heights", "Spiders", "Public speaking", "Flying"],
+                correct: 2
+            },
+            {
+                question: "Which animal has the longest tongue relative to body size?",
+                options: ["Giraffe", "Anteater", "Chameleon", "Pangolin"],
+                correct: 2
+            },
+            {
+                question: "How many taste buds does the average person have?",
+                options: ["1,000", "10,000", "100,000", "1 million"],
+                correct: 1
+            },
+            {
+                question: "What's the fastest-growing plant?",
+                options: ["Sunflower", "Bamboo", "Corn", "Grass"],
+                correct: 1
+            },
+            {
+                question: "Which animal can run faster: a chicken or a T-Rex?",
+                options: ["Chicken", "T-Rex", "Same speed", "Neither could run"],
+                correct: 0
+            },
+            {
+                question: "How many different facial expressions can humans make?",
+                options: ["50", "1,000", "10,000", "Unlimited"],
+                correct: 2
+            },
+            {
+                question: "What's the only part of your body that has no blood supply?",
+                options: ["Hair", "Nails", "Eye cornea", "Teeth"],
+                correct: 2
+            },
+            {
+                question: "Which weighs more: a pound of feathers or a pound of gold?",
+                options: ["Feathers", "Gold", "Same weight", "Depends on humidity"],
+                correct: 2
+            },
+            {
+                question: "How many times does lightning strike the Earth per second?",
+                options: ["10", "50", "100", "500"],
+                correct: 2
+            },
+            {
+                question: "What's the most recycled material on Earth?",
+                options: ["Paper", "Plastic", "Glass", "Steel"],
+                correct: 3
+            },
+            {
+                question: "Which animal has the best memory?",
+                options: ["Elephant", "Dolphin", "Octopus", "Human"],
+                correct: 0
             }
         ],
         flags: [
@@ -954,6 +2003,138 @@ export const gameData = {
                 flagCode: "my",
                 options: ["Malaysia", "United States", "Liberia", "Uruguay"],
                 correct: 0
+            },
+            {
+                question: "ua",
+                flagCode: "ua",
+                options: ["Sweden", "Ukraine", "Kazakhstan", "Belarus"],
+                correct: 1
+            },
+            {
+                question: "tr",
+                flagCode: "tr",
+                options: ["Tunisia", "Turkey", "Morocco", "Algeria"],
+                correct: 1
+            },
+            {
+                question: "sa",
+                flagCode: "sa",
+                options: ["United Arab Emirates", "Saudi Arabia", "Qatar", "Kuwait"],
+                correct: 1
+            },
+            {
+                question: "is",
+                flagCode: "is",
+                options: ["Ireland", "Iceland", "Estonia", "Latvia"],
+                correct: 1
+            },
+            {
+                question: "hr",
+                flagCode: "hr",
+                options: ["Serbia", "Slovenia", "Croatia", "Bosnia"],
+                correct: 2
+            },
+            {
+                question: "lv",
+                flagCode: "lv",
+                options: ["Lithuania", "Latvia", "Estonia", "Finland"],
+                correct: 1
+            },
+            {
+                question: "lt",
+                flagCode: "lt",
+                options: ["Latvia", "Lithuania", "Estonia", "Poland"],
+                correct: 1
+            },
+            {
+                question: "ee",
+                flagCode: "ee",
+                options: ["Latvia", "Lithuania", "Estonia", "Finland"],
+                correct: 2
+            },
+            {
+                question: "rs",
+                flagCode: "rs",
+                options: ["Russia", "Serbia", "Slovenia", "Slovakia"],
+                correct: 1
+            },
+            {
+                question: "bg",
+                flagCode: "bg",
+                options: ["Hungary", "Bulgaria", "Romania", "Moldova"],
+                correct: 1
+            },
+            {
+                question: "ro",
+                flagCode: "ro",
+                options: ["Moldova", "Romania", "Bulgaria", "Hungary"],
+                correct: 1
+            },
+            {
+                question: "hu",
+                flagCode: "hu",
+                options: ["Hungary", "Romania", "Bulgaria", "Italy"],
+                correct: 0
+            },
+            {
+                question: "sk",
+                flagCode: "sk",
+                options: ["Slovenia", "Slovakia", "Czech Republic", "Poland"],
+                correct: 1
+            },
+            {
+                question: "si",
+                flagCode: "si",
+                options: ["Slovakia", "Slovenia", "Serbia", "Switzerland"],
+                correct: 1
+            },
+            {
+                question: "lu",
+                flagCode: "lu",
+                options: ["Netherlands", "Belgium", "Luxembourg", "Germany"],
+                correct: 2
+            },
+            {
+                question: "mt",
+                flagCode: "mt",
+                options: ["Monaco", "Malta", "San Marino", "Vatican"],
+                correct: 1
+            },
+            {
+                question: "cy",
+                flagCode: "cy",
+                options: ["Greece", "Turkey", "Cyprus", "Malta"],
+                correct: 2
+            },
+            {
+                question: "md",
+                flagCode: "md",
+                options: ["Romania", "Moldova", "Ukraine", "Bulgaria"],
+                correct: 1
+            },
+            {
+                question: "by",
+                flagCode: "by",
+                options: ["Bulgaria", "Belarus", "Belgium", "Bosnia"],
+                correct: 1
+            },
+            {
+                question: "ge",
+                flagCode: "ge",
+                options: ["Armenia", "Azerbaijan", "Georgia", "Turkey"],
+                correct: 2
+            },
+            {
+                question: "am",
+                flagCode: "am",
+                options: ["Armenia", "Azerbaijan", "Georgia", "Iran"],
+                correct: 0
+            },
+            {
+                question: "az",
+                flagCode: "az",
+                options: ["Armenia", "Azerbaijan", "Turkmenistan", "Kazakhstan"],
+                correct: 1
             }
         ],
         economy: [
@@ -1005,6 +2186,256 @@ export const gameData = {
             {
                 question: "What is a recession typically defined as?",
                 options: ["1 quarter negative growth", "2 quarters negative growth", "3 quarters negative growth", "4 quarters negative growth"],
+                correct: 1
+            },
+            {
+                question: "What company was originally called 'Backrub'?",
+                options: ["Facebook", "Google", "Twitter", "Apple"],
+                correct: 1
+            },
+            {
+                question: "Which billionaire bought Twitter in 2022?",
+                options: ["Jeff Bezos", "Elon Musk", "Mark Zuckerberg", "Bill Gates"],
+                correct: 1
+            },
+            {
+                question: "What does the 'i' in iPhone stand for?",
+                options: ["Internet", "Individual", "Innovation", "It doesn't stand for anything specific"],
+                correct: 3
+            },
+            {
+                question: "Which company's slogan is 'Just Do It'?",
+                options: ["Adidas", "Nike", "Puma", "Under Armour"],
+                correct: 1
+            },
+            {
+                question: "What was Netflix's original business model?",
+                options: ["Streaming", "DVD by mail", "Movie theaters", "Video stores"],
+                correct: 1
+            },
+            {
+                question: "Which country has the most expensive Big Mac?",
+                options: ["USA", "Switzerland", "Norway", "Denmark"],
+                correct: 1
+            },
+            {
+                question: "What's the most valuable company in the world (2024)?",
+                options: ["Apple", "Microsoft", "Google", "Amazon"],
+                correct: 0
+            },
+            {
+                question: "How much did Instagram sell for to Facebook?",
+                options: ["$1 billion", "$19 billion", "$50 billion", "$100 billion"],
+                correct: 0
+            },
+            {
+                question: "What's the most expensive spice in the world?",
+                options: ["Vanilla", "Cardamom", "Saffron", "Black truffle"],
+                correct: 2
+            },
+            {
+                question: "Which company owns YouTube?",
+                options: ["Facebook", "Google", "Microsoft", "Amazon"],
+                correct: 1
+            },
+            {
+                question: "What was Amazon originally going to be called?",
+                options: ["Cadabra", "Relentless", "River", "Both A and B"],
+                correct: 3
+            },
+            {
+                question: "How much is a trillion dollars in $100 bills (weight)?",
+                options: ["1 ton", "10 tons", "100 tons", "1000 tons"],
+                correct: 1
+            },
+            {
+                question: "Which fast food chain has the most locations worldwide?",
+                options: ["McDonald's", "Subway", "KFC", "Pizza Hut"],
+                correct: 1
+            },
+            {
+                question: "What's the most traded currency after the US Dollar?",
+                options: ["Euro", "Yen", "Pound", "Yuan"],
+                correct: 0
+            },
+            {
+                question: "How much did the domain 'Pizza.com' sell for?",
+                options: ["$1 million", "$2.6 million", "$10 million", "$50 million"],
+                correct: 1
+            },
+            {
+                question: "Which company invented the first smartphone?",
+                options: ["Apple", "IBM", "Nokia", "BlackBerry"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive pizza ever made?",
+                options: ["$1,000", "$5,000", "$12,000", "$70,000"],
+                correct: 2
+            },
+            {
+                question: "How many hours does the average person work in their lifetime?",
+                options: ["50,000", "90,000", "150,000", "200,000"],
+                correct: 1
+            },
+            {
+                question: "What company owns Snapchat?",
+                options: ["Facebook", "Google", "Snap Inc.", "Twitter"],
+                correct: 2
+            },
+            {
+                question: "Which country invented paper money?",
+                options: ["USA", "China", "Italy", "England"],
+                correct: 1
+            },
+            {
+                question: "How much did WhatsApp sell to Facebook for?",
+                options: ["$5 billion", "$19 billion", "$50 billion", "$100 billion"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive NFT ever sold?",
+                options: ["$10 million", "$30 million", "$69 million", "$200 million"],
+                correct: 2
+            },
+            {
+                question: "Which company makes the most money per second?",
+                options: ["Apple", "Saudi Aramco", "Microsoft", "Amazon"],
+                correct: 1
+            },
+            {
+                question: "What's the world's most counterfeited brand?",
+                options: ["Rolex", "Nike", "Louis Vuitton", "Gucci"],
+                correct: 1
+            },
+            {
+                question: "How much does it cost to make a penny?",
+                options: ["0.5 cents", "1 cent", "2.4 cents", "5 cents"],
+                correct: 2
+            },
+            {
+                question: "Which company has the longest company name?",
+                options: ["Google", "A 747-letter Welsh company", "Microsoft", "International Business Machines"],
+                correct: 1
+            },
+            {
+                question: "What percentage of all US currency is in $100 bills?",
+                options: ["20%", "50%", "80%", "95%"],
+                correct: 2
+            },
+            {
+                question: "Which dating app makes the most money?",
+                options: ["Tinder", "Bumble", "Hinge", "Match"],
+                correct: 0
+            },
+            {
+                question: "How many Google searches happen per day?",
+                options: ["1 billion", "8.5 billion", "50 billion", "100 billion"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive coffee in the world?",
+                options: ["Jamaican Blue Mountain", "Kopi Luwak", "Black Ivory", "Hawaiian Kona"],
+                correct: 2
+            },
+            {
+                question: "Which company spends the most on advertising?",
+                options: ["Coca-Cola", "Amazon", "Apple", "Procter & Gamble"],
+                correct: 1
+            },
+            {
+                question: "How much money does the average person spend on coffee per year?",
+                options: ["$500", "$1,100", "$2,000", "$5,000"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive hotel room in the world per night?",
+                options: ["$50,000", "$100,000", "$500,000", "$1 million"],
+                correct: 2
+            },
+            {
+                question: "Which country has the most billionaires?",
+                options: ["China", "USA", "Germany", "India"],
+                correct: 1
+            },
+            {
+                question: "How much did the most expensive car ever sell for?",
+                options: ["$50 million", "$100 million", "$142 million", "$500 million"],
+                correct: 2
+            },
+            {
+                question: "What's the cheapest country to live in?",
+                options: ["India", "Pakistan", "Afghanistan", "Nepal"],
+                correct: 2
+            },
+            {
+                question: "Which company was the first to reach $1 trillion valuation?",
+                options: ["Microsoft", "Apple", "Amazon", "Google"],
+                correct: 1
+            },
+            {
+                question: "How much does the average wedding cost in the US?",
+                options: ["$15,000", "$30,000", "$50,000", "$100,000"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive Pokémon card ever sold?",
+                options: ["$1 million", "$5.25 million", "$10 million", "$50 million"],
+                correct: 1
+            },
+            {
+                question: "Which social media platform makes the most money per user?",
+                options: ["Facebook", "TikTok", "Snapchat", "LinkedIn"],
+                correct: 3
+            },
+            {
+                question: "How much money is spent on Black Friday annually in the US?",
+                options: ["$5 billion", "$20 billion", "$50 billion", "$100 billion"],
+                correct: 1
+            },
+            {
+                question: "What's the most valuable sports team in the world?",
+                options: ["Dallas Cowboys", "Real Madrid", "New York Yankees", "Golden State Warriors"],
+                correct: 0
+            },
+            {
+                question: "Which cryptocurrency was created as a joke?",
+                options: ["Bitcoin", "Ethereum", "Dogecoin", "Litecoin"],
+                correct: 2
+            },
+            {
+                question: "How much does the average person spend on their phone per year?",
+                options: ["$500", "$1,000", "$2,000", "$5,000"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive painting ever sold?",
+                options: ["$300 million", "$450 million", "$600 million", "$1 billion"],
+                correct: 1
+            },
+            {
+                question: "Which company has the most employees worldwide?",
+                options: ["Walmart", "Amazon", "McDonald's", "US Department of Defense"],
+                correct: 0
+            },
+            {
+                question: "How much does it cost to raise a child to 18 in the US?",
+                options: ["$100,000", "$233,610", "$500,000", "$1 million"],
+                correct: 1
+            },
+            {
+                question: "What's the most expensive thing ever stolen?",
+                options: ["Mona Lisa", "Crown jewels", "The Mona Lisa", "Entire countries' GDP"],
+                correct: 3
+            },
+            {
+                question: "Which app has been downloaded the most times?",
+                options: ["WhatsApp", "Facebook", "Instagram", "TikTok"],
+                correct: 0
+            },
+            {
+                question: "How much does the average American spend on food per year?",
+                options: ["$3,500", "$7,700", "$15,000", "$25,000"],
                 correct: 1
             }
         ]

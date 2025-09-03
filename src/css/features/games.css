@@ -1,0 +1,131 @@
+/* Games Section */
+.games-grid {
+    margin: 40px 0;
+}
+
+.game-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) rotateZ(-2deg);
+    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+}
+
+.game-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.game-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.game-players {
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+/* Game Overlay */
+.game-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.game-overlay.show {
+    display: flex;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.game-title {
+    font-size: 2em;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Timer Display */
+.timer-display {
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px 0;
+    font-variant-numeric: tabular-nums;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Score Display */
+.score-display {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.team-score {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    min-width: 150px;
+}
+
+.team-name {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.team-points {
+    font-size: 3em;
+    font-weight: bold;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Question Card */
+.question-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 30px 0;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 1.6;
+    animation: questionIn 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .question-card {
+        padding: 20px;
+    }
+}

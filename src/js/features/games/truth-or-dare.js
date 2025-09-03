@@ -17,7 +17,9 @@ import {
     updateCurrentPlayer,
     selectGameCategory,
     updateCategoryBadge,
-    shufflePlayers
+    shufflePlayers,
+    getRandomizedQuestion,
+    resetQuestionQueue
 } from './game-utils.js';
 
 // Create Truth or Dare game HTML
@@ -104,6 +106,10 @@ export function startTruthOrDare() {
     // Shuffle players for random order
     shufflePlayers();
     
+    // Reset question queues for this category to ensure fresh randomization
+    resetQuestionQueue('truths', gameState.selectedCategory);
+    resetQuestionQueue('dares', gameState.selectedCategory);
+    
     document.getElementById('playerSetup').style.display = 'none';
     document.getElementById('gamePlay').style.display = 'block';
     setCurrentPlayerIndex(0);
@@ -122,7 +128,7 @@ export function nextTurnTruthOrDare() {
 // Show truth
 export function showTruth() {
     const truths = gameData.truths[gameState.selectedCategory] || gameData.truths.classic;
-    const truth = truths[Math.floor(Math.random() * truths.length)];
+    const truth = getRandomizedQuestion('truths', gameState.selectedCategory, truths);
     document.getElementById('gameQuestion').textContent = truth;
     document.getElementById('nextTurnBtn').style.display = 'inline-block';
 }
@@ -130,7 +136,7 @@ export function showTruth() {
 // Show dare
 export function showDare() {
     const dares = gameData.dares[gameState.selectedCategory] || gameData.dares.classic;
-    const dare = dares[Math.floor(Math.random() * dares.length)];
+    const dare = getRandomizedQuestion('dares', gameState.selectedCategory, dares);
     document.getElementById('gameQuestion').textContent = dare;
     document.getElementById('nextTurnBtn').style.display = 'inline-block';
 }

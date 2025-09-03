@@ -1,0 +1,169 @@
+/* Cards */
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 136, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--accent-gradient);
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+}
+
+.card:hover::before {
+    opacity: 0.3;
+}
+
+/* Mobile styles */
+#drinks .card {
+    padding: 15px;
+}
+
+/* Friend Card Base Styles */
+.friend-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.friend-card.pulse {
+    animation: cardPulse 0.5s ease;
+}
+
+.friend-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* Device Card */
+.device-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.device-info h4 {
+    margin-bottom: 5px;
+    color: #00ff88;
+}
+
+.pairing-code-display {
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px dashed rgba(0, 255, 136, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pairing-code {
+    color: #00ff88;
+    margin: 20px 0;
+}
+
+/* Info Box */
+.info-box {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.info-box h3 {
+    margin-bottom: 15px;
+    color: #00ff88;
+}
+
+.info-box p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.info-box code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Location Map Card */
+.location-map {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.location-dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* Stats Chart Card */
+.stat-chart {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    height: 250px;
+}
+
+/* Prediction Card */
+.prediction-card {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.prediction-value {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 20px 0;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+

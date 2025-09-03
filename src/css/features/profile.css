@@ -1,0 +1,192 @@
+/* User Profile Widget */
+.user-profile {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 0.9em;
+    z-index: 100;
+    min-width: 200px;
+}
+
+.user-profile h4 {
+    margin-bottom: 10px;
+    color: #00ff88;
+}
+
+.user-profile p {
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+.device-info p {
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+/* Settings/Profile Section */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+}
+
+.profile-info h2 {
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.profile-info p {
+    opacity: 0.8;
+    margin: 5px 0;
+}
+
+.settings-grid {
+    margin-bottom: 40px;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-group:last-child {
+    border-bottom: none;
+}
+
+.toggle-label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.toggle-label span {
+    font-weight: 600;
+}
+
+.toggle-label small {
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+.linked-accounts {
+    margin-top: 20px;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.account-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.account-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+.phone-icon { background: rgba(0, 255, 136, 0.2); }
+.email-icon { background: rgba(0, 212, 255, 0.2); }
+
+/* Settings Saved Animation */
+.settings-saved {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5em;
+    animation: settingsSaved 0.5s ease;
+    z-index: 4000;
+}
+
+/* Phone verification styles */
+.phone-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.country-code {
+    width: 100px;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1em;
+}
+
+.phone-number {
+    flex: 1;
+}
+
+.verification-input {
+    text-align: center;
+}
+
+.verification-info {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* Mobile-First Responsive Design */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}

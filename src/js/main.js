@@ -8,7 +8,7 @@ import { initializeDevices } from './features/devices.js';
 import { updateUI } from './ui/dashboard.js';
 import { showNotification } from './ui/notifications.js';
 import { DRINK_PRESETS } from './config/constants.js';
-import { ref, onValue, remove } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+import { ref, onValue, remove, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 import { 
     getAppState, 
     setStateValue, 
@@ -181,10 +181,16 @@ function exposeGlobalFunctions() {
     window.updateAchievementProgress = Achievements.updateAchievementProgress;
     window.checkAchievements = Achievements.checkAchievements;
     
-    // Device functions
+    // Device functions (Legacy breathalyzer)
     window.pairDeviceById = Devices.pairDeviceById;
     window.unpairDevice = Devices.unpairDevice;
     window.renameDevice = Devices.renameDevice;
+    
+    // BoozeLens Device functions
+    window.pairBoozeLensDevice = Devices.pairBoozeLensDevice;
+    window.unpairBoozeLensDevice = Devices.unpairBoozeLensDevice;
+    window.renameBoozeLensDevice = Devices.renameBoozeLensDevice;
+    window.refreshBoozeLensDevices = Devices.refreshBoozeLensDevices;
     
     // Photo functions
     window.refreshPhotoFeed = Photos.refreshPhotoFeed;
@@ -192,6 +198,8 @@ function exposeGlobalFunctions() {
     window.toggleLike = Photos.toggleLike;
     window.addComment = Photos.addComment;
     window.deletePhoto = Photos.deletePhoto;
+    window.updateBoozeLensStatus = Photos.updateBoozeLensStatus;
+    window.showBoozeLensUploadNotification = Photos.showBoozeLensUploadNotification;
     window.viewPhoto = Photos.viewPhoto;
     window.showComments = Photos.showComments;
     window.sharePhoto = Photos.sharePhoto;
@@ -485,24 +493,39 @@ class PartyEventManager {
                 return;
             }
             
-            listEl.innerHTML = publicParties.map(party => `
+            // Create template for public party
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item" style="margin-bottom: 15px;">
                     <div class="friend-info">
                         <div class="friend-avatar-small">🎉</div>
                         <div class="friend-details">
-                            <h4>${party.name}</h4>
-                            <p style="opacity: 0.7;">
-                                👥 ${party.memberCount} members
-                                ${party.address ? `• 📍 ${party.address}` : ''}
-                                ${party.duration === '24h' ? '• ⏰ 24h party' : ''}
+                            <h4 data-party-name></h4>
+                            <p style="opacity: 0.7;" data-party-details>
                             </p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" data-action="join-public-party" data-party-code="${party.code}">
+                    <button class="btn btn-primary" data-action="join-public-party" data-join-btn>
                         Join
                     </button>
                 </div>
-            `).join('');
+            `;
+            
+            listEl.innerHTML = '';
+            publicParties.forEach(party => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-party-name]').textContent = party.name;
+                
+                const detailsText = `👥 ${party.memberCount} members` +
+                    (party.address ? ` • 📍 ${party.address}` : '') +
+                    (party.duration === '24h' ? ' • ⏰ 24h party' : '');
+                clone.querySelector('[data-party-details]').textContent = detailsText;
+                
+                const joinBtn = clone.querySelector('[data-join-btn]');
+                joinBtn.setAttribute('data-party-code', party.code);
+                
+                listEl.appendChild(clone);
+            });
         } catch (error) {
             console.error('Refresh parties error:', error);
             listEl.innerHTML = '<p style="opacity: 0.7;">Failed to load parties</p>';
@@ -524,25 +547,39 @@ class PartyEventManager {
                 return;
             }
             
-            listEl.innerHTML = parties.map(party => `
+            // Create template for friends' party
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item" style="margin-bottom: 15px;">
                     <div class="friend-info">
                         <div class="friend-avatar-small">🎉</div>
                         <div class="friend-details">
-                            <h4>${party.name}</h4>
-                            <p style="opacity: 0.7;">
-                                👤 by ${party.creatorName} • 
-                                👥 ${party.memberCount} members
-                                ${party.address ? ` • 📍 ${party.address}` : ''}
-                                ${party.duration === '24h' ? ' • ⏰ 24h party' : ''}
+                            <h4 data-party-name></h4>
+                            <p style="opacity: 0.7;" data-party-details>
                             </p>
                         </div>
                     </div>
-                    <button class="btn btn-primary" data-action="join-public-party" data-party-code="${party.code}">
+                    <button class="btn btn-primary" data-action="join-public-party" data-join-btn>
                         Join
                     </button>
                 </div>
-            `).join('');
+            `;
+            
+            listEl.innerHTML = '';
+            parties.forEach(party => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-party-name]').textContent = party.name;
+                
+                const detailsText = `👤 by ${party.creatorName} • 👥 ${party.memberCount} members` +
+                    (party.address ? ` • 📍 ${party.address}` : '') +
+                    (party.duration === '24h' ? ' • ⏰ 24h party' : '');
+                clone.querySelector('[data-party-details]').textContent = detailsText;
+                
+                const joinBtn = clone.querySelector('[data-join-btn]');
+                joinBtn.setAttribute('data-party-code', party.code);
+                
+                listEl.appendChild(clone);
+            });
         } catch (error) {
             console.error('Refresh friends parties error:', error);
             listEl.innerHTML = '<p style="opacity: 0.7;">Failed to load friends\' parties</p>';
@@ -675,7 +712,53 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateVisualizer();
     }, 500);
     
-    // Load drink history from localStorage
+    // Setup hydration timer BEFORE loading drink history
+    // Hydration timer variables
+    window.lastDrinkTime = null;
+    window.hydrationTimerInterval = null;
+    window.hydrationTargetTime = null;
+    
+    // Start or restart hydration countdown (30 minutes)
+    window.startHydrationCountdown = function() {
+        // Set target time 30 minutes from now
+        window.hydrationTargetTime = Date.now() + (30 * 60 * 1000);
+        
+        // Clear existing timer if any
+        if (window.hydrationTimerInterval) {
+            clearInterval(window.hydrationTimerInterval);
+        }
+        
+        // Start new timer that updates every minute
+        window.hydrationTimerInterval = setInterval(() => {
+            const now = Date.now();
+            
+            // Check if last drink was more than 3 hours ago
+            if (!window.lastDrinkTime || (now - window.lastDrinkTime) > (3 * 60 * 60 * 1000)) {
+                // Stop timer - no drinks in 3 hours
+                clearInterval(window.hydrationTimerInterval);
+                window.hydrationTimerInterval = null;
+                window.hydrationTargetTime = null;
+                updateUI(); // Refresh dashboard
+                return;
+            }
+            
+            // Check if countdown reached zero
+            if (now >= window.hydrationTargetTime) {
+                // Show water reminder
+                AllFunctions.showHydrationReminder();
+                // Restart countdown
+                window.hydrationTargetTime = now + (30 * 60 * 1000);
+            }
+            
+            // Update dashboard display
+            updateUI();
+        }, 60000); // Run every minute
+        
+        // Also run immediately to update display
+        updateUI();
+    };
+    
+    // Load drink history from localStorage (timer will start if needed)
     Drinks.loadDrinkHistory();
     
     // Setup drink type selection
@@ -700,13 +783,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
     
-    // Hydration reminders
-    setInterval(() => {
-        const minutes = new Date().getMinutes();
-        if (minutes % 15 === 0) {
-            AllFunctions.showHydrationReminder();
-        }
-    }, 60000);
     
     // Window click handlers
     window.onclick = (event) => {
@@ -773,6 +849,9 @@ async function onUserAuthenticated(user) {
         // Initialize features
         initializeDevices();
         
+        // Initialize BoozeLens devices
+        await Devices.initializeBoozeLensDevices();
+        
         // Initialize photos module
         Photos.initializePhotos();
         
@@ -793,6 +872,9 @@ async function onUserAuthenticated(user) {
         
         // Initialize UI
         updateUI();
+        
+        // Load dashboard by default
+        await switchSection('dashboard');
         
         // Load and display parties
         await Parties.loadUserParties();
@@ -904,11 +986,24 @@ function setupFirebaseListeners() {
                 const deleteBtn = isDeveloper(currentUser.uid) ? 
                     `<button onclick="deleteMessage('${msg.id}')" style="position: absolute; right: 10px; top: 5px; background: rgba(255,68,68,0.2); border: 1px solid rgba(255,68,68,0.5); color: #ff4444; padding: 2px 8px; border-radius: 5px; cursor: pointer; font-size: 0.8em;">×</button>` : '';
                 
-                messageDiv.innerHTML = `
-                    ${deleteBtn}
-                    <div class="chat-author">${msg.username || 'Anonymous'}${devBadge}</div>
-                    <div>${escapeHtml(msg.message || '')}</div>
+                // Create template for chat message
+                const template = document.createElement('template');
+                template.innerHTML = `
+                    <div class="chat-author" data-author></div>
+                    <div data-message></div>
                 `;
+                
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-author]').textContent = (msg.username || 'Anonymous') + (msg.isDeveloper ? ' 🛠️' : '');
+                clone.querySelector('[data-message]').textContent = msg.message || '';
+                
+                if (deleteBtn) {
+                    messageDiv.innerHTML = deleteBtn;
+                    messageDiv.appendChild(clone);
+                } else {
+                    messageDiv.innerHTML = '';
+                    messageDiv.appendChild(clone);
+                }
                 chatMessages.appendChild(messageDiv);
             });
             
@@ -1044,56 +1139,94 @@ function processDeviceReading(deviceId, reading) {
 }
 
 // ========================================
+// DYNAMIC LOADING FUNCTIONS
+// ========================================
+
+// Load HTML content dynamically  
+async function loadSectionContent(sectionName) {
+    const response = await fetch(`./src/html/sections/${sectionName}.html`);
+    return await response.text();
+}
+
+// ========================================
 // UI FUNCTIONS
 // ========================================
-function switchSection(sectionId) {
-    try {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.classList.add('active');
-        }
-        
-        // Find and activate the correct nav item
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            if (item.onclick && item.onclick.toString().includes(sectionId)) {
-                item.classList.add('active');
-            }
-        });
-        
-        // Close mobile menu
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu) {
-            navMenu.classList.remove('show');
-        }
-        
-        // Section-specific initializations
-        if (sectionId === 'achievements') {
-            Achievements.updateAchievements();
-        } else if (sectionId === 'drinks') {
-            Drinks.updateDrinkStats();
-            Drinks.updateDrinkChart();
-            Drinks.updateDrinkHistory();
-            Drinks.updateEmergencySummary();
-        } else if (sectionId === 'friends') {
-            AllFunctions.updateFriendsList();
-        } else if (sectionId === 'photos') {
-            // Photos feed updates automatically via listener
-            Photos.refreshPhotoFeed();
-        } else if (sectionId === 'settings') {
-            AllFunctions.updateToggleSwitches();
-        } else if (sectionId === 'parties') {
-            updatePartyDisplay();
-            // Refresh public parties
-            document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
-        }
-    } catch (error) {
-        console.error('Section switch failed:', error);
-    }
-}
+async function switchSection(sectionId) {
+      try {
+          const container = document.getElementById('section-container');
+
+          // Check if section already exists (dashboard/settings)
+          const existingSection = document.getElementById(sectionId);
+
+          if (existingSection) {
+              // Handle static sections (dashboard/settings)
+              document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+              existingSection.classList.add('active');
+          } else {
+              // Handle dynamic sections (friends, photos, parties, etc.)
+              // First hide all static sections (dashboard/settings)
+              document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+              
+              const content = await loadSectionContent(sectionId);
+              container.innerHTML = content;
+
+              // Add active class to the section
+              const section = container.querySelector('.section');
+              if (section) {
+                  section.classList.add('active');
+              }
+          }
+
+          // Update active navigation item
+          document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+          const navItems = document.querySelectorAll('.nav-item');
+          navItems.forEach(item => {
+              if (item.onclick && item.onclick.toString().includes(sectionId)) {
+                  item.classList.add('active');
+              }
+          });
+
+          // Close mobile menu
+          const navMenu = document.getElementById('navMenu');
+          if (navMenu) {
+              navMenu.classList.remove('show');
+          }
+
+          // Section-specific initializations
+          if (sectionId === 'achievements') {
+              Achievements.updateAchievements();
+          } else if (sectionId === 'drinks') {
+              // Setup drink type selection event listener
+              const drinkTypeSelect = document.getElementById('drinkType');
+              if (drinkTypeSelect) {
+                  drinkTypeSelect.addEventListener('change', function() {
+                      const preset = DRINK_PRESETS[this.value];
+                      document.getElementById('drinkAmount').value = preset.amount;
+                      document.getElementById('alcoholPercent').value = preset.alcohol;
+                  });
+              }
+              
+              Drinks.updateDrinkStats();
+              Drinks.updateDrinkChart();
+              Drinks.updateDrinkHistory();
+              Drinks.updateEmergencySummary();
+          } else if (sectionId === 'friends') {
+              AllFunctions.updateFriendsList();
+          } else if (sectionId === 'photos') {
+              Photos.refreshPhotoFeed();
+          } else if (sectionId === 'settings') {
+              AllFunctions.updateToggleSwitches();
+          } else if (sectionId === 'parties' || sectionId === 'dashboard') {
+              updatePartyDisplay();
+              if (sectionId === 'parties') {
+                  document.querySelector('button[onclick*="refreshPublicParties"]')?.click();
+              }
+          }
+      } catch (error) {
+          console.error('Section switch failed:', error);
+      }
+  }
+
 
 function toggleMobileMenu() {
     const navMenu = document.getElementById('navMenu');
@@ -1362,6 +1495,91 @@ async function showModal(type, data = null) {
                 <button class="btn" onclick="closeModal()">Close</button>
             `;
             break;
+            
+        case 'sober-friend':
+            content = `
+                <h2>🤝 Call Sober Friend</h2>
+                <p>Select a sober friend to call for help:</p>
+                <div id="soberFriendsContainer" style="margin: 20px 0;">
+                    <p style="opacity: 0.7;">Loading friends...</p>
+                </div>
+                <button class="btn" onclick="closeModal()">Close</button>
+            `;
+            
+            // Load sober friends after modal is shown
+            setTimeout(async () => {
+                const container = document.getElementById('soberFriendsContainer');
+                if (!container) return;
+                
+                const friendsData = getAppState().friendsData || {};
+                const partyDataFriends = getAppState().partyData || {};
+                const database = getFirebaseDatabase();
+                
+                if (Object.keys(friendsData).length === 0) {
+                    container.innerHTML = `
+                        <div class="info-box" style="text-align: center; padding: 20px;">
+                            <p style="opacity: 0.8;">🚫 No sober friends available</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const soberFriends = [];
+                
+                for (const [friendId, friendInfo] of Object.entries(friendsData)) {
+                    try {
+                        const friendSnapshot = await get(ref(database, 'users/' + friendId));
+                        const friendData = friendSnapshot.val();
+                        
+                        if (friendData) {
+                            const friendPartyData = Object.values(partyDataFriends).find(p => p.friendId === friendId);
+                            const bac = friendPartyData ? friendPartyData.bac : 0;
+                            
+                            if (bac < 0.02) { // Sober friend
+                                soberFriends.push({
+                                    id: friendId,
+                                    name: friendData.username || 'Friend',
+                                    bac: bac,
+                                    phone: friendData.phone || null
+                                });
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error loading friend data:', error);
+                    }
+                }
+                
+                if (soberFriends.length > 0) {
+                    container.innerHTML = soberFriends.map(friend => `
+                        <div class="friend-item" style="margin-bottom: 15px; padding: 15px; background: rgba(0,255,136,0.1); border-radius: 8px; border: 1px solid rgba(0,255,136,0.3);">
+                            <div class="friend-info">
+                                <div class="friend-avatar-small">✅</div>
+                                <div class="friend-details">
+                                    <h4>${friend.name}</h4>
+                                    <p style="opacity: 0.7;">BAC: ${friend.bac.toFixed(3)}‰ - Safe to help</p>
+                                    ${friend.phone ? `<p style="opacity: 0.8; font-size: 0.9em;">📞 ${friend.phone}</p>` : ''}
+                                </div>
+                            </div>
+                            ${friend.phone ? `
+                                <button class="btn btn-primary" onclick="window.location.href='tel:${friend.phone}'">
+                                    <i class="fas fa-phone"></i> Call ${friend.name}
+                                </button>
+                            ` : `
+                                <button class="btn" onclick="showNotification('No phone number available for ${friend.name}', 'info')">
+                                    <i class="fas fa-phone-slash"></i> No Number
+                                </button>
+                            `}
+                        </div>
+                    `).join('');
+                } else {
+                    container.innerHTML = `
+                        <div class="info-box" style="text-align: center; padding: 20px;">
+                            <p style="opacity: 0.8;">🚫 No sober friends available</p>
+                        </div>
+                    `;
+                }
+            }, 100);
+            break;
     }
     
     modalBody.innerHTML = content;
@@ -1435,15 +1653,24 @@ function updatePartyChat(messages) {
     const chatEl = document.getElementById('partyChat');
     if (!chatEl) return;
     
-    chatEl.innerHTML = messages.map(msg => `
+    // Create template for party chat message
+    const template = document.createElement('template');
+    template.innerHTML = `
         <div style="margin-bottom: 10px;">
-            <strong style="color: #00ff88;">${msg.userName}:</strong>
-            <span>${msg.message}</span>
-            <span style="opacity: 0.5; font-size: 0.8em; margin-left: 10px;">
-                ${new Date(msg.timestamp).toLocaleTimeString()}
-            </span>
+            <strong style="color: #00ff88;" data-username></strong>
+            <span data-message></span>
+            <span style="opacity: 0.5; font-size: 0.8em; margin-left: 10px;" data-timestamp></span>
         </div>
-    `).join('');
+    `;
+    
+    chatEl.innerHTML = '';
+    messages.forEach(msg => {
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('[data-username]').textContent = (msg.userName || 'Anonymous') + ':';
+        clone.querySelector('[data-message]').textContent = msg.message || '';
+        clone.querySelector('[data-timestamp]').textContent = new Date(msg.timestamp).toLocaleTimeString();
+        chatEl.appendChild(clone);
+    });
     
     // Scroll to bottom
     chatEl.scrollTop = chatEl.scrollHeight;
@@ -1463,26 +1690,37 @@ async function updatePartyLeaderboard() {
         return;
     }
     
-    leaderboardEl.innerHTML = leaderboard.map((member, index) => {
+    // Create template for leaderboard item
+    const template = document.createElement('template');
+    template.innerHTML = `
+        <div class="friend-item" style="margin-bottom: 10px;">
+            <div class="friend-info">
+                <div style="font-size: 2em; margin-right: 15px;" data-badge></div>
+                <div class="friend-avatar-small" data-avatar></div>
+                <div class="friend-details">
+                    <h4 data-name></h4>
+                    <p style="opacity: 0.7;" data-bac></p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    leaderboardEl.innerHTML = '';
+    leaderboard.forEach((member, index) => {
         const position = index + 1;
         let badge = '';
         if (position === 1) badge = '🥇';
         else if (position === 2) badge = '🥈';
         else if (position === 3) badge = '🥉';
         
-        return `
-            <div class="friend-item" style="margin-bottom: 10px;">
-                <div class="friend-info">
-                    <div style="font-size: 2em; margin-right: 15px;">${badge || position}</div>
-                    <div class="friend-avatar-small">${member.role === 'creator' ? '👑' : '👤'}</div>
-                    <div class="friend-details">
-                        <h4>${member.name}</h4>
-                        <p style="opacity: 0.7;">BAC: ${member.bac.toFixed(3)}‰</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('[data-badge]').textContent = badge || position;
+        clone.querySelector('[data-avatar]').textContent = member.role === 'creator' ? '👑' : '👤';
+        clone.querySelector('[data-name]').textContent = member.name;
+        clone.querySelector('[data-bac]').textContent = `BAC: ${member.bac.toFixed(3)}‰`;
+        
+        leaderboardEl.appendChild(clone);
+    });
 }
 
 // Handle party join request

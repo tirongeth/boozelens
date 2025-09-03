@@ -146,7 +146,16 @@ function updatePartyInfo(party) {
     
     nameEls.forEach(el => { 
         if (el) {
-            el.innerHTML = party.name + ` <span style="font-size: 0.8em; opacity: 0.7;">by ${party.creatorName || 'Unknown'}</span>`;
+            // Create template for party name with creator
+            const template = document.createElement('template');
+            template.innerHTML = `<span data-party-name></span> <span style="font-size: 0.8em; opacity: 0.7;">by <span data-creator-name></span></span>`;
+            
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('[data-party-name]').textContent = party.name;
+            clone.querySelector('[data-creator-name]').textContent = party.creatorName || 'Unknown';
+            
+            el.innerHTML = '';
+            el.appendChild(clone);
         }
     });
     
@@ -159,36 +168,55 @@ function updateMembersList(party, currentUser, isCreator, isDev) {
     const membersList = document.getElementById('partyMembersList');
     if (!membersList || !party.members) return;
     
-    let membersHTML = '';
+    // Create template for member item
+    const template = document.createElement('template');
+    template.innerHTML = `
+        <div class="friend-item">
+            <div class="friend-info">
+                <div class="friend-avatar-small" data-avatar></div>
+                <div class="friend-details">
+                    <h4 data-member-name></h4>
+                    <p style="opacity: 0.7; font-size: 0.9em;" data-member-details></p>
+                </div>
+            </div>
+            <div data-kick-button></div>
+        </div>
+    `;
+    
+    membersList.innerHTML = '';
     
     for (const [id, member] of Object.entries(party.members)) {
         const isThisUserCreator = id === party.creatorId;
         const isCurrentUser = currentUser && id === currentUser.uid;
         const showKickButton = (isCreator || isDev) && !isCurrentUser && !isThisUserCreator;
         
-        membersHTML += `
-            <div class="friend-item">
-                <div class="friend-info">
-                    <div class="friend-avatar-small">${isThisUserCreator ? '👑' : '👤'}</div>
-                    <div class="friend-details">
-                        <h4>${member.name} ${isThisUserCreator ? '<span style="color: #00ff88;">(Host)</span>' : ''}</h4>
-                        <p style="opacity: 0.7; font-size: 0.9em;">
-                            ${member.role === 'creator' ? 'Party Host • ' : ''}
-                            Joined ${new Date(member.joinedAt).toLocaleTimeString()}
-                        </p>
-                    </div>
-                </div>
-                ${showKickButton ? `
-                    <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.9em;" 
-                            onclick="kickMemberFromParty('${id}', '${member.name}')">
-                        <i class="fas fa-user-times"></i> Kick
-                    </button>
-                ` : ''}
-            </div>
-        `;
+        const clone = template.content.cloneNode(true);
+        clone.querySelector('[data-avatar]').textContent = isThisUserCreator ? '👑' : '👤';
+        
+        const nameEl = clone.querySelector('[data-member-name]');
+        nameEl.textContent = member.name;
+        if (isThisUserCreator) {
+            const hostSpan = document.createElement('span');
+            hostSpan.style.color = '#00ff88';
+            hostSpan.textContent = ' (Host)';
+            nameEl.appendChild(hostSpan);
+        }
+        
+        const detailsText = (member.role === 'creator' ? 'Party Host • ' : '') +
+            `Joined ${new Date(member.joinedAt).toLocaleTimeString()}`;
+        clone.querySelector('[data-member-details]').textContent = detailsText;
+        
+        if (showKickButton) {
+            const kickBtn = document.createElement('button');
+            kickBtn.className = 'btn btn-danger';
+            kickBtn.style.cssText = 'padding: 5px 10px; font-size: 0.9em;';
+            kickBtn.innerHTML = '<i class="fas fa-user-times"></i> Kick';
+            kickBtn.onclick = () => kickMemberFromParty(id, member.name);
+            clone.querySelector('[data-kick-button]').appendChild(kickBtn);
+        }
+        
+        membersList.appendChild(clone);
     }
-    
-    membersList.innerHTML = membersHTML;
 }
 
 function updatePartyStats(party, Parties) {
@@ -264,25 +292,40 @@ function updateCreatorControls(party, isCreator, isDev) {
         const pendingCount = Object.keys(party.pendingRequests).length;
         if (pendingCount > 0) {
             pendingSection.style.display = 'block';
-            pendingList.innerHTML = Object.entries(party.pendingRequests).map(([userId, request]) => `
+            
+            // Create template for pending request
+            const template = document.createElement('template');
+            template.innerHTML = `
                 <div class="friend-item" style="margin-bottom: 15px;">
                     <div class="friend-info">
                         <div class="friend-avatar-small">👤</div>
                         <div class="friend-details">
-                            <h4>${request.name}</h4>
-                            <p style="opacity: 0.7;">Requested ${new Date(request.requestedAt).toLocaleTimeString()}</p>
+                            <h4 data-request-name></h4>
+                            <p style="opacity: 0.7;" data-request-time></p>
                         </div>
                     </div>
                     <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-primary" onclick="handlePartyRequest('${userId}', true)">
+                        <button class="btn btn-primary" data-approve-btn>
                             <i class="fas fa-check"></i> Approve
                         </button>
-                        <button class="btn" onclick="handlePartyRequest('${userId}', false)">
+                        <button class="btn" data-decline-btn>
                             <i class="fas fa-times"></i> Decline
                         </button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            
+            pendingList.innerHTML = '';
+            Object.entries(party.pendingRequests).forEach(([userId, request]) => {
+                const clone = template.content.cloneNode(true);
+                clone.querySelector('[data-request-name]').textContent = request.name;
+                clone.querySelector('[data-request-time]').textContent = `Requested ${new Date(request.requestedAt).toLocaleTimeString()}`;
+                
+                clone.querySelector('[data-approve-btn]').onclick = () => handlePartyRequest(userId, true);
+                clone.querySelector('[data-decline-btn]').onclick = () => handlePartyRequest(userId, false);
+                
+                pendingList.appendChild(clone);
+            });
         } else if (pendingSection) {
             pendingSection.style.display = 'none';
         }
