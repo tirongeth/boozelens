@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BoozeLens | Picture Perfect Party</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BoozeLens">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="BoozeLens">
+    <meta name="msapplication-TileColor" content="#00ff88">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./assets/manifest-J-60a_zD.json">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="./assets/icon-152x152-ZmjigwZl.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon-32x32-Cbc_6fOs.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon-16x16-B69A_4X1.png">
+    <link rel="shortcut icon" href="./assets/icon-32x32-Cbc_6fOs.png">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Core CSS -->
+
+    <!-- Effects CSS -->
+
+    <!-- Layouts CSS -->
+
+    <!-- Components CSS -->
+
+    <!-- Features CSS -->
+    <link rel="stylesheet" href="./src/css/features/boozelns-devices.css">
+
+    <!-- Utilities CSS -->
+
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+
+
+
+  
+  <!-- Party events will be handled by the main module system -->
+  <script type="module" crossorigin src="./assets/index-LCrjokFr.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CrcinOJc.css">
+</head>
+<body>
+    <!-- Mobile App Loading Screen -->
+    <div class="mobile-loading-screen" id="mobileLoadingScreen">
+        <img src="./assets/boozelens_app_cover%20(2)-BWMfzxeY.svg" alt="BoozeLens" class="loading-logo">
+        <div class="loading-spinner-container">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    
+    <div class="background"></div>
+    <div class="particles" id="particles"></div>
+    
+    <!-- Auth Container (Login/Signup) -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <h2 id="authTitle">Welcome to BoozeLens</h2>
+            
+            <div class="auth-error" id="authError"></div>
+            
+            <div class="auth-loading" id="authLoading">
+                <div class="loading-spinner"></div>
+                <p>Please wait...</p>
+            </div>
+            
+            <form id="authForm" autocomplete="on">
+                <div class="form-group">
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" required autocomplete="email" placeholder="your.email@hsg.ch">
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" required autocomplete="current-password" placeholder="••••••••">
+                </div>
+                <div class="form-group" id="usernameGroup" style="display: none;">
+                    <label for="authUsername">Username</label>
+                    <input type="text" id="authUsername" autocomplete="username" placeholder="Choose a unique username">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="authSubmitBtn">
+                    <span id="authButton">Login</span>
+                </button>
+            </form>
+            <div class="auth-toggle">
+                <span id="authToggleText">Don't have an account?</span>
+                <a onclick="toggleAuthMode()" id="authToggleLink">Sign up</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alert Banner -->
+    <div class="alert-banner" id="alertBanner">
+        <span id="alertText"></span>
+    </div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" onclick="switchSection('dashboard')">
+                <img src="./assets/web_icon-AzaWpxpe.png" alt="BoozeLens">
+                BoozeLens
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><button class="nav-item active" onclick="switchSection('dashboard')" type="button" title="Dashboard">
+                    <i class="fas fa-home"></i><span>Dashboard</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('friends')" type="button" title="Friends">
+                    <i class="fas fa-users"></i><span>Friends</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('photos')" type="button" title="Photos">
+                    <i class="fas fa-camera-retro"></i><span>Photos</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('parties')" type="button" title="Parties">
+                    <i class="fas fa-champagne-glasses"></i><span>Parties</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('games')" type="button" title="Games">
+                    <i class="fas fa-gamepad"></i><span>Games</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('achievements')" type="button" title="Achievements">
+                    <i class="fas fa-trophy"></i><span>Achievements</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('drinks')" type="button" title="Drinks">
+                    <i class="fas fa-beer"></i><span>Drinks</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('emergency')" type="button" title="Emergency">
+                    <i class="fas fa-ambulance"></i><span>Emergency</span>
+                </button></li>
+                <li><button class="nav-item" onclick="switchSection('settings')" type="button" title="Settings">
+                    <i class="fas fa-cog"></i><span>Settings</span>
+                </button></li>
+            </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" type="button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Floating More Button -->
+    <button class="mobile-more-button" id="mobileMoreButton" onclick="toggleMobileMore()" type="button">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- User Profile Widget -->
+    <div class="user-profile" id="userProfile" style="display: none;">
+        <h4 id="profileName">Loading...</h4>
+        <p id="profileEmail">...</p>
+        <p>Devices: <span id="deviceCount">0</span></p>
+        <p>Friends: <span id="friendCount">0</span></p>
+        <button class="btn" onclick="signOut()">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
+
+        
+    </div>
+    
+    <!-- Connection Status -->
+    <div class="connection-status">
+        <span class="status-dot"></span>
+        <span id="connectionStatus">Connecting...</span>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>BoozeLens</h1>
+                <p class="subtitle">Picture Perfect Party</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="showModal('pair-device')">
+                    <i class="fas fa-link"></i> Pair Device
+                </button>
+                <button class="btn" onclick="showModal('checkin')">
+                    <i class="fas fa-location-dot"></i> Check In
+                </button>
+                <button class="btn" onclick="callUber()">
+                    <i class="fas fa-taxi"></i> Call Uber
+                </button>
+                <button class="btn btn-danger" onclick="showModal('emergency')">
+                    <i class="fas fa-exclamation-triangle"></i> Emergency
+                </button>
+            </div>
+        </header>
+        
+        <div id="section-container"></div>
+            <!-- Dashboard section embedded directly -->
+      <section id="dashboard" class="section active">
+          <!-- Party Info (shown when in a party) -->
+    <div id="dashboardPartyInfo" style="display: none; margin-bottom: 30px; background: rgba(0, 255, 136, 0.1); border: 2px solid #00ff88; padding: 20px; border-radius: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: #00ff88; margin: 0;">🎉 Party: <span id="dashboardPartyName"></span></h3>
+            <div style="font-size: 1.5em; font-weight: bold; color: #00ff88;" id="dashboardPartyCode"></div>
+        </div>
+        <button class="btn" onclick="switchSection('parties')" style="margin-top: 15px;">
+            <i class="fas fa-users"></i> View Party
+        </button>
+    </div>
+    
+    <div class="party-stats">
+        <div class="stat-card" onclick="showNotification('Party statistics!')">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="partyAverage">0.000</div>
+            <div class="stat-label">Party Average</div>
+        </div>
+        <div class="stat-card" onclick="showModal('safe-friends')">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value" id="safeFriends">0</div>
+            <div class="stat-label">Safe to Drive</div>
+        </div>
+        <div class="stat-card" onclick="showModal('locations')">
+            <div class="stat-icon">📍</div>
+            <div class="stat-value" id="activeLocations">3</div>
+            <div class="stat-label">Party Spots</div>
+        </div>
+        <div class="stat-card" onclick="showHydrationReminder()">
+            <div class="stat-icon">💧</div>
+            <div class="stat-value" id="hydrationTime">15m</div>
+            <div class="stat-label" id="hydrationLabel">Until Water Break</div>
+        </div>
+    </div>
+    
+    <div class="visualizer" id="visualizer">
+        <!-- Music visualizer bars will be generated here -->
+    </div>
+    
+    <div class="dashboard" id="friendsGrid">
+        <!-- Friend cards will be dynamically inserted here -->
+    </div>
+    
+    <div class="leaderboard">
+        <h2>🏆 Tonight's Champions 🎉</h2>
+        <div id="leaderboardList">
+            <!-- Leaderboard items will be inserted here -->
+        </div>
+    </div>
+    
+    <div class="info-box">
+        <h3>=🔌 How to Connect Your Breathalyzer</h3>
+        <p><strong>For Arduino/ESP32 Devices:</strong></p>
+        <ol style="margin-left: 20px;">
+            <li>Power on your device and connect to its WiFi hotspot</li>
+            <li>Complete the setup and note your unique Device ID</li>
+            <li>Click "Pair Device" and enter your Device ID</li>
+            <li>Your BAC readings will update in real-time</li>
+        </ol>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message">
+                <div class="chat-author">System</div>
+                <div>Welcome to BoozeLens Chat! Stay safe and have fun! 🎉</div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatEnter(event)">
+            <button class="btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+      </section>
+
+      <!-- Settings section embedded directly -->
+      <section id="settings" class="section">
+          <div class="profile-header">
+                <div class="profile-avatar" onclick="showNotification('Profile picture upload coming soon!')">
+                    <span id="profileInitial">?</span>
+                </div>
+                <div class="profile-info">
+                    <h2 id="settingsUsername" class="settings-username-display">Loading...</h2>
+                    <p id="settingsEmail" class="settings-email-display">...</p>
+                    <p id="settingsPhone" style="display: none;">...</p>
+                </div>
+            </div>
+            
+            <div class="settings-grid">
+                <div class="settings-section">
+                    <h3>👤 Profile Information</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="username" placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="emailDisplay" disabled style="opacity: 0.7;">
+                        </div>
+                        <button class="btn btn-primary" onclick="updateProfile()">Update Profile</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🔒 Account Security</h3>
+                    <div class="linked-accounts">
+                        <div class="account-item">
+                            <div class="account-info">
+                                <div class="account-icon email-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p id="linkedEmail" style="margin: 0; opacity: 0.7;">...</p>
+                                </div>
+                            </div>
+                            <span style="color: #00ff88;">✓ Linked</span>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="changePassword()" style="margin-top: 20px; width: 100%;">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🚨 Emergency Information</h3>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Home Address</label>
+                            <textarea id="homeAddress" placeholder="Enter your home address for quick Uber rides"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Emergency Contact</label>
+                            <input type="tel" id="emergencyContact" placeholder="+41 XX XXX XX XX">
+                        </div>
+                        <div class="form-group">
+                            <label>Medical Information</label>
+                            <textarea id="medicalInfo" placeholder="Allergies, conditions, medications..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Safety Notes</label>
+                            <textarea id="safetyNotes" placeholder="Any other important information"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveEmergencyInfo()">Save Emergency Info</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>🔔 Privacy & Notifications</h3>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Share Location with Friends</span>
+                            <small>Allow friends to see your party location</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="shareLocation">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Enable Notifications</span>
+                            <small>Get alerts for friend requests and safety reminders</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="notifications" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-group">
+                        <div class="toggle-label">
+                            <span>Public Profile</span>
+                            <small>Allow others to find you by username</small>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="publicProfile" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary" onclick="savePrivacySettings()" style="margin-top: 20px; width: 100%;">Save Privacy Settings</button>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>📱 BoozeLens Devices</h3>
+                    <div id="boozeLensDeviceStats"></div>
+                    
+                    <div class="device-pairing-section">
+                        <h4>Pair New BoozeLens Device</h4>
+                        <form id="boozeLensDevicePairForm" class="settings-form">
+                            <div class="form-group">
+                                <label>Device ID</label>
+                                <input type="text" id="boozeLensDeviceIdInput" 
+                                       placeholder="Enter Device ID (e.g., BOOZE12AB34)" 
+                                       style="text-transform: uppercase;">
+                                <small>Find your Device ID on the BoozeLens setup screen</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="pairBoozeLensDeviceBtn">
+                                <i class="fas fa-link"></i> Pair Device
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="device-list-section">
+                        <h4>Your BoozeLens Devices</h4>
+                        <div id="boozeLensDeviceList"></div>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>💾 Data Management</h3>
+                    <div style="display: grid; gap: 10px;">
+                        <button class="btn" onclick="exportData()">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                        <button class="btn" onclick="clearDrinkHistory()">
+                            <i class="fas fa-trash"></i> Clear Drink History
+                        </button>
+                        <button class="btn" onclick="refreshBoozeLensDevices()">
+                            <i class="fas fa-sync"></i> Refresh Devices
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteAccount()">
+                            <i class="fas fa-user-times"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hidden elements needed for JavaScript functionality -->
+            <div style="display: none;">
+                <div id="friendRequests"></div>
+            </div>
+      </section>
+  </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <!-- Mobile More Menu -->
+    <div class="mobile-more-backdrop" id="mobileMoreBackdrop" onclick="toggleMobileMore()"></div>
+    <div class="mobile-more-menu" id="mobileMoreMenu">
+        <div class="mobile-more-header">
+            <h3>More Options</h3>
+            <button class="mobile-more-close" onclick="toggleMobileMore()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-more-items">
+            <div class="mobile-more-item" onclick="switchSection('photos'); toggleMobileMore();">
+                <i class="fas fa-camera-retro"></i>
+                <span>Photos</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('achievements'); toggleMobileMore();">
+                <i class="fas fa-trophy"></i>
+                <span>Achievements</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('drinks'); toggleMobileMore();">
+                <i class="fas fa-beer"></i>
+                <span>Drinks</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('emergency'); toggleMobileMore();">
+                <i class="fas fa-ambulance"></i>
+                <span>Emergency</span>
+            </div>
+            <div class="mobile-more-item" onclick="switchSection('settings'); toggleMobileMore();">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BoozeLens App JavaScript -->
+
+<!-- Main App Module -->
+
+</body>
+</html>
